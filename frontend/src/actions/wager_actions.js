@@ -3,7 +3,7 @@ import * as wagerUTIL from '../util/wagers_api_util';
 export const RECEIVE_WAGERS = 'RECEIVE_WAGERS';
 export const RECEIVE_WAGER = 'RECEIVE_WAGER';
 
-export const receciveWagers = wagers => ({
+export const receiveWagers = wagers => ({
     type: RECEIVE_WAGERS,
     wagers
 });
@@ -12,6 +12,7 @@ export const receiveWager = wager => ({
     type: RECEIVE_WAGER,
     wager
 });
+
 
 export const fetchWagers = () => dispatch => {
     return wagerUTIL.getWagers()

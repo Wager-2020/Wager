@@ -31,24 +31,22 @@ class WagerShow extends React.Component {
     }
 
     displayWager() {
-        const currentWager = this.props.wagers.map((wager, idx) => {
-            return (
-              <div key={idx} className="wagers-container">
-                <div className="wagers-container-top">
-                    {wager.title}
+       const currentWager = this.props.wager;
+        return (
+            <div className="wagers-container">
+            <div className="wagers-container-top">
+                {currentWager.title}
+            </div>
+            <div className="wagers-container-bottom">
+                <div className="bottom-card-left" onClick = {this.handleClickA}>
+                <p>I'm left {currentWager.wager_choices[0]}</p>
                 </div>
-                <div className="wagers-container-bottom">
-                  <div className="bottom-card-left" onClick = {this.handleClickA}>
-                    <p>I'm left {wagers.choices[0]}</p>
-                  </div>
-                  <div className="bottom-card-right" onClick = {this.handleClickB}>
-                    <p>I'm Right{wagers.choices[1]}</p>
-                  </div>
+                <div className="bottom-card-right" onClick = {this.handleClickB}>
+                <p>I'm Right{currentWager.wager_choices[1]}</p>
                 </div>
-              </div>
-            );
-        })
-        return wagersLis;
+            </div>
+            </div>
+        );
     }
 
     render() {
@@ -61,7 +59,7 @@ class WagerShow extends React.Component {
     }
 }
 
-const msp = (state, OwnProps) => {
+const msp = (state, Ownprops) => {
     return {
         errors: state.errors,
         wager: state.entities.wagers[Ownprops.match.params.wager]

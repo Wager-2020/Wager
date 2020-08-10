@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../actions/user_actions';
 import UserWagerLink from '../../util/link_util';
 import { AuthRoute } from "../../util/route_util";
+import UserWagersShow from './user_wagers_show';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -28,12 +29,12 @@ class Profile extends React.Component {
                 <p>User Profile</p>
                 <UserWagerLink
                     component = {UserWagersShow}
-                    to ={ `/users/${user.id}/wagers`}
+                    to ={ `/users/${this.props.user.id}/wagers`}
                     label = 'Check out all wagers made by this user' 
                 />
                 <AuthRoute
                     exact path = '/users/:userId/wagers'
-                    component = {UsersWagerShow}
+                    component = {UserWagersShow}
                 />
             </div>
         )

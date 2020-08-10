@@ -20,10 +20,10 @@ class WagersIndex extends React.Component {
                 </div>
                 <div className="wagers-container-bottom">
                   <div className="bottom-card-left">
-                    <p>I'm left {wagers.choices[0]}</p>
+                    <p>I'm left {wager.choices[0]}</p>
                   </div>
                   <div className="bottom-card-right">
-                    <p>I'm Right{wagers.choices[1]}</p>
+                    <p>I'm Right{wager.choices[1]}</p>
                   </div>
                 </div>
               </div>
@@ -36,6 +36,7 @@ class WagersIndex extends React.Component {
 
         return (
             <div>
+                <h1>Wagers Index Here</h1>
                 {this.displayWagers()}
             </div>
         )

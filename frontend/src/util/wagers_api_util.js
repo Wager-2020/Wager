@@ -5,7 +5,7 @@ export const getWagers = () => {
 };
 
 export const getWager = (wagerId) => {
-  return axios.get(`/api/wagers/${wagerId}`, wager);
+  return axios.get(`/api/wagers/${wagerId}`);
 };
 
 

@@ -18,4 +18,4 @@ const wagersReducer = (state = {}, action) => {
     }
 };
 
-export default wagersRedcuer;
+export default wagersReducer;
