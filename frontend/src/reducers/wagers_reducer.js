@@ -6,14 +6,13 @@ import {
 
 const wagersReducer = (state = {}, action) => {
     Object.freeze(state);
-    let newState = Object.assign({}, state);
     switch (action.type) {
         case RECEIVE_WAGERS:
-            newState = action.wagers;
-            return newState;
+            return action.wagers;
         case RECEIVE_WAGER:
-            newState[action.wager.id] = action.wager;
-            return newState;
+            // const wager = { [action.wager.id]: action.wager }
+            // return Object.assign({}, state, wager)
+            return { [action.wager.id]: action.wager };
         default:
             return state;
     }
