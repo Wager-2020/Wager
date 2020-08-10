@@ -1,7 +1,10 @@
-import wagers from './wagers_reducer'
+import { combineReducers } from 'redux';
+import wagers from './wagers_reducer';
+import users from './users_reducer';
 
-const RootReducer = combineReducers({
+const entitiesReducer = combineReducers({
     wagers,
+    users,
 });
 
-export default RootReducer;
+export default entitiesReducer;

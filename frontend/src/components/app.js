@@ -7,6 +7,7 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import WagersIndex from './wagers/wagers_index';
 import WagerShow from './wagers/wager_show';
+import Profile from './users/profile_show';
 
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
     <Switch>
         <AuthRoute exact path="/" component={WagersIndex} />
         <AuthRoute exact path="/wagers/:wagerId" component={WagerShow} />
+        <AuthRoute exact path="/users/:userId" component={Profile} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
     </Switch>
