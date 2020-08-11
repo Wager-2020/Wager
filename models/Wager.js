@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
-
 const WagerSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -41,6 +39,8 @@ const WagerSchema = new Schema({
     type: [String],
     required: true
   },
+}, {
+  timestamps: true
 });
 
 module.exports = Wager = mongoose.model("Wager", WagerSchema);
