@@ -25,7 +25,16 @@ const BetSchema = new Schema({
   option: {
     type: String,
     required: true
+  },
+
+  amount_won: {
+    type: Number,
+    default: 0
   }
+
+  // amount_bet stored internally
+  // amount_won = (amount_bet / (wager.wager_choices.where("expired: true").probability))
+  // amount_won { default: null }
 }, {
   timestamps: true
 });

@@ -36,8 +36,19 @@ const WagerSchema = new Schema({
   },
 
   wager_choices: {
-    type: [String],
+    // type: [String],
+    type: [new Schema({
+      option: { type: String, required: true },
+      probability: { type: Number, default: 0.5 },
+      winner: { type: Boolean, default: false }
+    })],
     required: true
+  },
+
+  expired: {
+    type: Boolean,
+    required: true,
+    default: false
   },
 }, {
   timestamps: true

@@ -27,39 +27,56 @@ const WAGERS = [
     description: "There will be more than 100 inches of rain this month in Botswana.",
     karma_points: 5000,
     due_date: "2020-12-31",
-    wager_choices: ["Yay", "Nay"]
+    wager_choices: [
+      { option:"Yay" , winner: true}, 
+      { option:"Nay" }
+    ]
   },
   
   {
     title: "Sparrow Flight Velocity",
     description: "What is the flight velocity of a sparrow?",
     karma_points: 3000,
-    due_date: "2020-12-31",
-    wager_choices: ["Over 10 m/s", "Under 10 m/s", "African or European"]
+    due_date: "2000-05-31",
+    wager_choices: [
+      { option:"Over 10 m/s", winner: true }, 
+      { option:"Under 10 m/s" }, 
+      { option:"African or European" }
+    ]
   },
   
   {
     title: "Sports: OH YEAH",
     description: "Who will win at ball sport?",
     karma_points: 10000,
-    due_date: "2020-12-31",
-    wager_choices: ["That team I like", "That team I don't like", "What is ball?"]
+    due_date: "2001-11-31",
+    wager_choices: [
+      { option: "That team I like" }, 
+      { option: "That team I don't like", winner: true }, 
+      { option: "What is ball?" }
+    ]
   },
 
   {
     title: "Politics: EKH",
     description: "Who will win at election?",
     karma_points: 15000,
-    due_date: "2020-12-31",
-    wager_choices: ["The elephant person", "The ass"]
+    due_date: "2030-06-31",
+    wager_choices: [
+      { option:"The elephant person" }, 
+      { option: "The ass", winner: true }
+    ] 
   },
   
   {
     title: "Peter Sucks Eggs",
     description: "How many eggs can Peter suck?",
     karma_points: 15000,
-    due_date: "2020-12-31",
-    wager_choices: ["So many", "A lot", "Too many to count"]
+    due_date: "1990-12-01",
+    wager_choices: [
+      { option: "So many" },
+      { option: "Too many to count", winner: true },
+     ]
   },
 ];
 
@@ -88,7 +105,6 @@ const seed = async (params = DEFAULT_PARAMS) => {
 
     for (let msgIter = 0; msgIter < numMessagesPerUser; msgIter++) {
       const message = new Message({
-        // user: "5f329e875b2e14b5eb00c459",
         user: users[i]._id,
         body: faker.lorem.sentence(),
       });
@@ -104,17 +120,17 @@ const seed = async (params = DEFAULT_PARAMS) => {
       const randomWagerId = randomWager._id
       const randomAmountBet = Math.random() * AMOUNT_BET_RANGE;
       
-      const options = randomWager.wager_choices;
+      const choices = randomWager.wager_choices;
 
-      const numOptions = options.length;
-      const optionIdx = Math.ceil(Math.random() * numOptions * 2.0) % numOptions;
-      const randomOption = options[optionIdx];
+      const numChoices = choices.length;
+      const choiceIdx = Math.ceil(Math.random() * numChoices * 2.0) % numChoices;
+      const randomChoice = choices[choiceIdx];
       
       const bet = new Bet({
         user: users[i]._id,
         wager: randomWagerId,
         amount_bet: randomAmountBet,
-        option: randomOption
+        option: randomChoice.option
       });
 
       bets.push(bet);
