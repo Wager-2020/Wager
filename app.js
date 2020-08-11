@@ -13,6 +13,8 @@ mongoose
   .catch(err => console.log(err));
 
 const users = require("./routes/api/users");
+const wagers = require("./routes/api/wagers");
+const bets = require("./routes/api/bets");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -21,6 +23,8 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 app.use("/api/users", users);
+app.use("/api/wagers", wagers);
+app.use("/api/bets", bets);
 app.get("/", (req, res) => res.send("<h1>Wager Home Page</h1>"));
 
 
