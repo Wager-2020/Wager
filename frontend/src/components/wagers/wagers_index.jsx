@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchWagers } from '../../actions/wager_actions';
+import { Link } from 'react-router-dom';
 
 class WagersIndex extends React.Component {
 
@@ -13,7 +14,7 @@ class WagersIndex extends React.Component {
             return (
               <div key={idx} className="wagers-container">
                 <div className="wagers-container-top">
-                    {wager.title}
+                  <Link to={`/wagers/${wager._id}`}>{wager.title}</Link>
                 </div>
                 <div className="wagers-container-bottom">
                   <div className="bottom-card-left">
