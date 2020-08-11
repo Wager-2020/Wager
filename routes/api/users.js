@@ -10,6 +10,13 @@ const keys = require('../../config/keys');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
+
+router.get("/:id", (req, res) => {
+  User.findById(req.params.id)
+    .then(user => res.json(user))
+    .catch(err => res.status(404).json(err));
+});
+
 router.post("/register", (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
   

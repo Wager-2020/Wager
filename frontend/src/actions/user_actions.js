@@ -1,5 +1,5 @@
 import * as APIUserUTIL from '../util/user_api_util';
-import { fetchWagers, fetchWager } from './wager_actions';
+import { fetchWagers, fetchWager, receiveWager } from './wager_actions';
 
 export const RECEIVE_USER = "RECEIVE_USER";
 
@@ -23,6 +23,6 @@ export const getUserWagers = (userId) => (dispatch) => {
 
 export const placeWager = (wager) => (dispatch) => {
     return APIUserUTIL.placeWager(wager)
-      .then((wager) => dispatch(fetchWager(wager)))
+      .then((wager) => dispatch(receiveWager(wager)))
       .catch((err) => console.log(err));
 };

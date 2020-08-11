@@ -21,6 +21,7 @@ export const fetchWagers = () => dispatch => {
 };
 
 export const fetchWager = (wagerId) => dispatch => {
+    // debugger;
     return wagerUTIL.getWager(wagerId)
         .then(wager => dispatch(receiveWager(wager.data)))
         .catch(err => console.log(err))
