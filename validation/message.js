@@ -10,4 +10,8 @@ module.exports = function validateMessage(data) {
     errors.handle = 'A message cannot be empty.';
   }
 
+  return {
+    errors,
+    isValid: Object.keys(errors).length === 0
+  }
 }
