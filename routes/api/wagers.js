@@ -15,6 +15,31 @@ const merge = require("lodash").merge;
  * PATCH a wager --> /api/wagers/:id
  */
 
+ /**
+  * on GET wager/s
+  * check if wager's dueDate < today
+  * check if wager's hasExpired === true
+  *   if hasExpired
+  *     deliver rewards
+  *   else
+  *   
+  */
+
+  /**
+   * on GET wager/s
+   * if wager.due_date <= Date()
+   *  if wager.expired
+   *    do not add to response json (do nothing)
+   *  else
+   *    wager.expired = true
+   *    deliver rewards
+   *    add to responsse json
+   * else
+   *  add to response json
+   */
+
+//without groups
+
 // GET all wagers --> /api/wagers
 router.get("/", (request, response) => {
   Wager.find()
@@ -23,19 +48,22 @@ router.get("/", (request, response) => {
     .catch(errors => response.status(404).json({ nowagersfound: "Dear God, there are no wagers! PANIC!" }))
 });
 
+// GET one wager --> /api/wagers/:id
+router.get("/:id", (request, response) => {
+  Wager.findById(request.params.id)
+    .then(wager => response.json(wager))
+    .catch(errors => response.status(404).json({ nowagersfound: "That wager don't exist." }))
+});
+
+
+// with groups
+
 // GET all wagers of a group --> /api/wagers/groups/:group_id
 router.get("/groups/:group_id/", (request, response) => {
   Wager.find({ group_id: request.params.group_id })
     .sort({ due_date: -1 })
     .then(wagers => response.json(wagers))
     .catch(errors => response.status(404).json({ nowagersfound: "Woe, there are no wagers for that group. :-(" }))
-});
-
-// GET one wager --> /api/wagers/:id
-router.get("/:id", (request, response) => {
-  Wager.findById(request.params.id)
-    .then(wager => response.json(wager))
-    .catch(errors => response.status(404).json({ nowagersfound: "That wager don't exist." }))
 });
 
 // POST a wager to a group --> /api/wagers/groups/:group_id
