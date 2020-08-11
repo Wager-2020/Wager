@@ -19,37 +19,8 @@ const App = () => (
 
     <Switch>
         <AuthRoute exact path="/" component={WagersIndex} />
-        { 
-          // protected as auth ?
-          // this is another comment hahahahahaa
-          // hahahahahaa
-          // eat some comments
-          // hahahahahaa
-
-          // :) ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // ☺ ☺☺☺☺☺☺☺☺☺☺☺☺☺
-          // you better smile SMILLLLEE!
-          // hahaha
-        }
         <ProtectedRoute exact path="/wagers/:wagerId" component={WagerShow} />
-        <AuthRoute exact path="/users/:userId" component={Profile} />
+        <ProtectedRoute exact path="/users/:userId" component={Profile} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
     </Switch>
