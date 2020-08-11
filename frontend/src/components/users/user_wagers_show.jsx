@@ -38,7 +38,7 @@ export const msp = (state) => {
     return {
         errors: state.errors,
         currentUser: state.session.currentUser,
-        wagers: state.entities.wagers
+        wagers: Object.values(state.entities.wagers)
     }
 }
 

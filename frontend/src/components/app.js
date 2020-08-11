@@ -22,7 +22,7 @@ const App = () => (
     </header>
 
     <Switch>
-      <Route path="users/bets/:user_id" component={UserWagersShow}/>
+      <Route path="/users/bets/:userId" component={UserWagersShow}/>
       <ProtectedRoute exact path="/messages/form" component={MessageForm} />
       <Route exact path="/messages" component={MessagesIndex} />
       <Route exact path="/" component={WagersIndex} />
