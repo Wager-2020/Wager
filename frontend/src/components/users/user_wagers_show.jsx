@@ -5,7 +5,7 @@ import { getUserWagers } from '../../actions/user_actions';
 class UserWagersShow extends React.Component {
 
     componentDidMount() {
-        this.props.getUserWagers(this.props.match.params.userId)
+        // this.props.getUserWagers(this.props.match.params.userId)
     }
 
     showWagers() {
@@ -23,7 +23,7 @@ class UserWagersShow extends React.Component {
     }
 
     render() {
-        debugger;
+        // debugger;
         return(
             <div>
                 <h1>Users Placed Bets</h1>
@@ -33,18 +33,18 @@ class UserWagersShow extends React.Component {
     }
 }
 
-export const msp = (state) => {
-    debugger;
+export const msp = (state, ownProps) => {
     return {
         errors: state.errors,
         currentUser: state.session.currentUser,
-        wagers: Object.values(state.entities.wagers)
+        wagers: Object.values(state.entities.wagers),
+        user: ownProps.userWagerLis
     }
 }
 
 const mdp = (dispatch) => {
     return {
-        getUserWagers: (userId) => dispatch(getUserWagers(userId))
+        getUserWagers: (userId) => dispatch(getUserWagers(userId)),
     }
 }
 

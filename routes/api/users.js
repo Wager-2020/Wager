@@ -10,10 +10,33 @@ const keys = require('../../config/keys');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
+const MAX_BETS_ALLOWED = 10;
 
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
-    .then(user => res.json(user))
+    .then(user => {
+      Bet.find({ user })
+      .limit(MAX_BETS_ALLOWED)
+      .then(bets => {
+        // debugger;
+        // const newState = {
+          // user, bets
+        // };
+        // debugger;
+
+        // {
+          // id, handle,...bets
+        // }
+
+        const { _id, handle } = user;
+
+        return res.json({
+          _id, handle,
+          bets
+        });
+      })
+      .catch(err => res.status(404).json(err))
+    })
     .catch(err => res.status(404).json(err));
 });
 

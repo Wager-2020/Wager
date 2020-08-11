@@ -76,9 +76,10 @@ const seed = async (params = DEFAULT_PARAMS) => {
   let wagers = await Wager.insertMany(WAGERS);
   let messages = [];
   let bets = [];
+  let users = await User.find();
 
 
-  for (let i = 0; i < numUsers; i++) {
+  for (let i = 0; i < users.length; i++) {
     // const user = new User({
     //   handle: faker.internet.userName,
     //   email: faker.internet.email,
@@ -87,7 +88,8 @@ const seed = async (params = DEFAULT_PARAMS) => {
 
     for (let msgIter = 0; msgIter < numMessagesPerUser; msgIter++) {
       const message = new Message({
-        user: "5f329e875b2e14b5eb00c459",
+        // user: "5f329e875b2e14b5eb00c459",
+        user: users[i]._id,
         body: faker.lorem.sentence(),
       });
       
@@ -109,6 +111,7 @@ const seed = async (params = DEFAULT_PARAMS) => {
       const randomOption = options[optionIdx];
       
       const bet = new Bet({
+        user: users[i]._id,
         wager: randomWagerId,
         amount_bet: randomAmountBet,
         option: randomOption

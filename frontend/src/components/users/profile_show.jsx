@@ -2,11 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../actions/user_actions';
 import {Link} from 'react-router-dom';
-
 class Profile extends React.Component {
 
     componentDidMount(){
-        this.props.fetchUser(this.props.match.params.userId)
+        this.props.fetchUser(this.props.match.params.userId);
     }
 
     displayUserInfo() {
@@ -23,7 +22,7 @@ class Profile extends React.Component {
           <div>
             <h1>Profile Profile Profile!</h1>
             {this.displayUserInfo()}
-            <Link to={`bets/${this.props.user._id}`}>View Users Placed Bets</Link>
+            {/* <Link to={`bets/${this.props.user._id}`}>View Users Placed Bets</Link> */}
           </div>
         );
     }
