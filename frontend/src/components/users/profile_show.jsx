@@ -11,6 +11,7 @@ class Profile extends React.Component {
     }
 
     componentDidMount(){
+        debugger;
         this.props.fetchUser(this.props.match.params.userId)
     }
 
@@ -27,6 +28,7 @@ class Profile extends React.Component {
         return(
             <div>
                 <p>User Profile</p>
+                {this.displayUserInfo()}
                 <UserWagerLink
                     component = {UserWagersShow}
                     to ={ `/users/${this.props.user.id}/wagers`}
@@ -42,9 +44,10 @@ class Profile extends React.Component {
 }
 
 const msp = (state,ownProps) => {
+    debugger;
     return {
         errors: state.errors,
-        user: state.entities.users[ownProps.match.params.userId]
+        user: state.session.user
     }
 }
 
