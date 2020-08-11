@@ -25,11 +25,12 @@ router.get("/wagers/:wager_id", (request, response) => {
 
 
 router.post("/wagers/:wager_id", (request, response) => {
+  debugger
   const { errors, isValid } = validateBet(request.body);
   if (!isValid) { return response.status(400).json(errors); }
-
+  debugger
   const { user_id, amount_bet, option } = request.body;
-  // debugger;
+  debugger;
 
   // user: access current user instead of passing in user_id
   const newBet = new Bet({
