@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const fetchPosts = () => {
-    return axios.get('/api/posts')
+export const fetchMessage = () => {
+    return axios.get('/api/messages')
 };
 
-export const createPost = (post) => {
-    return axios.post('/api/posts/', post)
+export const createMessage = (message) => {
+    return axios.post('/api/messages/', message)
 }
