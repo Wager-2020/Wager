@@ -27,7 +27,10 @@ const WAGERS = [
     description: "There will be more than 100 inches of rain this month in Botswana.",
     karma_points: 5000,
     due_date: "2020-12-31",
-    wager_choices: ["Yay", "Nay"]
+    wager_choices: [
+      { option:"Yay" }, 
+      { option:"Nay" }
+    ]
   },
   
   {
@@ -35,7 +38,11 @@ const WAGERS = [
     description: "What is the flight velocity of a sparrow?",
     karma_points: 3000,
     due_date: "2020-12-31",
-    wager_choices: ["Over 10 m/s", "Under 10 m/s", "African or European"]
+    wager_choices: [
+      { option:"Over 10 m/s" }, 
+      { option:"Under 10 m/s" }, 
+      { option:"African or European" }
+    ]
   },
   
   {
@@ -43,7 +50,11 @@ const WAGERS = [
     description: "Who will win at ball sport?",
     karma_points: 10000,
     due_date: "2020-12-31",
-    wager_choices: ["That team I like", "That team I don't like", "What is ball?"]
+    wager_choices: [
+      { option: "That team I like" }, 
+      { option: "That team I don't like" }, 
+      { option: "What is ball?" }
+    ]
   },
 
   {
@@ -51,7 +62,10 @@ const WAGERS = [
     description: "Who will win at election?",
     karma_points: 15000,
     due_date: "2020-12-31",
-    wager_choices: ["The elephant person", "The ass"]
+    wager_choices: [
+      { option:"The elephant person" }, 
+      { option: "The ass" }
+    ] 
   },
   
   {
@@ -59,7 +73,10 @@ const WAGERS = [
     description: "How many eggs can Peter suck?",
     karma_points: 15000,
     due_date: "2020-12-31",
-    wager_choices: ["So many", "A lot", "Too many to count"]
+    wager_choices: [
+      { option: "So many" },
+      { option: "Too many to count" },
+     ]
   },
 ];
 
