@@ -26,6 +26,8 @@ const BetSchema = new Schema({
     type: String,
     required: true
   }
+}, {
+  timestamps: true
 });
 
 module.exports = Bet = mongoose.model("Bet", BetSchema);

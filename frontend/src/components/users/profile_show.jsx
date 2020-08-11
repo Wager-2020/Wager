@@ -6,12 +6,8 @@ import { AuthRoute } from "../../util/route_util";
 import UserWagersShow from './user_wagers_show';
 
 class Profile extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount(){
-        debugger;
         this.props.fetchUser(this.props.match.params.userId)
     }
 
@@ -25,29 +21,29 @@ class Profile extends React.Component {
     }
     
     render() {
-        return(
-            <div>
-                <p>User Profile</p>
-                {this.displayUserInfo()}
-                <UserWagerLink
-                    component = {UserWagersShow}
-                    to ={ `/users/${this.props.user.id}/wagers`}
-                    label = 'Check out all wagers made by this user' 
-                />
-                <AuthRoute
-                    exact path = '/users/:userId/wagers'
-                    component = {UserWagersShow}
-                />
-            </div>
-        )
+        return (
+          <div>
+            <h1>Profile Profile Profile!</h1>
+            {this.displayUserInfo()}
+            <UserWagerLink
+              component={UserWagersShow}
+              to={`/api/bets/users/${this.props.user._id}/`}
+              label="Check out all wagers made by this user"
+            />
+            <AuthRoute
+              exact
+              path="/api/bets/users/:user_id"
+              component={UserWagersShow}
+            />
+          </div>
+        );
     }
 }
 
 const msp = (state,ownProps) => {
-    debugger;
     return {
         errors: state.errors,
-        user: state.session.user
+        user: state.entities.users
     }
 }
 

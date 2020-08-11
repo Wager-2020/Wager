@@ -15,6 +15,7 @@ mongoose
 const users = require("./routes/api/users");
 const wagers = require("./routes/api/wagers");
 const bets = require("./routes/api/bets");
+const messages = require("./routes/api/messages");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,6 +26,7 @@ require('./config/passport')(passport);
 app.use("/api/users", users);
 app.use("/api/wagers", wagers);
 app.use("/api/bets", bets);
+app.use("/api/messages", messages);
 app.get("/", (req, res) => res.send("<h1>Wager Home Page</h1>"));
 
 
