@@ -39,26 +39,46 @@ const merge = require("lodash").merge;
    *  add to response json
    */
 
-  const distributeEarnings = (wager) => {
-    // distribute rewards for winning/losing the wager
-    Bet.find({ wager: wager._id })
-  }
+const distributeAmountWon = async (bet, wager) => {
+  let winningChoice = undefined;
+  wager.wager_choices.forEach(choice => {
+    if (choice.winner) { 
+      winningChoice = choice;
+    }
+  })
 
-  const filteredByDueDate = wagers => {
-    const now = new Date();
-    wagers.forEach(wager => {
-      if (wager.due_date.getTime() <= now.getTime()) {
-        if (wager.expired) {
-          // do nothing
-        } else {
-          wager.expired = true;
-          wager.save();
+if (winningChoice.option === bet.option) {
+  const amountWon = bet.amount_bet / winningChoice.probability;
+  bet.amount_won = amountWon;
+  // learn how to batch save/update by returning bet, adding return to array, batching array
+  await bet.save();
+}
+// return bet;
+}
 
-        }
-      } else {
-        console.log("date has not passed");
-      }
+const distributeEarnings = (wager) => {
+  // distribute rewards for winning/losing the wager
+  Bet.find({ wager: wager._id }).then((bets) => {
+    bets.forEach(async (bet) => {
+      await distributeAmountWon(bet, wager);
     });
+  })
+}
+
+  const updateWagerExpirations = (wagers) => {
+    const now = new Date();
+    wagers = wagers.map(async (wager) => {
+      if (wager.due_date.getTime() <= now.getTime()) {
+        if (!wager.expired) {
+          wager.expired = true;
+          distributeEarnings(wager);
+          wager.save();
+        }
+      }
+      return wager;
+    });
+
+    return wagers;
   }
 
 //without groups
@@ -68,7 +88,7 @@ router.get("/", (request, response) => {
   Wager.find()
     .sort({ due_date: -1 })
     .then(wagers => {
-      filteredByDueDate(wagers);
+      const updatedWagers = updateWagerExpirations(wagers);
       return response.json(wagers);
     })
     .catch(errors => response.status(404).json({ nowagersfound: "Dear God, there are no wagers! PANIC!" }))
@@ -78,7 +98,7 @@ router.get("/", (request, response) => {
 router.get("/:id", (request, response) => {
   Wager.findById(request.params.id)
     .then(wager => {
-      filteredByDueDate([wager]);
+      const updatedWagers = updateWagerExpirations([wager]);
       return response.json(wager)
     })
     .catch(errors => response.status(404).json({ nowagersfound: "That wager don't exist." }))

@@ -39,7 +39,7 @@ const WagerSchema = new Schema({
     // type: [String],
     type: [new Schema({
       option: { type: String, required: true },
-      probability: { type: Number },
+      probability: { type: Number, default: 0.5 },
       winner: { type: Boolean, default: false }
     })],
     required: true
