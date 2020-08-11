@@ -1,5 +1,5 @@
 import * as APIUserUTIL from '../util/user_api_util';
-import { fetchWagers, fetchWager, receiveWager } from './wager_actions';
+import { fetchWagers, receiveWager } from './wager_actions';
 
 export const RECEIVE_USER = "RECEIVE_USER";
 

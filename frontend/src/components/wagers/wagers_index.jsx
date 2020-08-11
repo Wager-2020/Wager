@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { fetchWagers } from '../../actions/wager_actions';
 
 class WagersIndex extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         this.props.fetchWagers();

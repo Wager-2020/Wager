@@ -66,7 +66,6 @@ const msp = (state, Ownprops) => {
     const wagerId = wager ? wager.id : undefined;
     const currentUser = state.session.user;
     const currentUserId = currentUser ? currentUser.id : undefined;
-    // debugger;
     return {
         errors: state.errors,
         wager,
