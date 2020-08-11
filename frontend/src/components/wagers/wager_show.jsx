@@ -22,13 +22,13 @@ class WagerShow extends React.Component {
 
     handleClickA(e) {
         e.preventDefault();
-        this.setState({optionOne: this.props.wager.wager_choices[0]})
+        this.setState({optionOne: this.props.wager.wager_choices[0].option})
         this.props.placeWager(this.state);
     }
 
     handleClickB(e) {
         e.preventDefault();
-        this.setState({optionTwo: this.props.wager.wager_choices[1]})
+        this.setState({optionTwo: this.props.wager.wager_choices[1].option})
         this.props.placeWager(this.state);
     }
 
@@ -41,10 +41,10 @@ class WagerShow extends React.Component {
             </div>
             <div className="wagers-container-bottom">
                 <div className="bottom-card-left" onClick = {this.handleClickA}>
-                <p>I'm left {currentWager.wager_choices[0]}</p>
+                <p>I'm left {currentWager.wager_choices[0].option}</p>
                 </div>
                 <div className="bottom-card-right" onClick = {this.handleClickB}>
-                <p>I'm Right{currentWager.wager_choices[1]}</p>
+                <p>I'm Right{currentWager.wager_choices[1].option}</p>
                 </div>
             </div>
             </div>
