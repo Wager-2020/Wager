@@ -9,23 +9,32 @@ class UserWagersShow extends React.Component {
     }
 
     showWagers() {
-        return(
-            <div>
-
-            </div>
-        )
+        const userWagerLis = this.props.wagers.map(wager => {
+            return(
+                <div>
+                    {wager.title}
+                    {wager.description}
+                    {/* {wager.option}  */}
+                </div>
+            )
+            //?? add in the option user bet on
+        })
+        return userWagerLis
     }
 
     render() {
+        debugger;
         return(
             <div>
-                <p>User Wagers Show</p>
+                <h1>Users Placed Bets</h1>
+                {this.showWagers()}
             </div>
         )
     }
 }
 
 export const msp = (state) => {
+    debugger;
     return {
         errors: state.errors,
         currentUser: state.session.currentUser,

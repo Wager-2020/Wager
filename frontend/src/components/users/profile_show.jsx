@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../actions/user_actions';
-import UserWagerLink from '../../util/link_util';
-import { AuthRoute } from "../../util/route_util";
-import UserWagersShow from './user_wagers_show';
+import {Link} from 'react-router-dom';
 
 class Profile extends React.Component {
 
@@ -25,16 +23,7 @@ class Profile extends React.Component {
           <div>
             <h1>Profile Profile Profile!</h1>
             {this.displayUserInfo()}
-            <UserWagerLink
-              component={UserWagersShow}
-              to={`/api/bets/users/${this.props.user._id}/`}
-              label="Check out all wagers made by this user"
-            />
-            <AuthRoute
-              exact
-              path="/api/bets/users/:user_id"
-              component={UserWagersShow}
-            />
+            <Link to={`bets/${this.props.user._id}`}>View Users Placed Bets</Link>
           </div>
         );
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { createMessage } from '../../actions/messages_actions'
 
 
 class MessageForm extends React.Component {
@@ -9,20 +10,21 @@ class MessageForm extends React.Component {
             body: '',
             user: this.props.currentUser
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentWillReceiveProps(nextProps){
-        this.setState({body: nextProps.body})
-    }
+    // componentWillReceiveProps(nextProps){
+    //     this.setState({body: nextProps.body})
+    // }
 
     handleSubmit(e){
         e.preventDefault();
-        let post = {
+        let message = {
             body: this.state.body
         };
-        this.props.createPost(post);
-        this.setState({body: ''})
+        this.props.createMessage(message);
+        this.setState({body: ''});
+        this.props.history.push('/messages');
     }
 
     update(){
@@ -33,17 +35,18 @@ class MessageForm extends React.Component {
 
     render(){
         return (
-            <div>
-                <form onSubmit = {this.handleSubmit}>
-                    <input
-                        type = 'textarea'
-                        value = {this.state.body}
-                        onChange = {this.update()}
-                        placeholder ='How do you feel about your bet...'
-                    />
-                </form>
-            </div>
-        )
+          <div>
+            <form>
+              <input
+                type="textarea"
+                value={this.state.body}
+                onChange={this.update()}
+                placeholder="How do you feel about your bet..."
+              />
+              <button onClick={this.handleSubmit}>Post Message</button>
+            </form>
+          </div>
+        );
     }
 
 
@@ -53,14 +56,13 @@ class MessageForm extends React.Component {
 
 const msp = state => {
     return {
-        currentUser: state.session.user,
-        newPost: state.posts.new
+        currentUser: state.session.user
     }
 }
 
 const mdp = dispatch => {
     return {
-        createPost: post => dispatch(createPost(post))
+        createMessage: message => dispatch(createMessage(message))
     }
 }
 

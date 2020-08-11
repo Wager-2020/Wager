@@ -6,10 +6,11 @@ const messagesReducer = (state ={}, action) => {
     switch (action.type) {
         case RECEIVE_MESSAGES:
             let messageObjects = {};
-            action.messages.forEach(message => {
+            // let messageObjects = Object.assign({}, state);
+            action.messages.data.forEach(message => {
                 messageObjects[message._id] = message;
             });
-            return messageObjects;
+            return Object.assign({}, state, messageObjects);
         case RECEIVE_MESSAGE:
             return { [action.message._id]: action.message };
         default:

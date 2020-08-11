@@ -8,17 +8,28 @@ class MessagesIndex extends React.Component {
         this.props.fetchMessages();
     }
 
+    displayMessages() {
+        const messagesLis = this.props.messages.map((message, idx) => {  
+            return(
+                    <div className="message-item">
+                        <p>{message.body}</p>
+                    </div>
+            )
+        })
+        return messagesLis
+    }
+
     render() {
         return(
-            <div>
+            <div className="messages-container">
                 <h1>Messages Index</h1>
+                {this.displayMessages()}
             </div>
         )
     }
 }
 
 const msp = state => {
-    debugger;
     return {
         errors: state.errors,
         messages: Object.values(state.entities.messages)
