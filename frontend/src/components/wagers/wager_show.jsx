@@ -7,8 +7,10 @@ class WagerShow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            wagerId: this.props.wager.id,
-            bettorId: this.props.currentUser.id,
+            // wagerId: this.props.wager.id,
+            wagerId: this.props.wagerId,
+            // bettorId: this.props.currentUser.id,
+            bettorId: this.props.currentUserId,
             optionOne: null,
             optionTwo: null
         }
@@ -32,7 +34,7 @@ class WagerShow extends React.Component {
 
     displayWager() {
        const currentWager = this.props.wager;
-        return (
+        return currentWager ? (
             <div className="wagers-container">
             <div className="wagers-container-top">
                 {currentWager.title}
@@ -46,7 +48,7 @@ class WagerShow extends React.Component {
                 </div>
             </div>
             </div>
-        );
+        ) : null;
     }
 
     render() {
@@ -60,9 +62,17 @@ class WagerShow extends React.Component {
 }
 
 const msp = (state, Ownprops) => {
+    const wager = state.entities.wagers[Ownprops.match.params.wagerId];
+    const wagerId = wager ? wager.id : undefined;
+    const currentUser = state.session.user;
+    const currentUserId = currentUser ? currentUser.id : undefined;
+    // debugger;
     return {
         errors: state.errors,
-        wager: state.entities.wagers[Ownprops.match.params.wager]
+        wager,
+        wagerId,
+        currentUser,
+        currentUserId
     }
 }
 

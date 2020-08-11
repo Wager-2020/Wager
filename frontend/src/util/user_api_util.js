@@ -9,5 +9,6 @@ export const getUserWagers = (userId) => {
 };
 
 export const placeWager = (wager) => {
-  return axios.post(`/api/wagers/${wager.id}`, {wager});
+  debugger;
+  return axios.post(`/api/bets/wagers/${wager.id}`, wager);
 };

@@ -15,6 +15,11 @@ import { setAuthToken } from './util/session_api_util';
 
 // We have not created this action yet, but will do so in the next step
 import { logout } from './actions/session_actions';
+import { getWager } from './util/wagers_api_util';
+import { placeWager } from './actions/user_actions';
+
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Types;
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -47,6 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // Render our root component and pass in the store as a prop
   const root = document.getElementById('root');
+  window.getState = store.getState;
+  window.getWager = getWager;
+  window.placeWager = placeWager;
+  window.ObjectId = ObjectId;
 
+  window.dispatch = store.dispatch;
   ReactDOM.render(<Root store={store} />, root);
 });

@@ -26,15 +26,19 @@ router.get("/wagers/:wager_id", (request, response) => {
 
 router.post("/wagers/:wager_id", (request, response) => {
   const { errors, isValid } = validateBet(request.body);
+  debugger;
   if (!isValid) { return response.status(400).json(errors); }
+  debugger;
   
 
-  const { user_id, amount_bet } = request.body;
+  const { user_id, amount_bet, option } = request.body;
 
+  // user: access current user instead of passing in user_id
   const newBet = new Bet({
     user: ObjectId(user_id),
     wager: ObjectId(request.params.wager_id),
-    amount_bet
+    amount_bet,
+    option
   });
 
   newBet.save().then(bet => response.json(bet));

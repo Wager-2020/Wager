@@ -4,20 +4,29 @@ module.exports = function validateBet(data) {
   let errors = {};
 
   data.amount_bet = data.amount_bet ? data.amount_bet : '';
+  data.option = data.option ? data.option : '';
   
   // Check to see that amount_bet is not null.
-  if (Validator.isEmpty(data.amount_bet)) {
+  if (Validator.isEmpty(String(data.amount_bet))) {
     errors.amount_bet = 'Amount bet field is required';
   }
 
+  // debugger;
+
   // Check to see that amount_bet is an integer.
-  if (!Validator.isInt(data.amount_bet)) {
+  if (!Validator.isInt(String(data.amount_bet))) {
     errors.amount_bet = 'Amount bet field must be an integer';
   }
 
+  // debugger;
+
   // Chceck to see if amount_bet is zero. 
-  if (data.amount_bet === "0") {
+  if (String(data.amount_bet) === "0") {
     errors.amount_bet = 'Amount bet must be non-zero.'
+  }
+
+  if (Validator.isEmpty(data.option)) {
+    errors.option = 'Option field is required';
   }
 
   return {

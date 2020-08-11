@@ -20,6 +20,11 @@ const BetSchema = new Schema({
     type: Number,
     required: true,
     default: 100
+  },
+
+  option: {
+    type: String,
+    required: true
   }
 });
 
