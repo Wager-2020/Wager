@@ -1,5 +1,4 @@
 import { RECEIVE_MESSAGES, RECEIVE_MESSAGE } from '../actions/messages_actions'
-import message from '../../../validation/message';
 
 
 const messagesReducer = (state ={}, action) => {

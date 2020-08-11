@@ -9,6 +9,7 @@ import SignupFormContainer from './session/signup_form_container';
 import WagersIndex from './wagers/wagers_index';
 import WagerShow from './wagers/wager_show';
 import Profile from './users/profile_show';
+import MessagesIndex from './messages/messages_index';
 
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
     </header>
 
     <Switch>
+        <Route exacth path="/messages" component={MessagesIndex} />
         <Route exact path="/" component={WagersIndex} />
         <ProtectedRoute exact path="/wagers/:wagerId" component={WagerShow} />
         <Route exact path="/users/:userId" component={Profile} />

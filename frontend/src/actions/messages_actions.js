@@ -19,7 +19,7 @@ export const fetchMessages = () => dispatch => {
         .catch(err => console.log(err))
 };
 
-export const createMessage = (message) => {
+export const createMessage = (message) => dispatch => {
     return messagesAPIUtil.createMessage(message)
         .then(message => dispatch(receiveMessage(message)))
         .catch(err => console.log(err))

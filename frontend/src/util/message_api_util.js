@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchMessage = () => {
+export const fetchMessages = () => {
     return axios.get('/api/messages')
 };
 
