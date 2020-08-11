@@ -27,7 +27,7 @@ const App = () => (
       <Route exact path="/messages" component={MessagesIndex} />
       <Route exact path="/" component={WagersIndex} />
       <ProtectedRoute exact path="/wagers/:wagerId" component={WagerShow} />
-      <Route exact path="/users/:userId" component={Profile} />
+      <Route path="/users/:userId" component={Profile} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
     </Switch>
