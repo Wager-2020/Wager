@@ -11,7 +11,7 @@ import WagerShow from './wagers/wager_show';
 import Profile from './users/profile_show';
 import MessagesIndex from './messages/messages_index';
 import MessageForm from './messages/message_form';
-import UserWagersShow from './users/user_wagers_show';
+// import UserWagersgit Show from './users/user_wagers_show';
 
 
 const App = () => (
