@@ -13,15 +13,15 @@ const merge = require("lodash").merge;
  * POST a message in a group /messages/groups/:group_id
  */
 
- const NUM_MESSAGES_TO_DISPLAY = 10;
+const NUM_MESSAGES_TO_DISPLAY = 10;
 
- router.get("/", (req, res) => {
+router.get("/", (req, res) => {
   Message.find()
     .sort({ createdAt: -1 })
     .limit(NUM_MESSAGES_TO_DISPLAY)
     .then(messages => res.json(messages))
     .catch(errors => res.status(404).json(errors));
- });
+});
 
 router.post("/", (req, res) => {
   const { errors, isValid } = validateMessage(req.body);
