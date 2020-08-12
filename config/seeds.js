@@ -25,7 +25,6 @@ const WAGERS = [
   {
     title: "Rain in Botswana",
     description: "There will be more than 100 inches of rain this month in Botswana.",
-    karma_points: 5000,
     due_date: "2020-12-31",
     wager_choices: [
       { option:"Yay" , winner: true}, 
@@ -36,7 +35,6 @@ const WAGERS = [
   {
     title: "Sparrow Flight Velocity",
     description: "What is the flight velocity of a sparrow?",
-    karma_points: 3000,
     due_date: "2000-05-31",
     wager_choices: [
       { option:"Over 10 m/s", winner: true }, 
@@ -48,7 +46,6 @@ const WAGERS = [
   {
     title: "Sports: OH YEAH",
     description: "Who will win at ball sport?",
-    karma_points: 10000,
     due_date: "2001-11-31",
     wager_choices: [
       { option: "That team I like" }, 
@@ -60,7 +57,6 @@ const WAGERS = [
   {
     title: "Politics: EKH",
     description: "Who will win at election?",
-    karma_points: 15000,
     due_date: "2030-06-31",
     wager_choices: [
       { option:"The elephant person" }, 
@@ -71,7 +67,6 @@ const WAGERS = [
   {
     title: "Peter Sucks Eggs",
     description: "How many eggs can Peter suck?",
-    karma_points: 15000,
     due_date: "1990-12-01",
     wager_choices: [
       { option: "So many" },
@@ -144,5 +139,5 @@ const seed = async (params = DEFAULT_PARAMS) => {
 
 module.exports = {
   reset,
-  seed
+  seed,
 }

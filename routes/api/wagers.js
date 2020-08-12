@@ -5,6 +5,7 @@ const Wager = require("../../models/Wager");
 const Bet = require("../../models/Bet");
 const mongoose = require("mongoose");
 const makeRequest = require("../../api_util/odds_api_util");
+const { getSportOdds } = require("../../api_util/odds_api_util");
 const merge = require("lodash").merge;
 
 /**
@@ -42,7 +43,6 @@ const merge = require("lodash").merge;
 
 const distributeAmountWon = async (bet, wager) => {
   let winningChoice = undefined;
-  // debugger;
   wager.wager_choices.forEach(choice => {
     if (choice.winner) { 
       winningChoice = choice;
@@ -87,11 +87,7 @@ const updateWagerExpirations = (wagers) => {
 
 // GET all wagers --> /api/wagers
 router.get("/", (request, response) => {
-  const cb = (error, response, body) => {
-    console.log(body);
-    console.log(typeof body);
-  }
-  makeRequest(cb);
+  // getSportOdds();
   Wager.find()
     .sort({ due_date: -1 })
     .then(wagers => {
@@ -135,12 +131,12 @@ router.post("/groups/:group_id", (request, response) => {
   // const group = Group.findById(request.params.group_id);
   
   //body and group are missing right now
-  const { title, description, karma_points, due_date, wager_choices } = request.body;
+  const { title, description, due_date, wager_choices } = request.body;
 
   // need to pass in user who created the new wager
   // need to pass in a group
   const newWager = new Wager({
-    title, description, karma_points, due_date, wager_choices
+    title, description, due_date, wager_choices
   });
 
   newWager.save().then(wager => response.json(wager));
@@ -160,12 +156,12 @@ router.post("/", (request, response) => {
   // const group = Group.findById(request.params.group_id);
   
   //body and group are missing right now
-  const { title, description, karma_points, due_date, wager_choices } = request.body;
+  const { title, description, due_date, wager_choices } = request.body;
 
   // need to pass in user who created the new wager
   // need to pass in a group
   const newWager = new Wager({
-    title, description, karma_points, due_date, wager_choices
+    title, description, due_date, wager_choices
   });
 
   newWager.save().then(wager => response.json(wager));

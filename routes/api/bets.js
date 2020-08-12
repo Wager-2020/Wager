@@ -43,6 +43,25 @@ router.post("/wagers/:wager_id", (request, response) => {
     newBet.amount_bet = amount_bet;
   }
 
+  
+
+  Wager.findOne({ wager: newBet.wager }).then(wager => {
+    let total_karma_for_wager = 0;
+    
+    wager.wager_choices.forEach((choice, idx) => {
+      if (choice.option === newBet.option) {
+        wager.wager_choices[idx].karma += newBet.amount_bet;
+      }
+      total_karma_for_wager += wager.wager_choices[idx].karma;
+    });
+
+    wager.wager_choices.forEach((choice, idx) => {
+      wagers.wager_choices[idx].probability = choice.karma / (1.0 * total_karma_for_wager);
+    });
+
+    wager.save();
+  })
+
   newBet.save().then(bet => response.json(bet));
 });
 

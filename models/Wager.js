@@ -25,11 +25,6 @@ const WagerSchema = new Schema({
     required: true
   },
 
-  karma_points: {
-    type: Number,
-    required: true
-  },
-
   due_date: {
     type: Date,
     default: null
@@ -40,7 +35,8 @@ const WagerSchema = new Schema({
     type: [new Schema({
       option: { type: String, required: true },
       probability: { type: Number, default: 0.5 },
-      winner: { type: Boolean, default: false }
+      winner: { type: Boolean, default: false },
+      karma: { type: Number, default: 1000 * 0.5 }
     })],
     required: true
   },
