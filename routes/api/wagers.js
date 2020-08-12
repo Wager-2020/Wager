@@ -4,6 +4,7 @@ const validateWager = require("../../validation/wager");
 const Wager = require("../../models/Wager");
 const Bet = require("../../models/Bet");
 const mongoose = require("mongoose");
+const makeRequest = require("../../api_util/odds_api_util");
 const merge = require("lodash").merge;
 
 /**
@@ -86,6 +87,11 @@ const updateWagerExpirations = (wagers) => {
 
 // GET all wagers --> /api/wagers
 router.get("/", (request, response) => {
+  const cb = (error, response, body) => {
+    console.log(body);
+    console.log(typeof body);
+  }
+  makeRequest(cb);
   Wager.find()
     .sort({ due_date: -1 })
     .then(wagers => {

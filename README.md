@@ -66,3 +66,19 @@ https://oddsapi.io/
     3. Because there's now 1100 karma in the "pool" for the wager, 600 karma bet on option 1 and 500 bet on option 2, the odds change as follows...
       prob. Option 1: (600 / 1100  = 54.5454% )
       prob. Option 2: (500 / 1100 = 45.4545% )
+
+
+### STEPS TO IMPLEMENT ROLLING ODDS
+
+1. Make sure wagers are initialized with the same n-thousand points under `karma_points`.
+
+2. Add a `total_bets` to the schema of the `wager_choices` subdocument
+
+3. Make sure `wager_choices` are initialized with `total_bets` set to their  respective wager's `karma_points * probability` (i.e. a share of the  `karma_points` of the wager proportional to the `probability` of that choice).
+
+4. In `routes/api/bets.js`, make it so that whenever a user places a bet for     `amount_bet = n`, the `karma_points` and `total_bets` of the parent wager and `wager_choices` subdocument respectively are also incremented by n (i.e. `wager.karma_points += n`, `wager_choice.total_bets += n`). 
+
+5. Additionally, make sure that all of the probabilities of the `wager_choices` subdocuments within that respective wager are recalculated, such that 
+`wager_choice.probability = wager_choice.total_bets / wager.total_karma`.
+
+6. At this point, odds can be said to be "rolling" because they change as users make bets. I'm open to other methods of implementation. Specifically, I think we could forget about keeping track of `karma_points` (i.e. the initial n-thousand karma + all the other bets placed on it) by just summing the `total_bets` for each of the respective `wager_choices`. I think this feature is important because (1) as it stands, we aren't really doing much with odds, and this is kind of just a neat show-off feature that seperates it from a CRUD app slightly, (2) it will make it so when user's generate personal bets, there's infrastructure in place for keeping track of their wagers' odds over time, (3) it allows us to generate our own data, rather than relying soley on the external API. 
