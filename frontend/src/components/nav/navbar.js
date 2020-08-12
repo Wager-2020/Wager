@@ -17,7 +17,6 @@ class NavBar extends React.Component {
     this.props.logout()
   }
 
-
   getLinks() {
     if (this.props.loggedIn) {
       return (
@@ -43,6 +42,7 @@ class NavBar extends React.Component {
       this.props.history.push(`/users/${this.props.user.id}`);
     } else if (selectedOption.value === "logout") {
       this.logoutUser();
+      this.props.history.push('/');
     } else {
       this.props.history.push(`/${selectedOption.value}`);
     }
@@ -54,6 +54,7 @@ class NavBar extends React.Component {
       { value: "messages", label: "messages" },
       { value: "leaderboard", label: "leaderboard" },
       { value: "profile", label: "profile" },
+      { value: "signup", label: "signup" },
       { value: "login", label: "login" },
       { value: "logout", label: "logout" },
     ];
