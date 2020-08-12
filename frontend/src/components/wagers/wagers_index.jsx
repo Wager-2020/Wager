@@ -34,13 +34,8 @@ class WagersIndex extends React.Component {
     render() {
 
         return this.props.wagers ? (
-<<<<<<< HEAD
-            <div className="wagers-index-container">
-                <h1>Wagers Index Here</h1>
-=======
           <div className="content-container">
             <div className = 'grid'>
->>>>>>> index-styling
                 {this.displayWagers()}
             </div>
           </div>
