@@ -3,6 +3,7 @@ const router = express.Router();
 const validateBet = require("../../validation/bet");
 const mongoose = require("mongoose");
 const Bet = require("../../models/Bet");
+const Wager = require("../../models/Wager");
 const merge = require("lodash").merge;
 const { ObjectId } = mongoose.Types;
 
@@ -28,6 +29,8 @@ router.post("/wagers/:wager_id", (request, response) => {
   const { errors, isValid } = validateBet(request.body);
   if (!isValid) { return response.status(400).json(errors); }
   const { user_id, amount_bet, option } = request.body;
+
+  //might need to update bet amoun_won immediately, if so, make a request to Wagers, find wager that corresponsds with this bet, check for expiration value, if true, put amount_won as a value in newBet
 
   // user: access current user instead of passing in user_id
   const newBet = new Bet({

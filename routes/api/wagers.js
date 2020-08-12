@@ -41,11 +41,12 @@ const merge = require("lodash").merge;
 
 const distributeAmountWon = async (bet, wager) => {
   let winningChoice = undefined;
+  // debugger;
   wager.wager_choices.forEach(choice => {
     if (choice.winner) { 
       winningChoice = choice;
     }
-  })
+  });
 
 if (winningChoice.option === bet.option) {
   const amountWon = bet.amount_bet / winningChoice.probability;
@@ -55,25 +56,25 @@ if (winningChoice.option === bet.option) {
 }
 // return bet;
 }
-
 const distributeEarnings = (wager) => {
   // distribute rewards for winning/losing the wager
   Bet.find({ wager: wager._id }).then((bets) => {
+    // debugger;
     bets.forEach(async (bet) => {
       await distributeAmountWon(bet, wager);
     });
   })
 }
 
-  const updateWagerExpirations = (wagers) => {
+const updateWagerExpirations = (wagers) => {
     const now = new Date();
     wagers = wagers.map(async (wager) => {
       if (wager.due_date.getTime() <= now.getTime()) {
-        if (!wager.expired) {
+        // if (!wager.expired) {
           wager.expired = true;
           distributeEarnings(wager);
-          wager.save();
-        }
+          await wager.save();
+        // }
       }
       return wager;
     });
@@ -88,7 +89,8 @@ router.get("/", (request, response) => {
   Wager.find()
     .sort({ due_date: -1 })
     .then(wagers => {
-      updateWagerExpirations(wagers);
+      const computed = updateWagerExpirations(wagers);
+      // debugger;
       return response.json(wagers);
     })
     .catch(errors => response.status(404).json({ nowagersfound: "Dear God, there are no wagers! PANIC!" }))
