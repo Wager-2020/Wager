@@ -11,10 +11,12 @@ class MessagesIndex extends React.Component {
     }
 
     displayMessages() {
+        debugger
         const messagesLis = this.props.messages.map((message) => {  
             return(
-                <div className="message-item" key ={message._id}>
-                    <p>{message.body}</p>
+                <div key ={message._id}>
+                    <div className="message-item">{message.body}</div>
+                    <div className = 'message-author'> {message.user}</div>
                 </div>
             )
         })
@@ -28,7 +30,6 @@ class MessagesIndex extends React.Component {
                     currentUser = {this.props.currentUser}
                     createMessage = {this.props.createMessage}
                 />
-                <h1>What are people saying...</h1>
                 <div className = 'message-index-container'>
                     {this.displayMessages()}
                 </div>
@@ -38,7 +39,6 @@ class MessagesIndex extends React.Component {
 }
 
 const msp = state => {
-    debugger;
     return {
         errors: state.errors,
         messages: Object.values(state.entities.messages),

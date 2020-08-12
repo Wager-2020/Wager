@@ -19,7 +19,6 @@ export default class MessageForm extends React.Component {
 
 
     handleSubmit(e){
-        debugger;
         e.preventDefault();
         let message = {
             user: this.state.user.id,
