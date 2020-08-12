@@ -9,11 +9,11 @@ class MessagesIndex extends React.Component {
     }
 
     displayMessages() {
-        const messagesLis = this.props.messages.map((message, idx) => {  
+        const messagesLis = this.props.messages.map((message) => {  
             return(
-                    <div className="message-item">
-                        <p>{message.body}</p>
-                    </div>
+                <div className="message-item" key ={message._id}>
+                    <p>{message.body}</p>
+                </div>
             )
         })
         return messagesLis
