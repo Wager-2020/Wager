@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './login-signup.scss';
+import {Link} from 'react-router-dom';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -44,6 +46,7 @@ class LoginForm extends React.Component {
     this.props.login(user); 
   }
 
+
   // Render the session errors if there are any
   renderErrors() {
     return(
@@ -59,25 +62,33 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="login-container">
+        <div className="body"></div>
+        <div className="header">
           <div>
-              <input type="text"
-                value={this.state.email}
-                onChange={this.update('email')}
-                placeholder="Email"
-              />
-            <br/>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder="Password"
-              />
-            <br/>
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+            You<span>Bet</span>
           </div>
+        </div>
+        <br />
+        <form onSubmit={this.handleSubmit} className="login">
+          <input
+            type="text"
+            value={this.state.email}
+            onChange={this.update("email")}
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            value={this.state.password}
+            onChange={this.update("password")}
+            placeholder="Password"
+          />
+          <input type="submit" value="Submit" />
+          {this.renderErrors()}
         </form>
+          {/* <div className="signup-hyperlink">
+            <Link to={`/signup`}> or Sign up</Link>
+          </div> */}
       </div>
     );
   }
