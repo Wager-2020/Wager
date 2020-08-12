@@ -25,7 +25,8 @@ router.get("/wagers/:wager_id", (request, response) => {
 });
 
 
-router.post("/wagers/:wager_id", (request, response) => {
+router.post("/wagers/:wager_id", async (request, response) => {
+  // debugger;
   const { errors, isValid } = validateBet(request.body);
   if (!isValid) { return response.status(400).json(errors); }
   const { user_id, amount_bet, option } = request.body;
@@ -43,10 +44,11 @@ router.post("/wagers/:wager_id", (request, response) => {
     newBet.amount_bet = amount_bet;
   }
 
-  
+  // debugger;
 
-  Wager.findOne({ wager: newBet.wager }).then(wager => {
+  await Wager.findById(newBet.wager).then(wager => {
     let total_karma_for_wager = 0;
+    debugger;
     
     wager.wager_choices.forEach((choice, idx) => {
       if (choice.option === newBet.option) {
@@ -56,11 +58,13 @@ router.post("/wagers/:wager_id", (request, response) => {
     });
 
     wager.wager_choices.forEach((choice, idx) => {
-      wagers.wager_choices[idx].probability = choice.karma / (1.0 * total_karma_for_wager);
+      wager.wager_choices[idx].probability = choice.karma / (1.0 * total_karma_for_wager);
     });
 
+    // debugger;
     wager.save();
-  })
+  });
+  // debugger;
 
   newBet.save().then(bet => response.json(bet));
 });
