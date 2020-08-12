@@ -17,7 +17,6 @@ const wagersReducer = (state = {}, action) => {
         case RECEIVE_WAGER:
             // const wager = { [action.wager.id]: action.wager }
             // return Object.assign({}, state, wager)
-            // debugger;
             return { [action.wager._id]: action.wager };
         default:
             return state;

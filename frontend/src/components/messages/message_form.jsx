@@ -1,9 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { createMessage } from '../../actions/messages_actions'
+// import {connect} from 'react-redux';
+// import { createMessage } from '../../actions/messages_actions'
 
 
-class MessageForm extends React.Component {
+export default class MessageForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -25,7 +25,6 @@ class MessageForm extends React.Component {
         };
         this.props.createMessage(message);
         this.setState({body: ''});
-        this.props.history.push('/messages');
     }
 
     update(){
@@ -55,17 +54,17 @@ class MessageForm extends React.Component {
 
 }
 
-const msp = state => {
-    return {
-        currentUser: state.session.user
-    }
-}
+// const msp = state => {
+//     return {
+//         currentUser: state.session.user
+//     }
+// }
 
-const mdp = dispatch => {
-    return {
-        createMessage: message => dispatch(createMessage(message))
-    }
-}
+// const mdp = dispatch => {
+//     return {
+//         createMessage: message => dispatch(createMessage(message))
+//     }
+// }
 
-export default connect(msp, mdp)(MessageForm)
+// export default connect(msp, mdp)(MessageForm)
 

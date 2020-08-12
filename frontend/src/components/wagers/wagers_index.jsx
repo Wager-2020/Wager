@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchWagers } from '../../actions/wager_actions';
 import { Link } from 'react-router-dom';
+import './01-index.scss';
 
 class WagersIndex extends React.Component {
 
@@ -18,10 +19,10 @@ class WagersIndex extends React.Component {
                 </div>
                 <div className="wagers-container-bottom">
                   <div className="bottom-card-left">
-                    <p>I'm left {wager.wager_choices[0].option}</p>
+                    <p>{wager.wager_choices[0].option}</p>
                   </div>
                   <div className="bottom-card-right">
-                    <p>I'm Right{wager.wager_choices[1].option}</p>
+                    <p>{wager.wager_choices[1].option}</p>
                   </div>
                 </div>
               </div>
@@ -33,10 +34,16 @@ class WagersIndex extends React.Component {
     render() {
 
         return this.props.wagers ? (
+<<<<<<< HEAD
             <div className="wagers-index-container">
                 <h1>Wagers Index Here</h1>
+=======
+          <div className="content-container">
+            <div className = 'grid'>
+>>>>>>> index-styling
                 {this.displayWagers()}
             </div>
+          </div>
         ) : null
     }
 }
