@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchMessages, createMessage } from '../../actions/messages_actions';
 import MessageForm from './message_form';
+import './message.scss';
 
 class MessagesIndex extends React.Component {
 
@@ -27,14 +28,17 @@ class MessagesIndex extends React.Component {
                     currentUser = {this.props.currentUser}
                     createMessage = {this.props.createMessage}
                 />
-                <h1>Messages Index</h1>
-                {this.displayMessages()}
+                <h1>What are people saying...</h1>
+                <div className = 'message-index-container'>
+                    {this.displayMessages()}
+                </div>
             </div>
         )
     }
 }
 
 const msp = state => {
+    debugger;
     return {
         errors: state.errors,
         messages: Object.values(state.entities.messages),

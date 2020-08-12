@@ -12,6 +12,7 @@ const messagesReducer = (state ={}, action) => {
             });
             return Object.assign({}, state, messageObjects);
         case RECEIVE_MESSAGE:
+            debugger;
             return { [action.message._id]: action.message };
         default:
             return state;

@@ -20,7 +20,8 @@ export const fetchMessages = () => dispatch => {
 };
 
 export const createMessage = (message) => dispatch => {
+    debugger;
     return messagesAPIUtil.createMessage(message)
-        .then(message => dispatch(receiveMessage(message)))
+        .then(message => dispatch(receiveMessage(message.data)))
         .catch(err => console.log(err))
 };

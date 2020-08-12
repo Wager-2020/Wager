@@ -18,6 +18,7 @@ export default class MessageForm extends React.Component {
     // }
 
     handleSubmit(e){
+        debugger;
         e.preventDefault();
         let message = {
             user: this.state.user.id,
@@ -35,7 +36,7 @@ export default class MessageForm extends React.Component {
 
     render(){
         return (
-          <div>
+          <div className="messageform-container">
             <form>
               <input
                 type="textarea"
