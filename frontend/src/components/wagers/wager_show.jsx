@@ -58,7 +58,7 @@ class WagerShow extends React.Component {
     render() {
 
         return (
-            <div>
+            <div className="content-container">
                 {this.displayWager()}
             </div>
         )
