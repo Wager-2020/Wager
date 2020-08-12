@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const validateMessage = require("../../validation/message");
 const Message = require("../../models/Message");
+const User = require("../../models/Message");
 const mongoose = require("mongoose");
 const merge = require("lodash").merge; 
 

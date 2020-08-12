@@ -3,6 +3,7 @@ const router = express.Router();
 const validateBet = require("../../validation/bet");
 const mongoose = require("mongoose");
 const Bet = require("../../models/Bet");
+const Wager = require("../../models/Wager");
 const merge = require("lodash").merge;
 const { ObjectId } = mongoose.Types;
 
@@ -24,10 +25,13 @@ router.get("/wagers/:wager_id", (request, response) => {
 });
 
 
-router.post("/wagers/:wager_id", (request, response) => {
+router.post("/wagers/:wager_id", async (request, response) => {
+  // debugger;
   const { errors, isValid } = validateBet(request.body);
   if (!isValid) { return response.status(400).json(errors); }
   const { user_id, amount_bet, option } = request.body;
+
+  //might need to update bet amoun_won immediately, if so, make a request to Wagers, find wager that corresponsds with this bet, check for expiration value, if true, put amount_won as a value in newBet
 
   // user: access current user instead of passing in user_id
   const newBet = new Bet({
@@ -39,6 +43,28 @@ router.post("/wagers/:wager_id", (request, response) => {
   if (amount_bet && String(amount_bet).length > 0) {
     newBet.amount_bet = amount_bet;
   }
+
+  // debugger;
+
+  await Wager.findById(newBet.wager).then(wager => {
+    let total_karma_for_wager = 0;
+    debugger;
+    
+    wager.wager_choices.forEach((choice, idx) => {
+      if (choice.option === newBet.option) {
+        wager.wager_choices[idx].karma += newBet.amount_bet;
+      }
+      total_karma_for_wager += wager.wager_choices[idx].karma;
+    });
+
+    wager.wager_choices.forEach((choice, idx) => {
+      wager.wager_choices[idx].probability = choice.karma / (1.0 * total_karma_for_wager);
+    });
+
+    // debugger;
+    wager.save();
+  });
+  // debugger;
 
   newBet.save().then(bet => response.json(bet));
 });

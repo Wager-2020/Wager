@@ -4,19 +4,19 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 
-
 const User = require('../../models/User');
 const keys = require('../../config/keys');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 const Wager = require("../../models/Wager");
+const Bet = require("../../models/Bet");
 
 const MAX_BETS_ALLOWED = 10;
 
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
     .then(user => {
-      Bet.find({ user })
+      Bet.find({ user }).sort({ createdAt: -1 })
       // .limit(MAX_BETS_ALLOWED)
       .then(async (bets) => {
         const wagersArr = await Wager.find({});

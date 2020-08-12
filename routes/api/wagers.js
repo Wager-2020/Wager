@@ -4,6 +4,8 @@ const validateWager = require("../../validation/wager");
 const Wager = require("../../models/Wager");
 const Bet = require("../../models/Bet");
 const mongoose = require("mongoose");
+const makeRequest = require("../../api_util/odds_api_util");
+const { getSportOdds } = require("../../api_util/odds_api_util");
 const merge = require("lodash").merge;
 
 /**
@@ -45,7 +47,7 @@ const distributeAmountWon = async (bet, wager) => {
     if (choice.winner) { 
       winningChoice = choice;
     }
-  })
+  });
 
 if (winningChoice.option === bet.option) {
   const amountWon = bet.amount_bet / winningChoice.probability;
@@ -55,25 +57,25 @@ if (winningChoice.option === bet.option) {
 }
 // return bet;
 }
-
 const distributeEarnings = (wager) => {
   // distribute rewards for winning/losing the wager
   Bet.find({ wager: wager._id }).then((bets) => {
+    // debugger;
     bets.forEach(async (bet) => {
       await distributeAmountWon(bet, wager);
     });
   })
 }
 
-  const updateWagerExpirations = (wagers) => {
+const updateWagerExpirations = (wagers) => {
     const now = new Date();
     wagers = wagers.map(async (wager) => {
       if (wager.due_date.getTime() <= now.getTime()) {
-        if (!wager.expired) {
+        // if (!wager.expired) {
           wager.expired = true;
           distributeEarnings(wager);
-          wager.save();
-        }
+          await wager.save();
+        // }
       }
       return wager;
     });
@@ -85,10 +87,12 @@ const distributeEarnings = (wager) => {
 
 // GET all wagers --> /api/wagers
 router.get("/", (request, response) => {
+  // getSportOdds();
   Wager.find()
     .sort({ due_date: -1 })
     .then(wagers => {
-      updateWagerExpirations(wagers);
+      const computed = updateWagerExpirations(wagers);
+      // debugger;
       return response.json(wagers);
     })
     .catch(errors => response.status(404).json({ nowagersfound: "Dear God, there are no wagers! PANIC!" }))
@@ -127,12 +131,12 @@ router.post("/groups/:group_id", (request, response) => {
   // const group = Group.findById(request.params.group_id);
   
   //body and group are missing right now
-  const { title, description, karma_points, due_date, wager_choices } = request.body;
+  const { title, description, due_date, wager_choices } = request.body;
 
   // need to pass in user who created the new wager
   // need to pass in a group
   const newWager = new Wager({
-    title, description, karma_points, due_date, wager_choices
+    title, description, due_date, wager_choices
   });
 
   newWager.save().then(wager => response.json(wager));
@@ -152,12 +156,12 @@ router.post("/", (request, response) => {
   // const group = Group.findById(request.params.group_id);
   
   //body and group are missing right now
-  const { title, description, karma_points, due_date, wager_choices } = request.body;
+  const { title, description, due_date, wager_choices } = request.body;
 
   // need to pass in user who created the new wager
   // need to pass in a group
   const newWager = new Wager({
-    title, description, karma_points, due_date, wager_choices
+    title, description, due_date, wager_choices
   });
 
   newWager.save().then(wager => response.json(wager));
