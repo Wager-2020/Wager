@@ -12,11 +12,17 @@ h1, h2, p, strong, em, a div {
   background: transparent;
 }
 
+header {
+  margin-bottom: 10px;
+}
+
 .main-container {
     width: auto;
     height:100vh;
 }
 
-.content-container {
-  width: 900px;
+@media only screen and (min-width: 800px) {
+  .content-container {
+    width: 800px;
+  }
 }
