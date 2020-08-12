@@ -26,17 +26,64 @@ body {
 .wagers-container {
   /* Demo-Specific Styles */
   // background: #eaeaea;
-  background: #E0FBFC;
+  background:#3d5a80;
+  color: white;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   height: 200px;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 4px;
   
   /* Flex Fallback */
   margin-left: 5px;
   margin-right: 5px;
   flex: 1 1 200px;
 }
+
+.wagers-container a {
+  text-decoration: none;
+  color: white;
+  &:hover {
+    color: #EE6C4D;
+  }
+}
+
+.wagers-container-top {
+  height: 80%;
+  width: 100%;
+  text-align: center;
+}
+
+.wagers-container-bottom {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.bottom-card-left {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+
+    &:hover {
+    color: #EE6C4D;
+    cursor: pointer;
+  }
+}
+
+.bottom-card-right {
+  width: 50%;
+  height: 100%;
+  text-align:center;
+
+    &:hover {
+    color: #EE6C4D;
+    cursor: pointer;
+  }
+}
+
 
 /* If Grid is supported, remove the margin we set for the fallback */
 @supports (display: grid) {

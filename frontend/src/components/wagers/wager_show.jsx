@@ -33,7 +33,6 @@ class WagerShow extends React.Component {
         let betData = Object.assign({}, this.state, {
             ["option"]: this.props.wager.wager_choices[1].option,
         });
-        debugger;
         this.props.placeWager(betData);
     }
 
@@ -46,10 +45,10 @@ class WagerShow extends React.Component {
             </div>
             <div className="wagers-container-bottom">
                 <div className="bottom-card-left" onClick = {this.handleClickA}>
-                <p>I'm left {currentWager.wager_choices[0].option}</p>
+                <p>{currentWager.wager_choices[0].option}</p>
                 </div>
                 <div className="bottom-card-right" onClick = {this.handleClickB}>
-                <p>I'm Right{currentWager.wager_choices[1].option}</p>
+                <p>{currentWager.wager_choices[1].option}</p>
                 </div>
             </div>
             </div>
