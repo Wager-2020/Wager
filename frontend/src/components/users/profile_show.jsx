@@ -18,14 +18,14 @@ class Profile extends React.Component {
             <div className="user-profile-container">
                 {userInfo.handle}
                 {userInfo.bets.map(bet => {
-                    return(
+                    return wagers[bet.wager] ? (
                         <div className = 'user-bets-container' key = {bet._id}>
                             <div> {wagers[bet.wager].title} </div>
                             <div> {wagers[bet.wager].description} </div>
                             <div> {bet.amount_bet}</div>
                             <div> {bet.option}</div>
                         </div>
-                        )
+                        ) : null;
                 })}
             </div>
         ) : null;

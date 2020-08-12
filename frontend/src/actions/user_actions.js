@@ -23,6 +23,6 @@ export const getUserWagers = (userId) => (dispatch) => {
 
 export const placeWager = (wager) => (dispatch) => {
     return APIUserUTIL.placeWager(wager)
-      .then((wager) => dispatch(receiveWager(wager)))
+      .then((wager) => dispatch(receiveWager(wager.data)))
       .catch((err) => console.log(err));
 };

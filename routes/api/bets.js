@@ -31,7 +31,7 @@ router.post("/wagers/:wager_id", (request, response) => {
 
   // user: access current user instead of passing in user_id
   const newBet = new Bet({
-    user: ObjectId(user_xid),
+    user: ObjectId(user_id),
     wager: ObjectId(request.params.wager_id),
     option
   });
