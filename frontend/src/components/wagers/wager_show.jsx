@@ -26,6 +26,7 @@ class WagerShow extends React.Component {
           ["option"]: this.props.wager.wager_choices[0].option,
         });
         this.props.placeWager(betData);
+        this.props.history.push(`/users/${this.props.currentUserId}`);
     }
 
     handleClickB(e) {
@@ -34,6 +35,7 @@ class WagerShow extends React.Component {
             ["option"]: this.props.wager.wager_choices[1].option,
         });
         this.props.placeWager(betData);
+        this.props.history.push(`/users/${this.props.currentUserId}`);
     }
 
     displayWager() {

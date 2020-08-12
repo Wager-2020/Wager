@@ -12,6 +12,7 @@ class WagersIndex extends React.Component {
 
     displayWagers() {
       const wagersLis = this.props.wagers.map((wager, idx) => {
+        if (!wager) { return null; }
             return (
               <div key={idx} className="wagers-container">
                 <div className="wagers-container-top">
@@ -32,7 +33,6 @@ class WagersIndex extends React.Component {
     }
 
     render() {
-
         return this.props.wagers ? (
           <div className="content-container">
             <div className = 'grid'>

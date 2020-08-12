@@ -7,8 +7,10 @@ import './profile.scss';
 class Profile extends React.Component {
 
     componentDidMount(){
-        this.props.fetchUser(this.props.match.params.userId);
-        this.props.fetchWagers();
+        this.props.fetchUser(this.props.match.params.userId)
+            .then(() => {
+                this.props.fetchWagers()
+            })
     }
 
     // displayUserInfo() {
@@ -46,7 +48,7 @@ class Profile extends React.Component {
                 amountBet = bet.amount_bet;
                 betOption = bet.option;
             }
-            return userInfo ? (
+            return wagers[bet.wager] ? (
                 <div key={idx} className="bets-container">
                     <div className="bets-container-top">
                         <h1>You bet on: {betTitle}</h1>
