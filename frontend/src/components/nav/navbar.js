@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import './navbar.css'
 
 // import { Component } from "react";
@@ -9,7 +9,7 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
-    this.getLinks = this.getLinks.bind(this);
+    // this.getLinks = this.getLinks.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -17,23 +17,23 @@ class NavBar extends React.Component {
     this.props.logout()
   }
 
-  getLinks() {
-    if (this.props.loggedIn) {
-      return (
-        <div>
-          <Link to={`/users/${this.props.user.id}`}>Profile</Link>
-          <button onClick={this.logoutUser}>Logout</button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
-        </div>
-      );
-    }
-  }
+  // getLinks() {
+  //   if (this.props.loggedIn) {
+  //     return (
+  //       <div>
+  //         <Link to={`/users/${this.props.user.id}`}>Profile</Link>
+  //         <button onClick={this.logoutUser}>Logout</button>
+  //       </div>
+  //     );
+  //   } else {
+  //     return (
+  //       <div>
+  //         <Link to={"/signup"}>Signup</Link>
+  //         <Link to={"/login"}>Login</Link>
+  //       </div>
+  //     );
+  //   }
+  // }
 
   handleChange(selectedOption){
     if (selectedOption.value === "home") {
@@ -49,15 +49,24 @@ class NavBar extends React.Component {
   };
 
   render() {
-    const options = [
-      { value: "home", label: "home" },
-      { value: "messages", label: "messages" },
-      { value: "leaderboard", label: "leaderboard" },
-      { value: "profile", label: "profile" },
-      { value: "signup", label: "signup" },
-      { value: "login", label: "login" },
-      { value: "logout", label: "logout" },
-    ];
+    let options = null;
+    if (this.props.user) {
+      options = [
+        { value: "home", label: "home" },
+        { value: "messages", label: "messages" },
+        { value: "leaderboard", label: "leaderboard" },
+        { value: "profile", label: "profile" },
+        { value: "logout", label: "logout" },
+      ];
+    } else {
+      options = [
+        { value: "home", label: "home" },
+        { value: "messages", label: "messages" },
+        { value: "leaderboard", label: "leaderboard" },
+        { value: "signup", label: "signup" },
+        { value: "login", label: "login" },
+      ];   
+    }
     const selectedOption = null;
     return (
       <div className="nav-bar-header">
@@ -66,7 +75,6 @@ class NavBar extends React.Component {
           onChange={this.handleChange}
           options={options}
         />
-        {this.getLinks()}
       </div>
     );
   }

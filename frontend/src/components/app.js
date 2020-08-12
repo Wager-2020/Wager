@@ -15,9 +15,8 @@ import './00-reset.scss'
 
 
 const App = () => (
-  <div>
+  <div className="main-container">
     <header>
-      <h1 className='headergoeshere'>Welcome to Wager</h1>
       <NavBarContainer />
     </header>
 

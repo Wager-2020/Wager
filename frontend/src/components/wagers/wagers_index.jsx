@@ -34,9 +34,11 @@ class WagersIndex extends React.Component {
     render() {
 
         return this.props.wagers ? (
+          <div className="content-container">
             <div className = 'grid'>
                 {this.displayWagers()}
             </div>
+          </div>
         ) : null
     }
 }
