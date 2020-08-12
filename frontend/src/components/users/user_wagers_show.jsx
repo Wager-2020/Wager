@@ -23,7 +23,6 @@ class UserWagersShow extends React.Component {
     }
 
     render() {
-        // debugger;
         return(
             <div>
                 <h1>Users Placed Bets</h1>

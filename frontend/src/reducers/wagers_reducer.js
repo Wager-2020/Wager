@@ -12,12 +12,8 @@ const wagersReducer = (state = {}, action) => {
             action.wagers.forEach(wager => {
                 objectifiedWagers[wager._id] = wager;
             });
-            // return action.wagers;
             return objectifiedWagers;
         case RECEIVE_WAGER:
-            // const wager = { [action.wager.id]: action.wager }
-            // return Object.assign({}, state, wager)
-            // debugger;
             return { [action.wager._id]: action.wager };
         default:
             return state;
