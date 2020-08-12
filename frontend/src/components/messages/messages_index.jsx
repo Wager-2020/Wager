@@ -11,12 +11,11 @@ class MessagesIndex extends React.Component {
     }
 
     displayMessages() {
-        debugger
         const messagesLis = this.props.messages.map((message) => {  
             return(
                 <div key ={message._id}>
-                    <div className="message-item">{message.body}</div>
                     <div className = 'message-author'> {message.user}</div>
+                    <div className="message-item">{message.body}</div>
                 </div>
             )
         })
