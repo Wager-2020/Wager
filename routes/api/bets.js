@@ -48,7 +48,7 @@ router.post("/wagers/:wager_id", async (request, response) => {
 
   await Wager.findById(newBet.wager).then(wager => {
     let total_karma_for_wager = 0;
-    debugger;
+    // debugger;
     
     wager.wager_choices.forEach((choice, idx) => {
       if (choice.option === newBet.option) {
