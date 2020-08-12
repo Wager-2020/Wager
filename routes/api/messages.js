@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
   
 });
 
- 
+
 router.get("/groups/:group_id", (req, res) => {
   Message.find({ group_id: req.params.group_id })
     .sort({ createdAt: -1 })
@@ -46,7 +46,7 @@ router.get("/groups/:group_id", (req, res) => {
     .catch(errors => response.status(404).json({ nomessagesfound: "OH NO, THERE AIN'T NO MESSAGES!"}));
 });
 
- router.post("/groups/;group_id", (req, res) => {
+router.post("/groups/;group_id", (req, res) => {
   const { errors, isValid } = validateMessage(req.body);
 
   if (!isValid) { return res.status(400).json(errors); }
@@ -58,6 +58,6 @@ router.get("/groups/:group_id", (req, res) => {
   });
   
   newMessage.save().then(message => res.json(message));
- });
+});
 
- module.exports = router;
+module.exports = router;
