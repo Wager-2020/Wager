@@ -11,18 +11,16 @@ import WagerShow from './wagers/wager_show';
 import Profile from './users/profile_show';
 import MessagesIndex from './messages/messages_index';
 import MessageForm from './messages/message_form';
-// import UserWagersShow from './users/user_wagers_show';
+import './00-reset.scss'
 
 
 const App = () => (
-  <div>
+  <div className="main-container">
     <header>
-      <h1>Header goes here</h1>
       <NavBarContainer />
     </header>
 
     <Switch>
-      {/* <Route path="/users/bets/:userId" component={UserWagersShow}/> */}
       <ProtectedRoute exact path="/messages/form" component={MessageForm} />
       <Route exact path="/messages" component={MessagesIndex} />
       <Route exact path="/" component={WagersIndex} />

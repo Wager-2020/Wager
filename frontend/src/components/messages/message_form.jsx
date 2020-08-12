@@ -1,9 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { createMessage } from '../../actions/messages_actions'
+// import {connect} from 'react-redux';
+// import { createMessage } from '../../actions/messages_actions'
 
 
-class MessageForm extends React.Component {
+export default class MessageForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -13,9 +13,10 @@ class MessageForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // componentWillReceiveProps(nextProps){
-    //     this.setState({body: nextProps.body})
-    // }
+    refreshPage () {
+        window.location.reload(false);
+    }
+
 
     handleSubmit(e){
         e.preventDefault();
@@ -25,7 +26,7 @@ class MessageForm extends React.Component {
         };
         this.props.createMessage(message);
         this.setState({body: ''});
-        this.props.history.push('/messages');
+        this.refreshPage();
     }
 
     update(){
@@ -36,7 +37,7 @@ class MessageForm extends React.Component {
 
     render(){
         return (
-          <div>
+          <div className="messageform-container">
             <form>
               <input
                 type="textarea"
@@ -55,17 +56,17 @@ class MessageForm extends React.Component {
 
 }
 
-const msp = state => {
-    return {
-        currentUser: state.session.user
-    }
-}
+// const msp = state => {
+//     return {
+//         currentUser: state.session.user
+//     }
+// }
 
-const mdp = dispatch => {
-    return {
-        createMessage: message => dispatch(createMessage(message))
-    }
-}
+// const mdp = dispatch => {
+//     return {
+//         createMessage: message => dispatch(createMessage(message))
+//     }
+// }
 
-export default connect(msp, mdp)(MessageForm)
+// export default connect(msp, mdp)(MessageForm)
 
