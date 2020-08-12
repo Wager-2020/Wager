@@ -88,7 +88,7 @@ router.get("/", (request, response) => {
   Wager.find()
     .sort({ due_date: -1 })
     .then(wagers => {
-      const updatedWagers = updateWagerExpirations(wagers);
+      updateWagerExpirations(wagers);
       return response.json(wagers);
     })
     .catch(errors => response.status(404).json({ nowagersfound: "Dear God, there are no wagers! PANIC!" }))
@@ -98,7 +98,7 @@ router.get("/", (request, response) => {
 router.get("/:id", (request, response) => {
   Wager.findById(request.params.id)
     .then(wager => {
-      const updatedWagers = updateWagerExpirations([wager]);
+      updateWagerExpirations([wager]);
       return response.json(wager)
     })
     .catch(errors => response.status(404).json({ nowagersfound: "That wager don't exist." }))

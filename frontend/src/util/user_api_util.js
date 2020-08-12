@@ -9,7 +9,7 @@ export const getUserWagers = (userId) => {
 };
 
 export const placeWager = (wager) => {
-  debugger;
+  // debugger;
   const betData = {
     user_id: wager.userId,
     option: wager.option,

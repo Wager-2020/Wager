@@ -33,7 +33,7 @@ class WagersIndex extends React.Component {
     render() {
 
         return this.props.wagers ? (
-            <div>
+            <div className="wagers-index-container">
                 <h1>Wagers Index Here</h1>
                 {this.displayWagers()}
             </div>

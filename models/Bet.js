@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
+// each user should only be able to bet once for a wager.
+// figure out uniqueness in scope
 
 const BetSchema = new Schema({
   user: {
