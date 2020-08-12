@@ -24,7 +24,7 @@ class MessagesIndex extends React.Component {
 
     render() {
         return(
-            <div className="messages-container">
+            <div className="content-container">
                 <MessageForm 
                     currentUser = {this.props.currentUser}
                     createMessage = {this.props.createMessage}

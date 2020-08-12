@@ -9,6 +9,7 @@ const User = require('../../models/User');
 const keys = require('../../config/keys');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const Wager = require("../../models/Wager");
 
 const MAX_BETS_ALLOWED = 10;
 
@@ -16,23 +17,37 @@ router.get("/:id", (req, res) => {
   User.findById(req.params.id)
     .then(user => {
       Bet.find({ user })
-      .limit(MAX_BETS_ALLOWED)
-      .then(bets => {
-        // debugger;
-        // const newState = {
-          // user, bets
-        // };
-        // debugger;
+      // .limit(MAX_BETS_ALLOWED)
+      .then(async (bets) => {
+        const wagersArr = await Wager.find({});
+        let wagers = {};
+        wagersArr.forEach(wager => {
+          wagers[wager._id] = wager;
+        });
 
-        // {
-          // id, handle,...bets
-        // }
-
+        let numWins = 0;
+        let numLosses = 0;
+        let numPending = 0;
+        let totalEarnings = 0;
+        bets.forEach(bet => {
+          totalEarnings += bet.amount_won;
+          const wager = wagers[bet.wager];
+          if (bet.amount_won > 0) {
+            numWins++;
+          } else if (wager.expired && bet.wager === 0) {
+            numLosses++;
+          } else {
+            numPending++;
+          }
+        });
+        
         const { _id, handle } = user;
+        const winRatio = (numWins * 1.0) / (1.0 * (numWins + numLosses));
 
         return res.json({
-          _id, handle,
-          bets
+          _id, handle, 
+          numWins, numLosses, numPending, totalEarnings, winRatio,
+          bets: bets.slice(0, MAX_BETS_ALLOWED)
         });
       })
       .catch(err => res.status(404).json(err))

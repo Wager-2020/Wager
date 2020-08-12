@@ -16,7 +16,9 @@ export const receiveWager = wager => ({
 
 export const fetchWagers = () => dispatch => {
     return wagerUTIL.getWagers()
-        .then(wagers => dispatch(receiveWagers(wagers.data)))
+        .then(wagers => {
+            return dispatch(receiveWagers(wagers.data))
+        })
         .catch(err => console.log(err))
 };
 

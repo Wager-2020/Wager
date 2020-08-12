@@ -4,8 +4,6 @@ const validText = require('./valid-text');
 module.exports = function validateWager(data) {
   let errors = {};
 
-  // debugger;
-
   data.title = validText(data.title) ? data.title : '';
   data.description = validText(data.description) ? data.description : '';
   data.karma_points = data.karma_points ? data.karma_points : null;

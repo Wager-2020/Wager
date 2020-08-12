@@ -28,10 +28,11 @@ app.use("/api/users", users);
 app.use("/api/wagers", wagers);
 app.use("/api/bets", bets);
 app.use("/api/messages", messages);
-// app.get("/", (req, res) => res.send("<h1>Wager Home Page</h1>"));
 
 
 const path = require('path');
+// app.use(express.static(path.join("styles", "main.scss")));
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
   app.get('/', (req, res) => {
