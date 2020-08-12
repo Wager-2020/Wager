@@ -7,9 +7,7 @@ class WagerShow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            // wagerId: this.props.wager.id,
             wagerId: this.props.match.params.wagerId,
-            // bettorId: this.props.currentUser.id,
             userId: this.props.currentUserId
         }
         this.handleClickA = this.handleClickA.bind(this);
@@ -38,22 +36,34 @@ class WagerShow extends React.Component {
         this.props.history.push(`/users/${this.props.currentUserId}`);
     }
 
+    toPercent(num) {
+       let step1 = (num * 100);
+       let step2 = step1.toString().split(".")[0];
+       return step2 + "%"
+    }
+
     displayWager() {
        const currentWager = this.props.wager;
         return currentWager ? (
-            <div className="wagers-container">
-            <div className="wagers-container-top">
-                {currentWager.title}
-            </div>
+          <div className="wagers-container">
+            <div className="wagers-container-top">{currentWager.title}</div>
             <div className="wagers-container-bottom">
-                <div className="bottom-card-left" onClick = {this.handleClickA}>
-                <p>{currentWager.wager_choices[0].option}</p>
-                </div>
-                <div className="bottom-card-right" onClick = {this.handleClickB}>
-                <p>{currentWager.wager_choices[1].option}</p>
-                </div>
+              <div className="bottom-card-left" onClick={this.handleClickA}>
+                <p>
+                  {currentWager.wager_choices[0].option}
+                  <br/>
+                  Liklihood to win: {this.toPercent(currentWager.wager_choices[0].probability)}
+                </p>
+              </div>
+              <div className="bottom-card-right" onClick={this.handleClickB}>
+                <p>
+                  {currentWager.wager_choices[1].option}
+                  <br/>
+                  Liklihood to win: {this.toPercent(currentWager.wager_choices[1].probability)}
+                </p>
+              </div>
             </div>
-            </div>
+          </div>
         ) : null;
     }
 
