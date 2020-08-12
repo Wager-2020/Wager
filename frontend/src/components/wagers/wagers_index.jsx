@@ -15,16 +15,16 @@ class WagersIndex extends React.Component {
         if (!wager) { return null; }
             return (
               <div key={idx} className="wagers-container">
-                <div className="wagers-container-top">
-                  <Link to={`/wagers/${wager._id}`}>{wager.title}</Link>
-                </div>
+                <div
+                  className="image-wrap"
+                  style={{
+                    backgroundImage: `url(http://yogapattern.com/temp-logo.png})`,
+                  }}
+                ></div>
                 <div className="wagers-container-bottom">
-                  <div className="bottom-card-left">
-                    <p>{wager.wager_choices[0].option}</p>
-                  </div>
-                  <div className="bottom-card-right">
-                    <p>{wager.wager_choices[1].option}</p>
-                  </div>
+                  <p>
+                    <Link to={`/wagers/${wager._id}`}>{wager.title}</Link>
+                  </p>
                 </div>
               </div>
             );
