@@ -28,7 +28,7 @@ app.use("/api/users", users);
 app.use("/api/wagers", wagers);
 app.use("/api/bets", bets);
 app.use("/api/messages", messages);
-app.get("/", (req, res) => res.send("<h1>Wager Home Page</h1>"));
+// app.get("/", (req, res) => res.send("<h1>Wager Home Page</h1>"));
 
 
 const path = require('path');
