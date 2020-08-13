@@ -28,7 +28,7 @@ const WAGERS = [
   //   title: BASEBALL_API[0].teams.join("vs");
   // }
   {
-    title: "2020 Presidentail Election",
+    title: "2020 Presidential Election",
     description: "Joe Biden and Donald Trump will face off in the most highly contested election of our lifetimes  Choose your preferred canddiated.",
     due_date: "2020-12-31",
     wager_choices: [
