@@ -20,7 +20,7 @@ const getSeasonSports = (season) => axios.get('https://api.the-odds-api.com/v3/s
     console.log(response.data.data)
 })
 .catch(error => {
-    console.log('Error status', error.response.status)
+    console.log('Error status', error.response)
     console.log(error.response.data)
 })
 
@@ -32,45 +32,64 @@ const getSportOdds = (sportKey = SPORT_KEY) => axios.get('https://api.the-odds-a
     params: {
         api_key: API_KEY,
         sport: sportKey,
-        region: 'uk', // uk | us | eu | au
-        mkt: 'h2h' // h2h | spreads | totals
+        region: 'us', // uk | us | eu | au
+        mkt: 'totals' // h2h | spreads | totals
     }
 }).then(response => {
-		debugger;
 		let eventOdds = [];
 
+		
 		response.data.data.forEach(event => {
 
-			let sums = [];
+			let odds = [];
+			let points = [];
+			let positions = [];
 			for (let i = 0; i < MAX_NUM_ODDS; i++) {
-				sums.push(0);
+				odds.push(0);
+				points.push(0);
+				positions.push("");
 			}
+			
 
 			event.sites.forEach(site => {
-				site.odds.h2h.forEach((odd, idx) => {
-					sums[idx] += odd;
+				site.odds.totals.odds.forEach((odd, idx) => {
+					odds[idx] += parseFloat(odd);
+				});
+
+				site.odds.totals.points.forEach((point, idx) => {
+					points[idx] += parseFloat(point);
+				});
+
+				site.odds.totals.position.forEach((position, idx) => {
+					positions[idx] = position;
 				});
 			});
 
-			sums = sums.map(sum => {
-				return sum / (1.0 * event.sites.length);
+			odds = odds.map(odd => {
+				return odd / (1.0 * event.sites.length);
 			});
 
+			points = points.map(point => {
+				return parseFloat(point) / (1.0 * event.sites.length);
+			});
 
-			eventOdds.push({ teams: event.teams, odds: sums, commenceTime: event.commence_time });
+			eventOdds.push({ 
+				teams: event.teams, 
+				odds, 
+				points,
+				positions,
+				commenceTime: event.commence_time }
+			);
+
 		});
 
 		// console.log(eventOdds);
-		// console.log(response.data.data);
 		return eventOdds;
 })
 .catch(error => {
-    console.log('Error status', error.response.status)
-    console.log(error.response.data)
+    console.log('Error status', error.response)
+    console.log(error.response)
 })
-
-// getSeasonSports();
-// getSportOdds();
 
 module.exports = {
 	getSeasonSports,

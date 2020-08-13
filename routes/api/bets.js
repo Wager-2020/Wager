@@ -35,6 +35,7 @@ router.post("/wagers/:wager_id", async (request, response) => {
   //might need to update bet amoun_won immediately, if so, make a request to Wagers, find wager that corresponsds with this bet, check for expiration value, if true, put amount_won as a value in newBet
 
   // user: access current user instead of passing in user_id
+
   const newBet = new Bet({
     user: ObjectId(user_id),
     wager: ObjectId(request.params.wager_id),

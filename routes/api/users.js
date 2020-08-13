@@ -33,6 +33,7 @@ const getBetsAndStatsOfUser = async (user, callback) => {
       let numPending = 0;
       let totalEarnings = 0;
       let karmaSpentPerGroup = {}; // {{ group: balance }, ...}
+      let karmaEarnedPerGroup = {};
       bets.forEach(bet => {
         totalEarnings += bet.amount_won;
         const wager = wagers[bet.wager];
@@ -45,8 +46,10 @@ const getBetsAndStatsOfUser = async (user, callback) => {
         }
         if (!karmaSpentPerGroup[wager.group]) {
           karmaSpentPerGroup[wager.group] = 0;
+          karmaEarnedPerGroup[wager.group] = 0;
         }
         karmaSpentPerGroup[wager.group] += bet.amount_bet;
+        karmaEarnedPerGroup[wager.group] += bet.amount_won;
       });
 
       const stats = {
@@ -55,6 +58,7 @@ const getBetsAndStatsOfUser = async (user, callback) => {
         numPending,
         totalEarnings,
         karmaSpentPerGroup,
+        karmaEarnedPerGroup,
         bets,
         winRatio: (numWins * 1.0) / (1.0 * (numWins + numLosses)),
       }
@@ -72,10 +76,11 @@ const getBetsAndStatsOfUser = async (user, callback) => {
 const MAX_BETS_ALLOWED = 10;
 const NUM_LEADERBOARD_USERS_SHOWN = 10;
 
-const mergeWallets = (wallet, deductionWallet) => {
+const mergeWallets = (wallet, deductionWallet, winningWallet) => {
   let resultWallet = merge({}, wallet);
   Object.keys(wallet).forEach(group => {
     resultWallet[group].currentBalance -= deductionWallet[group];
+    resultWallet[group].currentBalance += winningWallet[group];
   });
   return resultWallet;
 }
@@ -102,6 +107,7 @@ router.get("/", (req, res) => {
             numPending,
             totalEarnings,
             karmaSpentPerGroup,
+            karmaEarnedPerGroup,
             bets,
             winRatio
           } = stats;
@@ -109,7 +115,7 @@ router.get("/", (req, res) => {
           const newUser = {
             _id,
             handle,
-            wallet: mergeWallets(wallet, karmaSpentPerGroup),
+            wallet: mergeWallets(wallet, karmaSpentPerGroup, karmaEarnedPerGroup),
             
             numWins,
             numLosses,
@@ -150,6 +156,7 @@ router.get("/:id", (req, res) => {
         numPending,
         totalEarnings,
         karmaSpentPerGroup,
+        karmaEarnedPerGroup,
         bets,
         winRatio
       } = await getBetsAndStatsOfUser(user);
@@ -158,8 +165,7 @@ router.get("/:id", (req, res) => {
       return res.json({
         _id,
         handle,
-        wallet: mergeWallets(wallet, karmaSpentPerGroup),
-
+        wallet: mergeWallets(wallet, karmaSpentPerGroup, karmaEarnedPerGroup),
         numWins,
         numLosses,
         numPending,
