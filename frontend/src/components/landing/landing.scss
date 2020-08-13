@@ -1,0 +1,77 @@
+$darkblue: #3d5a80;
+$blue: #98C1D9;
+$lightblue: #E0FBFC;
+$orange: #EE6C4D;
+$black: #293241;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.slider-container{
+  height: 80%;
+  width: 100%;
+  position: relative;
+  overflow: hidden; 
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.menu {
+  position: absolute;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+  bottom: 0;
+}
+
+.menu label {
+  cursor: pointer;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50px;
+  margin: 0 .2em 1em;
+  &:hover {
+    background: $orange;
+  }
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: left 0s .75s;
+}
+
+[id^="slide"]:checked + .slide {
+  left: 0;
+  z-index: 2;
+  transition: left .65s ease-out;
+}
+
+.slide-1 {
+  background-image: url("https://images.unsplash.com/flagged/photo-1571358607210-1691cb0ea07c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80");
+}
+.slide-2 {
+  background-image: url("https://media3.s-nbcnews.com/i/newscms/2020_25/3391395/200619-donald-trump-melania-trump-ew-612p_892c163103f786bf6244792c63bdbfb7.jpg");
+}
+.slide-3 {
+  background-image: url("https://i.ytimg.com/vi/6NgYJxUCAlY/maxresdefault.jpg");
+}
+.slide-4 {
+  background-image: url("https://images.unsplash.com/flagged/photo-1552483570-019b7f8119b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+}
+.slide-5 {
+  background-image: url("https://images.unsplash.com/photo-1585222515068-7201a72c4181?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80");
+}
