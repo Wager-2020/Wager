@@ -22,7 +22,7 @@ class WagerShow extends React.Component {
     handleClickA(e) {
         e.preventDefault();
         let betData = Object.assign({}, this.state, {
-          ["option"]: this.props.wager.wager_choices[0].option,
+          "option": this.props.wager.wager_choices[0].option,
         });
         this.props.placeWager(betData).then(() => {
           this.props.history.push(`/users/${this.props.currentUserId}`)
@@ -32,7 +32,7 @@ class WagerShow extends React.Component {
     handleClickB(e) {
         e.preventDefault();
         let betData = Object.assign({}, this.state, {
-            ["option"]: this.props.wager.wager_choices[1].option,
+            "option": this.props.wager.wager_choices[1].option,
         });
         this.props.placeWager(betData).then(() => {
         this.props.history.push(`/users/${this.props.currentUserId}`)

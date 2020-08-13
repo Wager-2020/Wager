@@ -50,12 +50,24 @@ router.post("/", (req, res) => {
   if (!isValid) { return res.status(400).json(errors); }
   
   const { user, body } = req.body;
-  const newMessage = new Message({
-    user, body
+
+  User.findById(user)
+  .then(user => {
+    const message = new Message({ user, body });
+    
+    message.save().then(msg => {
+      const newMessage = {
+        id: msg.id,
+        body: msg.body,
+        createdAt: msg.createdAt,
+        user: {
+          id: user.id,
+          handle: user.handle
+        },
+      };
+      res.json(newMessage)
+    });
   });
-  
-  newMessage.save().then(message => res.json(message));
-  
 });
 
 

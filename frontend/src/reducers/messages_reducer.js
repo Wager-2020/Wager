@@ -12,7 +12,7 @@ const messagesReducer = (state ={}, action) => {
             });
             return Object.assign({}, state, messageObjects);
         case RECEIVE_MESSAGE:
-            return merge({}, state, { [action.message._id]: action.message });
+            return merge({}, state, { [action.message.id]: action.message });
         default:
             return state;
     }
