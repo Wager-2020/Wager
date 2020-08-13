@@ -81,10 +81,10 @@ class Profile extends React.Component {
           <div className="content-container profile-container">
             
             <div className="profile-basic-info">
-              <img
+              {/* <img
                 className="profile-pic"
                 src="https://www.biography.com/.image/t_share/MTIwNjA4NjMzNzYwMjg2MjIw/nicolas-cage-9234498-1-402.jpg"
-              />
+              /> */}
               {<div className="win-loss-chart">
                 {data && <WinLossPieChart data={data} />}
               </div>}
