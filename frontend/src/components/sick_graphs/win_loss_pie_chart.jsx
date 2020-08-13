@@ -1,9 +1,7 @@
 import React, { PureComponent } from "react";
-import { PieChart, Pie, Sector, Cell, Tooltip, Legend } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 
 const COLORS = ["#3d5a80", "#98c1d9", "#ee6c4d"];
-
-const RADIAN = Math.PI / 180;
 
 export default class WinLossPieChart extends PureComponent {
   
@@ -27,7 +25,7 @@ export default class WinLossPieChart extends PureComponent {
         </Pie>
         <Tooltip />
         <Legend 
-          layout="vetical" 
+          layout="vertical" 
           verticalAlign="middle" 
           align="right" 
           height={54} />

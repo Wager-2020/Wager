@@ -79,8 +79,12 @@ const NUM_LEADERBOARD_USERS_SHOWN = 10;
 const mergeWallets = (wallet, deductionWallet, winningWallet) => {
   let resultWallet = merge({}, wallet);
   Object.keys(wallet).forEach(group => {
-    resultWallet[group].currentBalance -= deductionWallet[group];
-    resultWallet[group].currentBalance += winningWallet[group];
+    if (deductionWallet[group]) {
+      resultWallet[group].currentBalance -= deductionWallet[group];
+    }
+    if (winningWallet[group]) {
+      resultWallet[group].currentBalance += winningWallet[group];
+    }
   });
   return resultWallet;
 }
@@ -161,7 +165,6 @@ router.get("/:id", (req, res) => {
         winRatio
       } = await getBetsAndStatsOfUser(user);
 
-
       return res.json({
         _id,
         handle,
@@ -204,9 +207,10 @@ router.post("/register", (req, res) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
-          newUser
-            .save()
+          debugger;
+          newUser.save()
             .then(user => {
+              debugger;
               const payload = {
                 id: user.id,
                 handle: user.handle
@@ -215,6 +219,7 @@ router.post("/register", (req, res) => {
               jwt.sign(payload, keys.secretOrKey, {
                 expiresIn: 3600
               }, (err, token) => {
+                debugger;
                 res.json({
                   success: true,
                   token: "Bearer " + token

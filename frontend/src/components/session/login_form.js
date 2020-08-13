@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './login-signup.scss';
-import {Link} from 'react-router-dom';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -95,9 +94,6 @@ class LoginForm extends React.Component {
 
           {this.renderErrors()}
         </form>
-        {/* <div className="signup-hyperlink">
-            <Link to={`/signup`}> or Sign up</Link>
-          </div> */}
       </div>
     );
   }

@@ -23,13 +23,12 @@ class Leaderboard extends React.Component{
     }
 
     displayLeaders(){
-        // const sorted = this.props.users.sort((a,b)=> b.totalEarnings - a.totalEarnings)
         const sorted = this.props.users ? sortUsers(this.props.users, this.state.currentSort) : [];
         const leaders = sorted.map(leader => {
             return (
-                <div key = {leader._id} className = 'leader-item'>
+                <div key = {leader._id} className = 'leader-item' onClick={() =>
+                this.props.history.push(`/users/${leader._id}`)}>
                     <div className = 'leader-handle'> {leader.handle} </div>
-                    {/* <div className = 'leader-stats'> {leader.totalEarnings.toFixed(0)}</div> */}
                     <div className="leader-stats">
                         {this.currentSortValue(leader)}
                     </div>
@@ -42,7 +41,6 @@ class Leaderboard extends React.Component{
     currentSortValue(user) {
         switch(this.state.currentSort) {
             case SORT_BY_EARNINGS:
-                // debugger;
                 return user.totalEarnings.toFixed(0);
             case SORT_BY_NUM_BETS_PLACED:
                 return (user.numWins + user.numLosses + user.numPending);

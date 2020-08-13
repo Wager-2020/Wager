@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { getUserWagers } from '../../actions/user_actions';
 
 class UserWagersShow extends React.Component {
-
-    componentDidMount() {
-        // this.props.getUserWagers(this.props.match.params.userId)
-    }
-
     showWagers() {
         const userWagerLis = this.props.wagers.map(wager => {
             return(
