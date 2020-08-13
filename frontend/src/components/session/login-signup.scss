@@ -8,19 +8,6 @@ $black: #293241;
 @import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
-.header{
-	z-index: 100;
-}
-
-body{
-	margin: 0;
-	padding: 0;
-	background: #fff;
-
-	color: #fff;
-	font-family: Arial;
-	font-size: 12px;
-}
 
 .body{
 	position: absolute;
@@ -49,14 +36,14 @@ body{
 	opacity: 0.7;
 }
 
-.header{
+.companyName{
 	position: absolute;
 	top: calc(50% - 35px);
 	left: calc(50% - 255px);
 	z-index: 2;
 }
 
-.header div{
+.companyName div{
 	float: left;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
@@ -64,7 +51,7 @@ body{
 	font-weight: 200;
 }
 
-.header div span{
+.companyName div span{
 	color:$orange !important;
 }
 
@@ -119,22 +106,6 @@ body{
 	font-weight: 400;
 	padding: 6px;
 	margin-top: 10px;
-}
-
-.signup-hyperlink {
-	width: 260px;
-	height: 35px;
-	background: $orange;
-	border: 1px solid #fff;
-	cursor: pointer;
-	border-radius: 2px;
-	color: white;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	padding: 6px;
-	margin-top: 10px;
-	z-index: 2;
 }
 
 .login input[type=submit]:hover{

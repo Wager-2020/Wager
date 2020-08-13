@@ -12,8 +12,7 @@ class WagersIndex extends React.Component {
 
     displayWagers() {
       const wagersLis = this.props.wagers.map((wager, idx) => {
-        if (!wager) { return null; }
-            return (
+            return wager.wager_choices ? (
               <div key={idx} className="wagers-container">
                 <div
                   className="image-wrap"
@@ -27,7 +26,7 @@ class WagersIndex extends React.Component {
                   </p>
                 </div>
               </div>
-            );
+            ) : null;
         })
         return wagersLis;
     }
