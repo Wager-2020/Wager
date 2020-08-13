@@ -1,0 +1,62 @@
+$darkblue: #3d5a80;
+$blue: #98C1D9;
+$lightblue: #E0FBFC;
+$orange: #EE6C4D;
+$black: #293241;
+
+
+.wagers-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 50%;
+    background: $darkblue;
+    border-radius: 10px;
+    box-shadow: 0 7px 30px $blue;
+    border-radius: 5px;
+}
+
+.wager-container-top {
+    height: 80%;
+}
+
+.wager-container-bottom {
+    height: 20%;
+}
+
+.wagers-container-top h1 {
+    font-size: 18px;
+    color: white;
+    padding: 12px 13px 18px;
+    display: flex;
+    justify-content: center;
+    background-color: $orange;
+    letter-spacing: 4px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.wager-description {
+    justify-content: center;
+    color: white;
+    line-height: 1.5;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 14px;
+    padding-top: 20px;
+    height: 40px;
+}
+
+.bottom-card-left, .bottom-card-right {
+    display: flex;
+    background-color: $blue;
+    font-size: 14px;
+    color: $darkblue;
+}
+
+.bottom-card-left {
+    border-right: 1px solid white;
+}
+
