@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { PieChart, Pie, Sector, Cell, Tooltip } from "recharts";
+import { PieChart, Pie, Sector, Cell, Tooltip, Legend } from "recharts";
 
 const COLORS = ["#3d5a80", "#98c1d9", "#ee6c4d"];
 
@@ -37,14 +37,14 @@ export default class WinLossPieChart extends PureComponent {
 
     const { data } = this.props
     return (
-      <PieChart width={400} height={400}>
+      <PieChart width={350} height={350}>
         <Pie
           data={data}
-          cx={200}
-          cy={200}
+          cx={90}
+          cy={175}
           labelLine={false}
           label={renderCustomizedLabel}
-          outerRadius={80}
+          outerRadius={70}
           fill="#8884d8"
           dataKey="value"
         >
@@ -53,7 +53,16 @@ export default class WinLossPieChart extends PureComponent {
           ))}
         </Pie>
         <Tooltip />
+        <Legend layout="vetical" 
+          verticalAlign="middle" 
+          align="right" 
+          height={36} />
       </PieChart>
     );
   }
 }
+
+/*
+.win-loss-chart 
+
+*/

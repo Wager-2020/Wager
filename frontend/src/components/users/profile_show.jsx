@@ -78,12 +78,12 @@ class Profile extends React.Component {
         }
         return (
           <div className="content-container">
+              <div className="win-loss-chart">
+                {data && <WinLossPieChart data={data} />}
+              </div>
+              
               <div className="grid">
                 {this.displayUserBets()}
-              </div>
-
-              <div>
-                {data && <WinLossPieChart data={data} />}
               </div>
           </div>
         ) 
