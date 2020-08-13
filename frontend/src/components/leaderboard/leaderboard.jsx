@@ -37,7 +37,7 @@ class Leaderboard extends React.Component{
     currentSortValue(user) {
         switch(this.state.currentSort) {
             case SORT_BY_EARNINGS:
-                return user.totalEarnings;
+                return user.totalEarnings.toFixed(0);
             case SORT_BY_NUM_BETS_PLACED:
                 return (user.numWins + user.numLosses + user.numPending);
             case SORT_BY_NUM_WINS:
@@ -60,22 +60,22 @@ class Leaderboard extends React.Component{
     render() {
         return(
             <div className = 'leader-board-container'>
-                <span> KARMA KINGS AND QUEENS </span>
-                <div>
+                <span> KARMA <br/> KINGS AND QUEENS </span>
+                <div className='leader-sort'>
                     <button onClick={this.changeSort(SORT_BY_EARNINGS)}>
-                        Sort by total karma earned
+                        KARMA
                     </button>
 
                     <button onClick={this.changeSort(SORT_BY_NUM_BETS_PLACED)}>
-                        Sort by number of bets made
+                        BETS COUNT
                     </button>
 
                     <button onClick={this.changeSort(SORT_BY_NUM_WINS)}>
-                        Sort by number bets won
+                        BETS WON
                     </button>
 
                     <button onClick={this.changeSort(SORT_BY_NUM_LOSSES)}>
-                        Sort by number bets lost
+                        BETS LOST
                     </button>
                 </div>
                 {this.displayLeaders()}
