@@ -51,9 +51,10 @@ class WagerShow extends React.Component {
           <div className="wagershow-container">
             <div className="wagershow-container-top">
               <h1>{currentWager.title}</h1>
-              <div className="wagershow-description">
-                {currentWager.description}
-              </div>
+              
+            </div>
+            <div className="wagershow-description">
+              {currentWager.description}
             </div>
             <div className="wagershow-container-bottom">
               <div className="bottom-card-left" onClick={this.handleClickA}>
@@ -80,7 +81,7 @@ class WagerShow extends React.Component {
     render() {
 
         return (
-            <div className="content-container">
+            <div className="show-content-container">
                 {this.displayWager()}
             </div>
         )
