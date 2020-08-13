@@ -36,11 +36,11 @@ export default class WinLossPieChart extends PureComponent {
 
     const { data } = this.props
     return (
-      <PieChart width={350} height={350}>
+      <PieChart width={285} height={300}>
         <Pie
           data={data}
-          cx={90}
-          cy={170}
+          cx={70}
+          cy={145}
           labelLine={false}
           label={renderCustomizedLabel}
           outerRadius={70}
@@ -52,10 +52,11 @@ export default class WinLossPieChart extends PureComponent {
           ))}
         </Pie>
         <Tooltip />
-        <Legend layout="vetical" 
+        <Legend 
+          layout="vetical" 
           verticalAlign="middle" 
           align="right" 
-          height={36} />
+          height={54} />
       </PieChart>
     );
   }

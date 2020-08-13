@@ -54,7 +54,8 @@ $black: #293241;
       border-radius: 7px;
       margin-bottom: 30px;
       position: relative;
-      background-color: $blue;
+      box-shadow: 2px 2px 5px rgba($color: #000000, $alpha: 0.2);
+      background-image: linear-gradient($blue, $blue, #89b6d1);
       
       &:after {
         bottom: 100%;
