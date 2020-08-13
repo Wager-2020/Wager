@@ -23,78 +23,60 @@ body {
   grid-gap: 1em;
 }
 
-.wagers-container {
+.bets-container {
   /* Demo-Specific Styles */
   // background: #eaeaea;
-  background:#3d5a80;
+  background:#E0FBFC;
+  color:#3d5a80;
   display: flex;
   flex-direction: column;
   height: 200px;
   box-sizing: border-box;
+  padding: 10px;
+  border-radius: 4px;
   
   /* Flex Fallback */
-  margin-left: 5px;
-  margin-right: 5px;
+  // margin-left: 5px;
+  // margin-right: 5px;
   flex: 1 1 200px;
 }
 
-.wagers-container a {
-  text-decoration: none;
-  color: black;
-  &:hover {
-    color: #EE6C4D;
-  }
+// .wagers-container a {
+//   text-decoration: none;
+//   color: white;
+//   &:hover {
+//     color: #EE6C4D;
+//   }
+// }
+
+.bets-container-top {
+    height: 30%;
+    width: 100%;
+    text-align: center;
 }
 
-.wager-description {
-  margin-top: 20px;
+.bets-container-middle {
+    height: 33%;
+    width: 100%;
+    text-align:center;
 }
 
-.image-wrap {
-  width: 100%;
-  height: 170px;
-  background-size: cover;
-  background-position: center;
-}
-
-.wagers-container-top {
-  height: 70%;
-  width: 100%;
-  text-align: center;
-}
-
-.wagers-container-bottom {
-  height: 30%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  background-color: white;
-  box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .03);
-  color: black;
-      &:hover {
-        box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .05);
-    }
+.bets-container-bottom {
+    height: 33%;
+    width: 100%;
+    text-align: center;
 }
 
 .bottom-card-left {
   width: 50%;
   height: 100%;
   text-align: center;
-    &:hover {
-      color: #EE6C4D;
-      cursor: pointer;
-    }
 }
 
 .bottom-card-right {
   width: 50%;
   height: 100%;
   text-align:center;
-    &:hover {
-      color: #EE6C4D;
-      cursor: pointer;
-    }
 }
 
 

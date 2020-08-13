@@ -2,41 +2,75 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../actions/user_actions';
 import {fetchWagers} from '../../actions/wager_actions';
-// import {Link} from 'react-router-dom';
+import './profile.scss';
 
 class Profile extends React.Component {
 
     componentDidMount(){
-        this.props.fetchUser(this.props.match.params.userId);
-        this.props.fetchWagers();
+        this.props.fetchUser(this.props.match.params.userId)
+            .then(() => {
+                this.props.fetchWagers()
+            })
     }
 
-    displayUserInfo() {
+    // displayUserInfo() {
+    //     // const userInfo = this.props.user[this.props.match.params.userId];
+    //     const wagers = this.props.wagers;
+    //     return userInfo ? (
+    //         <div className="user-profile-container">
+    //             {userInfo.bets.map(bet => {
+    //                 return wagers[bet.wager] ? (
+    //                     <div className = 'wagers-container' key = {bet._id}>
+    //                         <div className="wagers-container-top"> {wagers[bet.wager].title}</div>
+    //                         <div className="wagers-container-bottom">
+    //                             <div className="bottom-card-left"> {bet.amount_bet}</div>
+    //                             <div className="bottom-card-right"> {bet.option}</div>
+    //                         </div>
+    //                     </div>
+    //                     ) : null;
+    //             })}
+    //         </div>
+    //     ) : null;
+    // }
+
+    displayUserBets() {
         const userInfo = this.props.user[this.props.match.params.userId];
         const wagers = this.props.wagers;
-        return userInfo ? (
-            <div className="user-profile-container">
-                {userInfo.handle}
-                {userInfo.bets.map(bet => {
-                    return wagers[bet.wager] ? (
-                        <div className = 'user-bets-container' key = {bet._id}>
-                            <div> {wagers[bet.wager].title} </div>
-                            <div> {wagers[bet.wager].description} </div>
-                            <div> {bet.amount_bet}</div>
-                            <div> {bet.option}</div>
-                        </div>
-                        ) : null;
-                })}
-            </div>
-        ) : null;
+        let betTitle = null;
+        let amountBet = null;
+        let betOption = null;
+        if (!userInfo) {
+            return null;
+        }
+        const userBetsLi = userInfo.bets.map((bet, idx) => {
+            if (wagers[bet.wager]) {
+                betTitle = wagers[bet.wager].title;
+                amountBet = bet.amount_bet;
+                betOption = bet.option;
+            }
+            return wagers[bet.wager] ? (
+                <div key={idx} className="bets-container">
+                    <div className="bets-container-top">
+                        <h1>You bet on: {betTitle}</h1>
+                    </div>
+                    <div className="bets-container-middle">
+                        <p>You wagered: {amountBet}</p>
+                    </div>
+                    <div className="bets-container-bottom">
+                        <p>{betOption}</p>
+                    </div>
+                </div>
+            ) : null;
+        })
+        return userBetsLi;
     }
     
     render() {
         return (
-          <div>
-            <h1>Profile Profile Profile!</h1>
-            {this.displayUserInfo()}
-            {/* <Link to={`bets/${this.props.user._id}`}>View Users Placed Bets</Link> */}
+          <div className="content-container">
+              <div className="grid">
+                {this.displayUserBets()}
+              </div>
           </div>
         ) 
     }

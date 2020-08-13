@@ -14,16 +14,16 @@ class WagersIndex extends React.Component {
       const wagersLis = this.props.wagers.map((wager, idx) => {
             return wager.wager_choices ? (
               <div key={idx} className="wagers-container">
-                <div className="wagers-container-top">
-                  <Link to={`/wagers/${wager._id}`}>{wager.title}</Link>
-                </div>
+                <div
+                  className="image-wrap"
+                  style={{
+                    backgroundImage: `url(http://yogapattern.com/temp-logo.png})`,
+                  }}
+                ></div>
                 <div className="wagers-container-bottom">
-                  <div className="bottom-card-left">
-                    <p>{wager.wager_choices[0].option}</p>
-                  </div>
-                  <div className="bottom-card-right">
-                    <p>{wager.wager_choices[1].option}</p>
-                  </div>
+                  <p>
+                    <Link to={`/wagers/${wager._id}`}>{wager.title}</Link>
+                  </p>
                 </div>
               </div>
             ) : null;
@@ -32,7 +32,6 @@ class WagersIndex extends React.Component {
     }
 
     render() {
-
         return this.props.wagers ? (
           <div className="content-container">
             <div className = 'grid'>
