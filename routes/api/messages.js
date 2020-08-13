@@ -28,6 +28,7 @@ router.get("/", (req, res) => {
           resultingMessages.push({
             id: msg.id,
             body: msg.body,
+            createdAt: msg.createdAt,
             user: {
               id: user.id,
               handle: user.handle

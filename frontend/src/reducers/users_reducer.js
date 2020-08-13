@@ -16,7 +16,8 @@ const usersReducer = (state = {}, action) => {
         action.users.data.forEach(user => {
            userObject[user._id] = user;  
         })
-        return Object.assign({},state,userObject);
+        // return Object.assign({}, state, userObject);
+        return userObject;
       default:
         return state;
     }
