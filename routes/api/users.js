@@ -10,6 +10,7 @@ const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 const Wager = require("../../models/Wager");
 const Bet = require("../../models/Bet");
+const { sortUsers } = require('./sorting_util');
 
 
 const getBetsAndStatsOfUser = async (user, callback) => {
@@ -62,11 +63,15 @@ const getBetsAndStatsOfUser = async (user, callback) => {
 
 
 const MAX_BETS_ALLOWED = 10;
+const NUM_LEADERBOARD_USERS_SHOWN = 8;
 
 router.get("/", (req, res) => {
   const {
-    leaderboard
+    leaderboard,
+    sortingMethod,
+    numUsers
   } = req.query;
+
   if (leaderboard) {
     User.find({})
       .then((users) => {
@@ -99,8 +104,10 @@ router.get("/", (req, res) => {
           resultingUsers.push(newUser)
 
           if (resultingUsers.length === users.length) {
-            console.log("returnnnnn")
-            return res.json(resultingUsers);
+            const sorted = sortUsers(resultingUsers, sortingMethod);
+            const limit = numUsers ? numUsers : NUM_LEADERBOARD_USERS_SHOWN;
+            const limited = sorted.slice(0, limit);
+            return res.json(limited);
           }
         });
         });
