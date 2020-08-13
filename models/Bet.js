@@ -31,6 +31,11 @@ const BetSchema = new Schema({
   amount_won: {
     type: Number,
     default: 0
+  },
+
+  odds: {
+    type: Number,
+    default: 1.0
   }
 
   // amount_bet stored internally
