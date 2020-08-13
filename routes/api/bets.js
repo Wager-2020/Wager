@@ -39,14 +39,12 @@ router.post("/wagers/:wager_id", async (request, response) => {
   const newBet = new Bet({
     user: ObjectId(user_id),
     wager: ObjectId(request.params.wager_id),
-    option
+    option,
   });
 
   if (amount_bet && String(amount_bet).length > 0) {
     newBet.amount_bet = amount_bet;
   }
-
-  // let foundWager = undefined;
 
   await Wager.findById(newBet.wager).then(wager => {
 
@@ -55,6 +53,7 @@ router.post("/wagers/:wager_id", async (request, response) => {
     wager.wager_choices.forEach((choice, idx) => {
       if (choice.option === newBet.option) {
         wager.wager_choices[idx].karma += newBet.amount_bet;
+        newBet.odds = wager.wager_choices[idx].probability;
       }
       total_karma_for_wager += wager.wager_choices[idx].karma;
     });
@@ -63,22 +62,8 @@ router.post("/wagers/:wager_id", async (request, response) => {
       wager.wager_choices[idx].probability = choice.karma / (1.0 * total_karma_for_wager);
     });
 
-    // foundWager = wager;
     wager.save();
   });
-  // debugger;
-
-  // await User.findById(newBet.user).then(async user => {
-  //   debugger;
-  //   user.wallet[foundWager.group].currentBalance -= newBet.amount_bet;
-  //   debugger;
-  //   await user.save().then(user => {
-  //     debugger;
-  //     console.log(user);
-  //   });
-  //   debugger;
-  // })
-  // debugger;
 
   newBet.save().then(bet => response.json(bet));
 });
