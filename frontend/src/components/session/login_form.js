@@ -64,7 +64,7 @@ class LoginForm extends React.Component {
     return (
       <div className="login-container">
         <div className="body"></div>
-        <div className="header">
+        <div className="companyName">
           <div>
             You<span>Bet</span>
           </div>
