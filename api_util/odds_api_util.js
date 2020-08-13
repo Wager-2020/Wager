@@ -1,10 +1,10 @@
 // https://the-odds-api.com/liveapi/guides/v3/samples.html
 
 const API_KEY = require("../config/keys").oddsApiKey;
-const SPORT_KEY = 'baseball_mlb'
+const SPORT_KEY = 'baseball_mlb';
 
 
-const axios = require('axios')
+const axios = require('axios');
 // Get a list of in season sports
 const getSeasonSports = (season) => axios.get('https://api.the-odds-api.com/v3/sports', {
     params: {
