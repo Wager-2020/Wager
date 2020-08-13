@@ -10,7 +10,7 @@ class Leaderboard extends React.Component{
     render() {
         return(
             <div>
-                hey this renders!
+                <p>leaderboard</p>
             </div>
         )
     }

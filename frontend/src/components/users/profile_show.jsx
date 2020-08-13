@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../actions/user_actions';
 import {fetchWagers} from '../../actions/wager_actions';
 import './profile.scss';
+import WinLossPieChart from '../sick_graphs/win_loss_pie_chart'
 
 class Profile extends React.Component {
 
@@ -66,10 +67,23 @@ class Profile extends React.Component {
     }
     
     render() {
+        const user = this.props.user[this.props.match.params.userId]
+        let data = false;
+        if (user) {
+            data = [
+                { name: 'Wins', value: user.numWins },
+                { name: 'Losses', value: user.numLosses },
+                { name: 'Pending', value: user.numPending }
+            ];
+        }
         return (
           <div className="content-container">
               <div className="grid">
                 {this.displayUserBets()}
+              </div>
+
+              <div>
+                {data && <WinLossPieChart data={data} />}
               </div>
           </div>
         ) 
