@@ -57,7 +57,6 @@ class Profile extends React.Component {
                 { name: 'Losses', value: user.numLosses },
             ];
         }
-        debugger;
         let header = null;
         
         if (user && this.props.currentUserId === user._id) {
