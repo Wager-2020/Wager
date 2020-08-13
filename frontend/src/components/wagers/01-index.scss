@@ -102,6 +102,26 @@ $black: #293241;
     }
 }
 
+button.bottom-card-left, button.bottom-card-right {
+  border: none;
+  &:disabled {
+    background-color: lightgrey;
+    color: grey;
+  }
+}
+
+button.bottom-card-left {
+  border-right: 1px solid white;
+}
+button.bottom-card-right {
+  border-left: 1px solid white;
+}
+
+button:disabled:hover {
+  color: grey;
+  cursor: not-allowed;
+}
+
 
 /* If Grid is supported, remove the margin we set for the fallback */
 @supports (display: grid) {
@@ -109,3 +129,4 @@ $black: #293241;
     margin: 0;
   }
 }
+
