@@ -31,7 +31,6 @@ app.use("/api/messages", messages);
 
 
 const path = require('path');
-// app.use(express.static(path.join("styles", "main.scss")));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
@@ -50,8 +49,3 @@ const SHOULD_SEED = false;
 if (SHOULD_SEED) {
   Seeds.seed();
 }
-
-// Seeds.reset({ msg: true, wager: false, bet: true});
-
-// const { getMlbResults } = require("./api_util/game_results_api_util");
-// getMlbResults(new Date());

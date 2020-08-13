@@ -14,26 +14,6 @@ class Profile extends React.Component {
             })
     }
 
-    // displayUserInfo() {
-    //     // const userInfo = this.props.user[this.props.match.params.userId];
-    //     const wagers = this.props.wagers;
-    //     return userInfo ? (
-    //         <div className="user-profile-container">
-    //             {userInfo.bets.map(bet => {
-    //                 return wagers[bet.wager] ? (
-    //                     <div className = 'wagers-container' key = {bet._id}>
-    //                         <div className="wagers-container-top"> {wagers[bet.wager].title}</div>
-    //                         <div className="wagers-container-bottom">
-    //                             <div className="bottom-card-left"> {bet.amount_bet}</div>
-    //                             <div className="bottom-card-right"> {bet.option}</div>
-    //                         </div>
-    //                     </div>
-    //                     ) : null;
-    //             })}
-    //         </div>
-    //     ) : null;
-    // }
-
     displayUserBets() {
         const userInfo = this.props.user[this.props.match.params.userId];
         const wagers = this.props.wagers;
@@ -83,7 +63,7 @@ class Profile extends React.Component {
         if (user && this.props.currentUserId === user._id) {
             header = <h1>YOUR BETTING HISTORY</h1>
         } else if (user) {
-            header = <h1> {`${user.handle.toUpperCase()}\'S BETTING HISTORY`} </h1>
+            header = <h1> {`${user.handle.toUpperCase()}'S BETTING HISTORY`} </h1>
         }
         return (
           <div className="content-container profile-container">
@@ -92,12 +72,8 @@ class Profile extends React.Component {
                     <p>Current Karma Balance: {user.wallet.Public.currentBalance}</p>
               </div>
             <div className="profile-basic-info">
-              {/* <img
-                className="profile-pic"
-                src="https://www.biography.com/.image/t_share/MTIwNjA4NjMzNzYwMjg2MjIw/nicolas-cage-9234498-1-402.jpg"
-              /> */}
               {<div className="win-loss-chart">
-                {data && <WinLossPieChart data={data} />}
+                {Object.values(this.props.wagers) && <WinLossPieChart data={data} />}
               </div>}
             </div>
 
