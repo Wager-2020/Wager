@@ -60,9 +60,9 @@ const getSportOdds = (sportKey = SPORT_KEY) => axios.get('https://api.the-odds-a
 			eventOdds.push({ teams: event.teams, odds: sums, commenceTime: event.commence_time });
 		});
 
-		console.log(eventOdds);
-		console.log(response.data.data);
-		
+		// console.log(eventOdds);
+		// console.log(response.data.data);
+		return eventOdds;
 })
 .catch(error => {
     console.log('Error status', error.response.status)

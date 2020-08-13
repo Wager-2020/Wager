@@ -1,5 +1,5 @@
 import { RECEIVE_MESSAGES, RECEIVE_MESSAGE } from '../actions/messages_actions'
-
+import { merge } from "lodash";
 
 const messagesReducer = (state ={}, action) => {
     Object.freeze(state);
@@ -12,8 +12,7 @@ const messagesReducer = (state ={}, action) => {
             });
             return Object.assign({}, state, messageObjects);
         case RECEIVE_MESSAGE:
-            debugger;
-            return { [action.message._id]: action.message };
+            return merge({}, state, { [action.message._id]: action.message });
         default:
             return state;
     }
