@@ -53,6 +53,7 @@ class NavBar extends React.Component {
     if (this.props.user) {
       options = [
         { value: "home", label: "home" },
+        { value: "wagers", label: "wagers" },
         { value: "messages", label: "messages" },
         { value: "leaderboard", label: "leaderboard" },
         { value: "profile", label: "profile" },
@@ -61,6 +62,7 @@ class NavBar extends React.Component {
     } else {
       options = [
         { value: "home", label: "home" },
+        { value: "wagers", label: "wagers" },
         { value: "messages", label: "messages" },
         { value: "leaderboard", label: "leaderboard" },
         { value: "signup", label: "signup" },
