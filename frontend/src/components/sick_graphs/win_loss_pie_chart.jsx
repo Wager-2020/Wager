@@ -41,7 +41,7 @@ export default class WinLossPieChart extends PureComponent {
         <Pie
           data={data}
           cx={90}
-          cy={175}
+          cy={170}
           labelLine={false}
           label={renderCustomizedLabel}
           outerRadius={70}

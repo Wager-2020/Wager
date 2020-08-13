@@ -76,17 +76,23 @@ class Profile extends React.Component {
                 { name: 'Losses', value: user.numLosses },
             ];
         }
+
         return (
           <div className="content-container">
-              <div className="win-loss-chart">
+            
+            <div className="profile-basic-info">
+              <img
+                className="profile-pic"
+                src="https://api.time.com/wp-content/uploads/2017/12/terry-crews-person-of-year-2017-time-magazine-facebook-1.jpg?quality=85"
+              />
+              {<div className="win-loss-chart">
                 {data && <WinLossPieChart data={data} />}
-              </div>
-              
-              <div className="grid">
-                {this.displayUserBets()}
-              </div>
+              </div>}
+            </div>
+
+            <div className="grid">{this.displayUserBets()}</div>
           </div>
-        ) 
+        ); 
     }
 }
 
