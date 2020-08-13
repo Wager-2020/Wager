@@ -6,7 +6,7 @@ $black: #293241;
 
 
 .messages-container {
-    width: 80%;
+    max-width: 800px;
     margin: 0 auto;
     margin-bottom: 60px;
 }
@@ -30,9 +30,9 @@ $black: #293241;
     display: block;
     float: right;
     color: $darkblue;
-    font-size: 16px;
+    font-size: 14px;
     padding: 5px 10px 5px 10px;
-    border-radius: 8px;
+    border-radius: 4px;
     text-transform: uppercase;
     border: none;
     cursor: pointer;
@@ -44,6 +44,10 @@ $black: #293241;
     &:hover {
         background-image: linear-gradient(#dfdbdb, #dfdbdb);
     }
+}
+
+.message-index-container {
+    width: 100%;
 }
 
 .message-item{
