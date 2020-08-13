@@ -52,10 +52,10 @@ class Profile extends React.Component {
             return wagers[bet.wager] ? (
                 <div key={idx} className="bets-container">
                     <div className="bets-container-top">
-                        <h1>You bet on: {betTitle}</h1>
+                        <h2>{betTitle}</h2>
                     </div>
                     <div className="bets-container-middle">
-                        <p>You wagered: {amountBet}</p>
+                        <p>You wagered {amountBet} karma on</p>
                     </div>
                     <div className="bets-container-bottom">
                         <p>{betOption}</p>
@@ -87,7 +87,9 @@ class Profile extends React.Component {
 
         return (
           <div className="content-container profile-container">
-            {header}
+              <div className="header-container">
+                {header}
+              </div>
             <div className="profile-basic-info">
               {/* <img
                 className="profile-pic"
