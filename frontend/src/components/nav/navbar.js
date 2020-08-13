@@ -8,14 +8,8 @@ import Select from "react-select";
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    // this.logoutUser = this.logoutUser.bind(this);
-    // this.getLinks = this.getLinks.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
-  // logoutUser() {
-  //   this.props.logout();
-  // }
 
   handleChange(selectedOption){
     if (selectedOption.value === "home") {
@@ -23,7 +17,6 @@ class NavBar extends React.Component {
     }  else if (selectedOption.value === "profile") {
       this.props.history.push(`/users/${this.props.user.id}`);
     } else if (selectedOption.value === "logout") {
-      // this.logoutUser();
       this.props.logout().then(() => {
         this.props.history.push('/');
       });

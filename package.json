@@ -24,7 +24,7 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "killall node && node app.js",
     "server": "nodemon app.js",
     "server:debug": "nodemon --inspect app.js",
     "frontend-install": "npm install --prefix frontend",

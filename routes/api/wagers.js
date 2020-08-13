@@ -8,7 +8,6 @@ const {
   getSportOdds
 } = require("../../api_util/odds_api_util");
 const { getMlbResults, getMlbStats } = require("../../api_util/game_results_api_util");
-const merge = require("lodash").merge;
 
 /**
  * tested GET all wagers --> /api/wagers 
@@ -36,7 +35,6 @@ const distributeAmountWon = async (bet, wager) => {
       await bet.save();
     }
   }
-  // return bet;
 }
 const distributeEarnings = async (wager) => {
   // distribute rewards for winning/losing the wager
@@ -70,6 +68,8 @@ const updateWagerExpirations = async (wagers) => {
 // GET all wagers --> /api/wagers
 router.get("/", (request, response) => {
 
+  // comment back in for api testing
+
   // getMlbResults(new Date()).then(results => {
   //   console.log(results);
   // });
@@ -97,7 +97,7 @@ router.get("/", (request, response) => {
 router.get("/:id", (request, response) => {
   Wager.findById(request.params.id)
     .then(async wager => {
-      awaitupdateWagerExpirations([wager]);
+      await updateWagerExpirations([wager]);
       return response.json(wager)
     })
     .catch(errors => response.status(404).json(errors))
