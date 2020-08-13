@@ -17,7 +17,7 @@ class WagersIndex extends React.Component {
                 <div
                   className="image-wrap"
                   style={{
-                    backgroundImage: `url(https://avatars1.githubusercontent.com/u/69367821?s=400&u=8941ec12fc16cdf3dbc3505336c11a64c19bd2cd&v=4)`,
+                    backgroundImage: `url(https://images.unsplash.com/photo-1542027953342-020384de63a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80})`,
                   }}
                 ></div>
                 <div className="wagers-container-bottom">
