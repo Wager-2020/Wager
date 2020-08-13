@@ -2,6 +2,7 @@ import * as APIUserUTIL from '../util/user_api_util';
 import { fetchWagers, receiveWager } from './wager_actions';
 
 export const RECEIVE_USER = "RECEIVE_USER";
+export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 
 export const receiveUser = user => ({
@@ -9,10 +10,23 @@ export const receiveUser = user => ({
     user
 });
 
+export const receiveUsers = users => ({
+    type: RECEIVE_USERS,
+    users
+})
+
 export const fetchUser = (userId) => dispatch => {
     return APIUserUTIL.fetchUser(userId)
         .then(user => dispatch(receiveUser(user)))
         .catch(err => console.log(err))
+};
+
+export const fetchUsers = (filter) => (dispatch) => {
+  return APIUserUTIL.fetchUsers(filter)
+    .then((users) => {
+        dispatch(receiveUsers(users))
+    })
+    .catch((err) => console.log(err));
 };
 
 export const getUserWagers = (userId) => (dispatch) => {
