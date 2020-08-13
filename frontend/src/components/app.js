@@ -24,11 +24,11 @@ const App = () => (
     </header>
 
     <Switch>
-      <Route path = '/landing' component = {Landing} />
+      <Route exact path = '/' component = {Landing} />
       <ProtectedRoute exact path="/messages/form" component={MessageForm} />
       <Route exact path="/messages" component={MessagesIndex} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
-      <Route exact path="/" component={WagersIndex} />
+      <Route exact path="/wagers" component={WagersIndex} />
       <ProtectedRoute exact path="/wagers/:wagerId" component={WagerShow} />
       <Route path="/users/:userId" component={Profile} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
