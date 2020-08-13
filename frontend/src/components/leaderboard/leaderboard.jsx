@@ -13,8 +13,8 @@ class Leaderboard extends React.Component{
         const leaders = sorted.map(leader => {
             return (
                 <div key = {leader._id} className = 'leader-item'>
-                    <div> {leader.handle} </div>
-                    <div> {leader.totalEarnings.toFixed(0)}</div>
+                    <div className = 'leader-handle'> {leader.handle} </div>
+                    <div className = 'leader-stats'> {leader.totalEarnings.toFixed(0)}</div>
                 </div>
             )
         })
@@ -26,7 +26,7 @@ class Leaderboard extends React.Component{
     render() {
         return(
             <div className = 'leader-board-container'>
-                <span> Karma Kings and Queens </span>
+                <span> KARMA KINGS AND QUEENS </span>
                 {this.displayLeaders()}
             </div>
         )

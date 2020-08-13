@@ -11,7 +11,7 @@ $black: #293241;
     transform: translate(-50%, -50%);
     width: 90%;
     height: 50%;
-    background: linear-gradient(to bottom,$blue,$lightblue);
+    background: $darkblue;
     border-radius: 10px;
     box-shadow: 0 7px 30px $blue;
     overflow: scroll;
@@ -19,11 +19,12 @@ $black: #293241;
 
 .leader-board-container span {
     font-size: 18px;
-    color: $orange;
+    color: white;
     padding: 12px 13px 18px;
-    margin: 10px;
     display: flex;
     justify-content: center;
+    background-color: $orange;
+    letter-spacing: 4px;
 }
 
 .leader-item{
@@ -31,12 +32,16 @@ $black: #293241;
     z-index: 1;
     font-size: 14px;
     counter-increment: leaderboard;
-    padding: 18px 10px 18px 50px;
+    padding: 20px;
     cursor: pointer;
     backface-visibility: hidden;
     transform: translateZ(0) scale(1.0, 1.0);
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid white;
-    color: $darkblue;
+    color: white;
+}
+
+.leader-item:hover{
+    background-color: $blue;
 }
