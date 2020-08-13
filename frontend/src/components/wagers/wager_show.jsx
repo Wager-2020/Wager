@@ -23,8 +23,9 @@ class WagerShow extends React.Component {
         let betData = Object.assign({}, this.state, {
           ["option"]: this.props.wager.wager_choices[0].option,
         });
-        this.props.placeWager(betData);
-        this.props.history.push(`/users/${this.props.currentUserId}`);
+        this.props.placeWager(betData).then(() => {
+          this.props.history.push(`/users/${this.props.currentUserId}`)
+        })
     }
 
     handleClickB(e) {
@@ -32,8 +33,9 @@ class WagerShow extends React.Component {
         let betData = Object.assign({}, this.state, {
             ["option"]: this.props.wager.wager_choices[1].option,
         });
-        this.props.placeWager(betData);
-        this.props.history.push(`/users/${this.props.currentUserId}`);
+        this.props.placeWager(betData).then(() => {
+        this.props.history.push(`/users/${this.props.currentUserId}`)
+      })
     }
 
     toPercent(num) {
