@@ -10,7 +10,7 @@ $black: #293241;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    height: 50%;
+    height: 70%;
     background: $darkblue;
     border-radius: 10px;
     box-shadow: 0 7px 30px $blue;
@@ -44,4 +44,22 @@ $black: #293241;
 
 .leader-item:hover{
     background-color: $blue;
+}
+
+.leader-sort{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+.leader-sort > button {
+    font-size: 12px;
+    background-color: $blue;
+    border: none;
+    padding: 7px;
+    font: $darkblue;
+}
+
+.leader-sort > button:hover{
+    background-color: $lightblue;
 }
