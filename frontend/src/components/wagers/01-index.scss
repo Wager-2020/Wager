@@ -41,10 +41,10 @@ $black: #293241;
 
 .wagers-container a {
   text-decoration: none;
-  color: black;
-  &:hover {
-    color: #EE6C4D;
-  }
+  color: $darkblue;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: white;
 }
 
 .wager-description {
@@ -70,8 +70,12 @@ $black: #293241;
   display: flex;
   flex-direction: row;
   text-align: center;
-  background-color: white;
+  background-color: $darkblue;
+  color: white;
   box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .03);
+  &:hover {
+    background-color: #EE6C4D;
+  }
   color: black;
       &:hover {
         box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .05);

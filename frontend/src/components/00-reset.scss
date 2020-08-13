@@ -20,6 +20,8 @@ header {
   padding-bottom: 10px;
   max-width: 800px;
   margin: auto;
+  position: fixed;
+  width: 100%;
 }
 
 footer {
@@ -31,6 +33,7 @@ footer {
   font-size: 12px;
   background-color: white;
   width: 100%;
+  position: fixed;
 }
 
 .main-container {
