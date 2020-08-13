@@ -72,21 +72,27 @@ class Profile extends React.Component {
         if (user) {
             data = [
                 { name: 'Wins', value: user.numWins },
+                { name: 'Pending Bets', value: user.numPending },
                 { name: 'Losses', value: user.numLosses },
-                { name: 'Pending', value: user.numPending }
             ];
         }
-        return (
-          <div className="content-container">
-              <div className="grid">
-                {this.displayUserBets()}
-              </div>
 
-              <div>
+        return (
+          <div className="content-container profile-container">
+            
+            <div className="profile-basic-info">
+              <img
+                className="profile-pic"
+                src="https://www.biography.com/.image/t_share/MTIwNjA4NjMzNzYwMjg2MjIw/nicolas-cage-9234498-1-402.jpg"
+              />
+              {<div className="win-loss-chart">
                 {data && <WinLossPieChart data={data} />}
-              </div>
+              </div>}
+            </div>
+
+            <div className="grid">{this.displayUserBets()}</div>
           </div>
-        ) 
+        ); 
     }
 }
 

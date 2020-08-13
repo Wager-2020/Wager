@@ -1,15 +1,16 @@
-// dark blue: #3d5a80
-// light blue: #98C1D9
-// lightest blue: #E0FBFC
-// orange: #EE6C4D
-// blue: #293241
+$darkblue: #3d5a80;
+$blue: #98C1D9;
+$lightblue: #E0FBFC;
+$orange: #EE6C4D;
+$black: #293241;
 
 
-body {
-  margin: 0 auto;
-  max-width: 56em;
-  padding: 1em 0;
-}
+
+// body {
+//   margin: 0 auto;
+//   max-width: 56em;
+//   padding: 1em 0;
+// }
 
 .grid {
   /* Grid Fallback */

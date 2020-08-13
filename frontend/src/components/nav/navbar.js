@@ -17,24 +17,6 @@ class NavBar extends React.Component {
     this.props.logout()
   }
 
-  // getLinks() {
-  //   if (this.props.loggedIn) {
-  //     return (
-  //       <div>
-  //         <Link to={`/users/${this.props.user.id}`}>Profile</Link>
-  //         <button onClick={this.logoutUser}>Logout</button>
-  //       </div>
-  //     );
-  //   } else {
-  //     return (
-  //       <div>
-  //         <Link to={"/signup"}>Signup</Link>
-  //         <Link to={"/login"}>Login</Link>
-  //       </div>
-  //     );
-  //   }
-  // }
-
   handleChange(selectedOption){
     if (selectedOption.value === "home") {
       this.props.history.push("/");
@@ -53,6 +35,7 @@ class NavBar extends React.Component {
     if (this.props.user) {
       options = [
         { value: "home", label: "home" },
+        { value: "wagers", label: "wagers" },
         { value: "messages", label: "messages" },
         { value: "leaderboard", label: "leaderboard" },
         { value: "profile", label: "profile" },
@@ -61,6 +44,7 @@ class NavBar extends React.Component {
     } else {
       options = [
         { value: "home", label: "home" },
+        { value: "wagers", label: "wagers" },
         { value: "messages", label: "messages" },
         { value: "leaderboard", label: "leaderboard" },
         { value: "signup", label: "signup" },

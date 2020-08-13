@@ -12,6 +12,8 @@ import Profile from './users/profile_show';
 import MessagesIndex from './messages/messages_index';
 import MessageForm from './messages/message_form';
 import LeaderBoard from './leaderboard/leaderboard';
+import Landing from './landing/landing';
+
 import './00-reset.scss'
 
 
@@ -22,10 +24,11 @@ const App = () => (
     </header>
 
     <Switch>
+      <Route exact path = '/' component = {Landing} />
       <ProtectedRoute exact path="/messages/form" component={MessageForm} />
       <Route exact path="/messages" component={MessagesIndex} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
-      <Route exact path="/" component={WagersIndex} />
+      <Route exact path="/wagers" component={WagersIndex} />
       <ProtectedRoute exact path="/wagers/:wagerId" component={WagerShow} />
       <Route path="/users/:userId" component={Profile} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />

@@ -40,7 +40,7 @@ export default class MessageForm extends React.Component {
                 onChange={this.update()}
                 placeholder="How do you feel about your bet..."
               />
-              <button onClick={this.handleSubmit}>Post Message</button>
+              <button id="message-button" onClick={this.handleSubmit}>Post Message</button>
             </form>
           </div>
         );
