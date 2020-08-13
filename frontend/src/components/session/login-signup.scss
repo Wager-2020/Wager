@@ -29,6 +29,23 @@ $black: #293241;
 	top: calc(50% - 35px);
 	left: calc(50% - 255px);
 	z-index: 2;
+
+	div {
+		cursor: pointer;
+	}
+}
+
+.login-signup-switch {
+	display: flex;
+	justify-content: center;
+	color: white;
+	span {
+		color: $orange;
+	}
+
+	span:hover {
+		cursor: pointer;
+	}
 }
 
 .header div{
@@ -43,7 +60,7 @@ $black: #293241;
 	color:$orange !important;
 }
 
-.login{
+.login, .signup {
 	position: absolute;
 	top: calc(50% - 75px);
 	left: calc(50% - 50px);

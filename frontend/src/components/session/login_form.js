@@ -65,7 +65,9 @@ class LoginForm extends React.Component {
       <div className="login-container">
         <div className="companyName"></div>
         <div className="header">
-          <div>
+          <div onClick={() => {
+            this.props.history.push("/");
+          }}>
             Leet<span>Wagers</span>
           </div>
         </div>
@@ -84,6 +86,13 @@ class LoginForm extends React.Component {
             placeholder="Password"
           />
           <input type="submit" value="Submit" />
+
+          <div className="login-signup-switch">
+            or <span onClick={() => {
+              this.props.history.push("/signup");
+            }}>Sign Up?</span>
+          </div>
+
           {this.renderErrors()}
         </form>
         {/* <div className="signup-hyperlink">
