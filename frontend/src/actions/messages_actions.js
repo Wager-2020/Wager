@@ -15,7 +15,7 @@ export const receiveMessages = messages => ({
 
 export const fetchMessages = () => dispatch => {
     return messagesAPIUtil.fetchMessages()
-        .then(messages => dispatch(receiveMessages(messages)))
+        .then(messages => dispatch(receiveMessages(messages.data)))
         .catch(err => console.log(err))
 };
 

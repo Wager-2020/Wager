@@ -1,4 +1,5 @@
 import { RECEIVE_USER, RECEIVE_USERS } from "../actions/user_actions";
+import { merge } from "lodash"; 
 
 const usersReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -6,9 +7,9 @@ const usersReducer = (state = {}, action) => {
     switch (action.type) {
       case RECEIVE_USER:
         user = action.user.data;
-        return Object.assign({}, state, {
-          [user._id]: user,
-          [user.handle]: user._id,
+        return merge({}, state, { 
+            [user._id]: user,
+          // [user.handle]: user._id,
         });
       case RECEIVE_USERS:
         let userObject = {};
