@@ -10,16 +10,21 @@ class Leaderboard extends React.Component{
 
         this.state = {
             currentSort: SORT_BY_EARNINGS,
+            hasMounted: false
         }
+        
     }
 
     componentDidMount () {
-        this.props.fetchUsers(this.state.currentSort);
+        let that = this;
+        this.props.fetchUsers(this.state.currentSort).then(() => {
+            that.setState({ hasMounted: true });
+        });
     }
 
     displayLeaders(){
         // const sorted = this.props.users.sort((a,b)=> b.totalEarnings - a.totalEarnings)
-        const sorted = sortUsers(this.props.users, this.state.currentSort);
+        const sorted = this.props.users ? sortUsers(this.props.users, this.state.currentSort) : [];
         const leaders = sorted.map(leader => {
             return (
                 <div key = {leader._id} className = 'leader-item'>
@@ -31,12 +36,13 @@ class Leaderboard extends React.Component{
                 </div>
             )
         })
-        return leaders
+        return leaders;
     }
 
     currentSortValue(user) {
         switch(this.state.currentSort) {
             case SORT_BY_EARNINGS:
+                // debugger;
                 return user.totalEarnings.toFixed(0);
             case SORT_BY_NUM_BETS_PLACED:
                 return (user.numWins + user.numLosses + user.numPending);
@@ -58,7 +64,7 @@ class Leaderboard extends React.Component{
     }
 
     render() {
-        return(
+        return this.state.hasMounted ? (
             <div className = 'leader-board-container'>
                 <span> KARMA <br/> KINGS AND QUEENS </span>
                 <div className='leader-sort'>
@@ -80,7 +86,7 @@ class Leaderboard extends React.Component{
                 </div>
                 {this.displayLeaders()}
             </div>
-        )
+        ) : null;
     }
 }
 

@@ -7,11 +7,12 @@ const messagesReducer = (state ={}, action) => {
         case RECEIVE_MESSAGES:
             let messageObjects = {};
             // let messageObjects = Object.assign({}, state);
-            action.messages.data.forEach(message => {
-                messageObjects[message._id] = message;
+            action.messages.forEach(message => {
+                messageObjects[message.id] = message;
             });
             return Object.assign({}, state, messageObjects);
         case RECEIVE_MESSAGE:
+            debugger;
             return { [action.message._id]: action.message };
         default:
             return state;

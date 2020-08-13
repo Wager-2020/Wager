@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const validateMessage = require("../../validation/message");
 const Message = require("../../models/Message");
-const User = require("../../models/Message");
+const User = require("../../models/User");
 const mongoose = require("mongoose");
 const merge = require("lodash").merge; 
 
@@ -17,10 +17,30 @@ const merge = require("lodash").merge;
 const NUM_MESSAGES_TO_DISPLAY = 10;
 
 router.get("/", (req, res) => {
-  Message.find()
+  Message.find({})
     .sort({ createdAt: -1 })
     .limit(NUM_MESSAGES_TO_DISPLAY)
-    .then(messages => res.json(messages))
+    .then(messages => {
+      let resultingMessages = [];
+      messages.forEach(async msg => {
+        User.findById(msg.user)
+        .then(user => {
+          resultingMessages.push({
+            id: msg.id,
+            body: msg.body,
+            createdAt: msg.createdAt,
+            user: {
+              id: user.id,
+              handle: user.handle
+            },
+          });
+
+          if (resultingMessages.length === messages.length) {
+            res.json(resultingMessages);
+          }
+        });
+      });
+    })
     .catch(errors => res.status(404).json(errors));
 });
 
