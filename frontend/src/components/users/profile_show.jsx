@@ -77,9 +77,17 @@ class Profile extends React.Component {
             ];
         }
 
+        let header = null;
+        
+        if (user && this.props.currentUserId === user._id) {
+            header = <h1>YOUR BETTING HISTORY</h1>
+        } else if (user) {
+            header = <h1> {`${user.handle.toUpperCase()}\'S BETTING HISTORY`} </h1>
+        }
+
         return (
           <div className="content-container profile-container">
-            
+            {header}
             <div className="profile-basic-info">
               {/* <img
                 className="profile-pic"
@@ -100,7 +108,8 @@ const msp = (state,ownProps) => {
     return {
         errors: state.errors,
         user: state.entities.users,
-        wagers: state.entities.wagers
+        wagers: state.entities.wagers,
+        currentUserId: state.session.user.id
     }
 }
 

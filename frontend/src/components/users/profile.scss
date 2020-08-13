@@ -31,15 +31,16 @@
   /* Demo-Specific Styles */
   // background: #eaeaea;
   // background:#E0FBFC;
-  background-image: linear-gradient(#dafafb, #d9fafb, #c4f1f3);
-  border: 1px solid #bbecee;
-  color:#3d5a80;
+  background-image: linear-gradient(#f75d33, #FE6238, #ec5d35);
+  border: 1px solid #c74b12;
+  font-weight: 600;
+  color:white;
   display: flex;
   flex-direction: column;
   height: 200px;
   box-sizing: border-box;
   padding: 10px;
-  box-shadow: 2px 2px 2px rgba(5, 5, 5, 0.2);
+  box-shadow: 2px 2px 2px rgba(5, 5, 5, 0.4);
   border-radius: 8px;
   
   /* Flex Fallback */
