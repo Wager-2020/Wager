@@ -7,10 +7,22 @@ class Leaderboard extends React.Component{
         this.props.fetchUsers();
     }
 
+    displayLeaders(){
+        const leaders = this.props.users.map(leader => {
+            return (
+                <div key = {leader._id}>
+                    <div> {leader.handle} </div>
+                    <div> {leader.totalEarnings}</div>
+                </div>
+            )
+        })
+        return leaders
+    }
+
     render() {
         return(
             <div>
-                hey this renders!
+                {this.displayLeaders()}
             </div>
         )
     }
@@ -18,7 +30,7 @@ class Leaderboard extends React.Component{
 
 const msp = state => {
     return {
-        users: state.entities.users,
+        users: Object.values(state.entities.users),
     }
 }
 
