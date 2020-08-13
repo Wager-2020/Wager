@@ -63,7 +63,7 @@ const getBetsAndStatsOfUser = async (user, callback) => {
 
 
 const MAX_BETS_ALLOWED = 10;
-const NUM_LEADERBOARD_USERS_SHOWN = 8;
+const NUM_LEADERBOARD_USERS_SHOWN = 10;
 
 router.get("/", (req, res) => {
   const {

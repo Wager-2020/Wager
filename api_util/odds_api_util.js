@@ -63,7 +63,7 @@ const getSportOdds = (sport) => axios.get('https://api.the-odds-api.com/v3/odds'
 		});
 
 		console.log(eventOdds);
-		console.log(response.data.data);
+		// console.log(response.data.data);
 		
 })
 .catch(error => {
