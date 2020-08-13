@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchWager } from '../../actions/wager_actions';
 import { placeWager } from '../../actions/user_actions';
+import './02-show.scss';
 
 class WagerShow extends React.Component {
     constructor(props) {
@@ -48,9 +49,9 @@ class WagerShow extends React.Component {
           <div className="wagers-container">
             <div className="wagers-container-top">
               <h1>{currentWager.title}</h1>
-              <p className="wager-description">
+              <div className="wager-description">
                 {currentWager.description}
-              </p>
+              </div>
             </div>
             <div className="wagers-container-bottom">
               <div className="bottom-card-left" onClick={this.handleClickA}>
