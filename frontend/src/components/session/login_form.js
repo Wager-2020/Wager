@@ -63,8 +63,8 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="login-container">
-        <div className="body"></div>
-        <div className="companyName">
+        <div className="companyName"></div>
+        <div className="header">
           <div>
             You<span>Bet</span>
           </div>
@@ -86,7 +86,7 @@ class LoginForm extends React.Component {
           <input type="submit" value="Submit" />
           {this.renderErrors()}
         </form>
-          {/* <div className="signup-hyperlink">
+        {/* <div className="signup-hyperlink">
             <Link to={`/signup`}> or Sign up</Link>
           </div> */}
       </div>
