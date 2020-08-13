@@ -11,6 +11,7 @@ const validateLoginInput = require('../../validation/login');
 const Wager = require("../../models/Wager");
 const Bet = require("../../models/Bet");
 const { sortUsers } = require('./sorting_util');
+const { merge } = require("lodash");
 
 
 const getBetsAndStatsOfUser = async (user, callback) => {
@@ -31,6 +32,7 @@ const getBetsAndStatsOfUser = async (user, callback) => {
       let numLosses = 0;
       let numPending = 0;
       let totalEarnings = 0;
+      let karmaSpentPerGroup = {}; // {{ group: balance }, ...}
       bets.forEach(bet => {
         totalEarnings += bet.amount_won;
         const wager = wagers[bet.wager];
@@ -41,6 +43,10 @@ const getBetsAndStatsOfUser = async (user, callback) => {
         } else {
           numPending++;
         }
+        if (!karmaSpentPerGroup[wager.group]) {
+          karmaSpentPerGroup[wager.group] = 0;
+        }
+        karmaSpentPerGroup[wager.group] += bet.amount_bet;
       });
 
       const stats = {
@@ -48,6 +54,7 @@ const getBetsAndStatsOfUser = async (user, callback) => {
         numLosses,
         numPending,
         totalEarnings,
+        karmaSpentPerGroup,
         bets,
         winRatio: (numWins * 1.0) / (1.0 * (numWins + numLosses)),
       }
@@ -63,7 +70,15 @@ const getBetsAndStatsOfUser = async (user, callback) => {
 
 
 const MAX_BETS_ALLOWED = 10;
-const NUM_LEADERBOARD_USERS_SHOWN = 8;
+const NUM_LEADERBOARD_USERS_SHOWN = 10;
+
+const mergeWallets = (wallet, deductionWallet) => {
+  let resultWallet = merge({}, wallet);
+  Object.keys(wallet).forEach(group => {
+    resultWallet[group].currentBalance -= deductionWallet[group];
+  });
+  return resultWallet;
+}
 
 router.get("/", (req, res) => {
   const {
@@ -79,13 +94,14 @@ router.get("/", (req, res) => {
       users.forEach(async (user) => {
 
         getBetsAndStatsOfUser(user, (stats) => {
-          const { _id, handle } = user;
+          const { _id, handle, wallet } = user;
 
           let {
             numWins,
             numLosses,
             numPending,
             totalEarnings,
+            karmaSpentPerGroup,
             bets,
             winRatio
           } = stats;
@@ -93,6 +109,8 @@ router.get("/", (req, res) => {
           const newUser = {
             _id,
             handle,
+            wallet: mergeWallets(wallet, karmaSpentPerGroup),
+            
             numWins,
             numLosses,
             numPending,
@@ -110,8 +128,7 @@ router.get("/", (req, res) => {
             return res.json(limited);
           }
         });
-        });
-
+      });
     })
     .catch(err => res.status(404).json(err))
   }
@@ -123,22 +140,26 @@ router.get("/:id", (req, res) => {
     .then(async user => {
       const {
         _id,
-        handle
+        handle,
+        wallet
       } = user;
-      // debugger;
+
       let {
         numWins,
         numLosses,
         numPending,
         totalEarnings,
+        karmaSpentPerGroup,
         bets,
         winRatio
       } = await getBetsAndStatsOfUser(user);
-      // debugger;
+
 
       return res.json({
         _id,
         handle,
+        wallet: mergeWallets(wallet, karmaSpentPerGroup),
+
         numWins,
         numLosses,
         numPending,
@@ -146,8 +167,6 @@ router.get("/:id", (req, res) => {
         winRatio,
         bets: bets.slice(0, MAX_BETS_ALLOWED)
       });
-      // })
-      // .catch(err => res.status(404).json(err))
     })
     .catch(err => res.status(404).json(err));
 });

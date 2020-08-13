@@ -5,12 +5,12 @@ const WagerSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    // probably indexed
+    index: true,
   },
 
   group: {
-    type: Schema.Types.ObjectId,
-    ref: "Group",
+    type: String,
+    default: "Public",
     index: true
   },
 
