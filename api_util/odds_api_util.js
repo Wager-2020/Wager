@@ -59,10 +59,11 @@ const getSportOdds = (sport) => axios.get('https://api.the-odds-api.com/v3/odds'
 			});
 
 
-			eventOdds.push({ teams: event.teams, odds: sums});
+			eventOdds.push({ teams: event.teams, odds: sums, commenceTime: event.commenceTime });
 		});
 
 		console.log(eventOdds);
+		console.log(response.data.data);
 		
 })
 .catch(error => {

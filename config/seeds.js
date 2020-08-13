@@ -4,6 +4,7 @@ const User = require("../models/User");
 const Bet = require("../models/Bet");
 const mongoose = require("mongoose");
 const faker = require("faker");
+const { getSportOdds } = require("../api_util/odds_api_util");
 
 const NUM_USERS = 10;
 const NUM_MESSAGES_PER_USER = 5;
@@ -21,7 +22,11 @@ const DEFAULT_PARAMS = {
 
 
 //  { title, description, karma_points, due_date, wager_choices }
+const BASEBALL_API = getSportOdds("baseball");
 const WAGERS = [
+  // {
+  //   title: BASEBALL_API[0].teams.join("vs");
+  // }
   {
     title: "Rain in Botswana",
     description: "There will be more than 100 inches of rain this month in Botswana.",

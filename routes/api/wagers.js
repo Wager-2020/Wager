@@ -88,7 +88,7 @@ const updateWagerExpirations = (wagers) => {
 // GET all wagers --> /api/wagers
 router.get("/", (request, response) => {
 
-  // getSportOdds();
+  getSportOdds();
 
   Wager.find()
     .sort({ due_date: -1 })
