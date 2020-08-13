@@ -52,3 +52,6 @@ if (SHOULD_SEED) {
 }
 
 // Seeds.reset({ msg: true, wager: false, bet: true});
+
+// const { getMlbResults } = require("./api_util/game_results_api_util");
+// getMlbResults(new Date());
