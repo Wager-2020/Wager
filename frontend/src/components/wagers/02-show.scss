@@ -5,7 +5,7 @@ $orange: #EE6C4D;
 $black: #293241;
 
 
-.wagers-container {
+.wagershow-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -18,15 +18,15 @@ $black: #293241;
     border-radius: 5px;
 }
 
-.wager-container-top {
+.wagershow-container-top {
     height: 80%;
 }
 
-.wager-container-bottom {
+.wagershow-container-bottom {
     height: 20%;
 }
 
-.wagers-container-top h1 {
+.wagershow-container-top h1 {
     font-size: 18px;
     color: white;
     padding: 12px 13px 18px;
@@ -38,7 +38,7 @@ $black: #293241;
     text-transform: uppercase;
 }
 
-.wager-description {
+.wagershow-description {
     justify-content: center;
     color: white;
     line-height: 1.5;

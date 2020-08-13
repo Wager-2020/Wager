@@ -48,14 +48,14 @@ class WagerShow extends React.Component {
     displayWager() {
        const currentWager = this.props.wager;
         return currentWager ? (
-          <div className="wagers-container">
-            <div className="wagers-container-top">
+          <div className="wagershow-container">
+            <div className="wagershow-container-top">
               <h1>{currentWager.title}</h1>
-              <div className="wager-description">
+              <div className="wagershow-description">
                 {currentWager.description}
               </div>
             </div>
-            <div className="wagers-container-bottom">
+            <div className="wagershow-container-bottom">
               <div className="bottom-card-left" onClick={this.handleClickA}>
                 <p>
                   {currentWager.wager_choices[0].option}
