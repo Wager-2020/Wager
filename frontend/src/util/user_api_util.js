@@ -1,8 +1,12 @@
 import axios from 'axios';
 
 export const fetchUser = userId => {
-    return axios.get(`/api/users/${userId}`)
+    return axios.get(`/api/users/${userId}`);
 };
+
+export const fetchUsers = (filter) => {
+  return axios.get(`api/users`, { params: filter } );
+}
 
 export const getUserWagers = (userId) => {
     return axios.get(`/api/users/${userId}/wagers`);

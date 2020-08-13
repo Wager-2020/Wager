@@ -4,10 +4,13 @@ import { withRouter } from "react-router-dom";
 
 import NavBar from './navbar';
 
-const mapStateToProps = state => ({
-  loggedIn: state.session.isAuthenticated,
-  user: state.session.user
-});
+const mapStateToProps = state => {
+  return {
+
+    loggedIn: state.session.isAuthenticated,
+    user: state.session.user
+  }
+};
 
 export default withRouter(connect(
   mapStateToProps,
