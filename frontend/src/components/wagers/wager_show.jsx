@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchWager } from '../../actions/wager_actions';
 import { placeWager } from '../../actions/user_actions';
+import './02-show.scss';
 
 class WagerShow extends React.Component {
     constructor(props) {
@@ -23,8 +24,9 @@ class WagerShow extends React.Component {
         let betData = Object.assign({}, this.state, {
           ["option"]: this.props.wager.wager_choices[0].option,
         });
-        this.props.placeWager(betData);
-        this.props.history.push(`/users/${this.props.currentUserId}`);
+        this.props.placeWager(betData).then(() => {
+          this.props.history.push(`/users/${this.props.currentUserId}`)
+        })
     }
 
     handleClickB(e) {
@@ -32,8 +34,9 @@ class WagerShow extends React.Component {
         let betData = Object.assign({}, this.state, {
             ["option"]: this.props.wager.wager_choices[1].option,
         });
-        this.props.placeWager(betData);
-        this.props.history.push(`/users/${this.props.currentUserId}`);
+        this.props.placeWager(betData).then(() => {
+        this.props.history.push(`/users/${this.props.currentUserId}`)
+      })
     }
 
     toPercent(num) {
@@ -45,14 +48,15 @@ class WagerShow extends React.Component {
     displayWager() {
        const currentWager = this.props.wager;
         return currentWager ? (
-          <div className="wagers-container">
-            <div className="wagers-container-top">
+          <div className="wagershow-container">
+            <div className="wagershow-container-top">
               <h1>{currentWager.title}</h1>
-              <p className="wager-description">
-                {currentWager.description}
-              </p>
+              
             </div>
-            <div className="wagers-container-bottom">
+            <div className="wagershow-description">
+              {currentWager.description}
+            </div>
+            <div className="wagershow-container-bottom">
               <div className="bottom-card-left" onClick={this.handleClickA}>
                 <p>
                   {currentWager.wager_choices[0].option}
@@ -77,7 +81,7 @@ class WagerShow extends React.Component {
     render() {
 
         return (
-            <div className="content-container">
+            <div className="show-content-container">
                 {this.displayWager()}
             </div>
         )

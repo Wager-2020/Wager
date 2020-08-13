@@ -1,0 +1,75 @@
+$darkblue: #3d5a80;
+$blue: #98C1D9;
+$lightblue: #E0FBFC;
+$orange: #EE6C4D;
+$black: #293241;
+
+.show-content-container {
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+}
+
+.wagershow-container {
+    margin: auto;
+    background: $darkblue;
+    border-radius: 10px;
+    box-shadow: 0 7px 30px $blue;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+}
+
+@media only screen and (min-width: 800px) {
+  .wagershow-container {
+      min-width: 800px;
+    }
+}
+
+.wagershow-container-bottom {
+    height: 20%;
+    display: flex;
+}
+
+.wagershow-container-top {
+    font-size: 18px;
+    color: white;
+    padding: 12px 13px 18px;
+    justify-content: center;
+    background-color: $orange;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    letter-spacing: 4px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.wagershow-description {
+    justify-content: center;
+    color: white;
+    line-height: 1.5;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 14px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 100%;
+}
+
+.bottom-card-left, .bottom-card-right {
+    display: flex;
+    padding: 10px;
+    background-color: $blue;
+    font-size: 14px;
+    color: $darkblue;
+}
+
+.bottom-card-right {
+    border-bottom-right-radius: 10px;
+}
+
+.bottom-card-left {
+    border-right: 1px solid white;
+    border-bottom-left-radius: 10px;
+}
+
