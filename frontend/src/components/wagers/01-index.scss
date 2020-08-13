@@ -27,7 +27,6 @@ body {
   /* Demo-Specific Styles */
   // background: #eaeaea;
   background:#3d5a80;
-  color: white;
   display: flex;
   flex-direction: column;
   height: 200px;
@@ -41,10 +40,14 @@ body {
 
 .wagers-container a {
   text-decoration: none;
-  color: white;
+  color: black;
   &:hover {
     color: #EE6C4D;
   }
+}
+
+.wager-description {
+  margin-top: 20px;
 }
 
 .image-wrap {
@@ -55,18 +58,23 @@ body {
 }
 
 .wagers-container-top {
-  height: 80%;
+  height: 70%;
   width: 100%;
   text-align: center;
 }
 
 .wagers-container-bottom {
-  height: 20%;
+  height: 30%;
   width: 100%;
   display: flex;
   flex-direction: row;
   text-align: center;
-  background-color: #EE6C4D;
+  background-color: white;
+  box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .03);
+  color: black;
+      &:hover {
+        box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .05);
+    }
 }
 
 .bottom-card-left {
