@@ -13,10 +13,6 @@ export default class MessageForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    refreshPage () {
-        window.location.reload(false);
-    }
-
 
     handleSubmit(e){
         e.preventDefault();
@@ -26,7 +22,6 @@ export default class MessageForm extends React.Component {
         };
         this.props.createMessage(message);
         this.setState({body: ''});
-        this.refreshPage();
     }
 
     update(){

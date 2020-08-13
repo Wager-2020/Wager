@@ -26,13 +26,16 @@ const distributeAmountWon = async (bet, wager) => {
     }
   });
 
-if (winningChoice.option === bet.option) {
-  const amountWon = bet.amount_bet / winningChoice.probability;
-  bet.amount_won = amountWon;
-  // learn how to batch save/update by returning bet, adding return to array, batching array
-  await bet.save();
-}
-// return bet;
+  if (winningChoice) {
+
+    if (winningChoice.option === bet.option) {
+      const amountWon = bet.amount_bet / winningChoice.probability;
+      bet.amount_won = amountWon;
+      // learn how to batch save/update by returning bet, adding return to array, batching array
+      await bet.save();
+    }
+  }
+    // return bet;
 }
 const distributeEarnings = (wager) => {
   // distribute rewards for winning/losing the wager
@@ -63,9 +66,9 @@ const { getMlbResults } = require("../../api_util/game_results_api_util");
 // GET all wagers --> /api/wagers
 router.get("/", (request, response) => {
 
-  // getMlbResults(new Date());
+  // console.log(getMlbResults(new Date()));
 
-  // getSportOdds();
+  // console.log(getSportOdds());
 
   Wager.find()
     .sort({ due_date: -1 })
