@@ -21,9 +21,11 @@ export const fetchUser = (userId) => dispatch => {
         .catch(err => console.log(err))
 };
 
-export const fetchUsers = () => (dispatch) => {
-  return APIUserUTIL.fetchUsers()
-    .then((users) => dispatch(receiveUsers(users)))
+export const fetchUsers = (filter) => (dispatch) => {
+  return APIUserUTIL.fetchUsers(filter)
+    .then((users) => {
+        dispatch(receiveUsers(users))
+    })
     .catch((err) => console.log(err));
 };
 

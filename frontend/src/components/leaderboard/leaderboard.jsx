@@ -24,7 +24,7 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        fetchUsers: () => dispatch(fetchUsers())
+        fetchUsers: () => dispatch(fetchUsers({ leaderboard: true }))
     }
 }
 
