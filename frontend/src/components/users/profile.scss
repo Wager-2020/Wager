@@ -11,6 +11,10 @@ body {
   padding: 1em 0;
 }
 
+.content-container.profile-container {
+  margin-bottom: 60px;
+}
+
 .grid {
   /* Grid Fallback */
   display: flex;
@@ -26,14 +30,17 @@ body {
 .bets-container {
   /* Demo-Specific Styles */
   // background: #eaeaea;
-  background:#E0FBFC;
+  // background:#E0FBFC;
+  background-image: linear-gradient(#E0FBFC, #E0FBFC, #ceebec);
+  border: 1px solid #bbecee;
   color:#3d5a80;
   display: flex;
   flex-direction: column;
   height: 200px;
   box-sizing: border-box;
   padding: 10px;
-  border-radius: 4px;
+  box-shadow: 2px 2px 2px rgba(5, 5, 5, 0.2);
+  border-radius: 8px;
   
   /* Flex Fallback */
   // margin-left: 5px;

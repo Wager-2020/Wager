@@ -78,12 +78,12 @@ class Profile extends React.Component {
         }
 
         return (
-          <div className="content-container">
+          <div className="content-container profile-container">
             
             <div className="profile-basic-info">
               <img
                 className="profile-pic"
-                src="https://api.time.com/wp-content/uploads/2017/12/terry-crews-person-of-year-2017-time-magazine-facebook-1.jpg?quality=85"
+                src="https://www.biography.com/.image/t_share/MTIwNjA4NjMzNzYwMjg2MjIw/nicolas-cage-9234498-1-402.jpg"
               />
               {<div className="win-loss-chart">
                 {data && <WinLossPieChart data={data} />}

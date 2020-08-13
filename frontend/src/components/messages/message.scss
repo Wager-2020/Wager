@@ -8,6 +8,7 @@ $black: #293241;
 .messages-container {
     width: 80%;
     margin: 0 auto;
+    margin-bottom: 60px;
 }
 
 .messageform-container {
@@ -25,16 +26,24 @@ $black: #293241;
     resize: none;
 }
 
-.messages-container button {
+#message-button {
     display: block;
     float: right;
     color: $darkblue;
     font-size: 16px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 8px;
     text-transform: uppercase;
     border: none;
     cursor: pointer;
     font-weight: bold;
-    background-color: none;
+    background-image: linear-gradient(#EFEFEF, #dfdbdb);
+    border: 1px solid #e7e3e3;
+    transition: 0.3s;
+
+    &:hover {
+        background-image: linear-gradient(#dfdbdb, #dfdbdb);
+    }
 }
 
 .message-item{
