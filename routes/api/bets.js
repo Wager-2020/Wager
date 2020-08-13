@@ -65,7 +65,7 @@ router.post("/wagers/:wager_id", async (request, response) => {
     // foundWager = wager;
     wager.save();
   });
-  debugger;
+  // debugger;
 
   // await User.findById(newBet.user).then(async user => {
   //   debugger;
