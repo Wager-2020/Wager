@@ -90,7 +90,7 @@ class LoginForm extends React.Component {
           <div className="login-signup-switch">
             or <span onClick={() => {
               this.props.history.push("/signup");
-            }}>Sign Up?</span>
+            }}> &nbsp; Sign Up?</span>
           </div>
 
           {this.renderErrors()}

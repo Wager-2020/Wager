@@ -29,7 +29,7 @@ $black: #293241;
 .header{
 	position: absolute;
 	top: calc(50% - 150px);
-	left: calc(50%);
+	left: calc(50% - 90px);
 	z-index: 2;
 
 	div {
@@ -70,7 +70,7 @@ $black: #293241;
 .login, .signup {
 	position: absolute;
 	top: calc(50% - 75px);
-	left: calc(50% - 50px);
+	left: calc(50% - 140px);
 	height: 300px;
 	width: 260px;
 	padding: 10px;
