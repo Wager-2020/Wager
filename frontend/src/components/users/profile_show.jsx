@@ -52,10 +52,10 @@ class Profile extends React.Component {
             return wagers[bet.wager] ? (
                 <div key={idx} className="bets-container">
                     <div className="bets-container-top">
-                        <h1>You bet on: {betTitle}</h1>
+                        <h2>{betTitle}</h2>
                     </div>
                     <div className="bets-container-middle">
-                        <p>You wagered: {amountBet}</p>
+                        <p>You wagered {amountBet} karma on</p>
                     </div>
                     <div className="bets-container-bottom">
                         <p>{betOption}</p>
@@ -77,14 +77,24 @@ class Profile extends React.Component {
             ];
         }
 
+        let header = null;
+        
+        if (user && this.props.currentUserId === user._id) {
+            header = <h1>YOUR BETTING HISTORY</h1>
+        } else if (user) {
+            header = <h1> {`${user.handle.toUpperCase()}\'S BETTING HISTORY`} </h1>
+        }
+
         return (
           <div className="content-container profile-container">
-            
+              <div className="header-container">
+                {header}
+              </div>
             <div className="profile-basic-info">
-              <img
+              {/* <img
                 className="profile-pic"
                 src="https://www.biography.com/.image/t_share/MTIwNjA4NjMzNzYwMjg2MjIw/nicolas-cage-9234498-1-402.jpg"
-              />
+              /> */}
               {<div className="win-loss-chart">
                 {data && <WinLossPieChart data={data} />}
               </div>}
@@ -100,7 +110,8 @@ const msp = (state,ownProps) => {
     return {
         errors: state.errors,
         user: state.entities.users,
-        wagers: state.entities.wagers
+        wagers: state.entities.wagers,
+        currentUserId: state.session.user.id
     }
 }
 
