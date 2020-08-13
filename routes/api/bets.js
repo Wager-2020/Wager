@@ -4,6 +4,7 @@ const validateBet = require("../../validation/bet");
 const mongoose = require("mongoose");
 const Bet = require("../../models/Bet");
 const Wager = require("../../models/Wager");
+const User = require("../../models/User");
 const merge = require("lodash").merge;
 const { ObjectId } = mongoose.Types;
 
@@ -25,8 +26,8 @@ router.get("/wagers/:wager_id", (request, response) => {
 });
 
 
+// place a bet
 router.post("/wagers/:wager_id", async (request, response) => {
-  // debugger;
   const { errors, isValid } = validateBet(request.body);
   if (!isValid) { return response.status(400).json(errors); }
   const { user_id, amount_bet, option } = request.body;
@@ -44,11 +45,11 @@ router.post("/wagers/:wager_id", async (request, response) => {
     newBet.amount_bet = amount_bet;
   }
 
-  // debugger;
+  // let foundWager = undefined;
 
   await Wager.findById(newBet.wager).then(wager => {
+
     let total_karma_for_wager = 0;
-    // debugger;
     
     wager.wager_choices.forEach((choice, idx) => {
       if (choice.option === newBet.option) {
@@ -61,9 +62,21 @@ router.post("/wagers/:wager_id", async (request, response) => {
       wager.wager_choices[idx].probability = choice.karma / (1.0 * total_karma_for_wager);
     });
 
-    // debugger;
+    // foundWager = wager;
     wager.save();
   });
+  debugger;
+
+  // await User.findById(newBet.user).then(async user => {
+  //   debugger;
+  //   user.wallet[foundWager.group].currentBalance -= newBet.amount_bet;
+  //   debugger;
+  //   await user.save().then(user => {
+  //     debugger;
+  //     console.log(user);
+  //   });
+  //   debugger;
+  // })
   // debugger;
 
   newBet.save().then(bet => response.json(bet));

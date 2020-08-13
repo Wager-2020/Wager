@@ -17,7 +17,7 @@ const getSeasonSports = (season) => axios.get('https://api.the-odds-api.com/v3/s
         `Here's the first sport:`
     )
 
-    console.log(response.data.data[0])
+    console.log(response.data.data)
 })
 .catch(error => {
     console.log('Error status', error.response.status)
@@ -27,18 +27,16 @@ const getSeasonSports = (season) => axios.get('https://api.the-odds-api.com/v3/s
 // To get odds for a sepcific sport, use the sport key from the last request
 //   or set sport to "upcoming" to see live and upcoming across all sports
 
-
 const MAX_NUM_ODDS = 3;
-const getSportOdds = (sport) => axios.get('https://api.the-odds-api.com/v3/odds', {
+const getSportOdds = (sportKey = SPORT_KEY) => axios.get('https://api.the-odds-api.com/v3/odds', {
     params: {
         api_key: API_KEY,
-        sport: SPORT_KEY,
+        sport: sportKey,
         region: 'uk', // uk | us | eu | au
         mkt: 'h2h' // h2h | spreads | totals
     }
 }).then(response => {
-		console.log(response.data)
-
+		debugger;
 		let eventOdds = [];
 
 		response.data.data.forEach(event => {
@@ -59,17 +57,20 @@ const getSportOdds = (sport) => axios.get('https://api.the-odds-api.com/v3/odds'
 			});
 
 
-			eventOdds.push({ teams: event.teams, odds: sums, commenceTime: event.commenceTime });
+			eventOdds.push({ teams: event.teams, odds: sums, commenceTime: event.commence_time });
 		});
 
 		console.log(eventOdds);
-		// console.log(response.data.data);
+		console.log(response.data.data);
 		
 })
 .catch(error => {
     console.log('Error status', error.response.status)
     console.log(error.response.data)
 })
+
+// getSeasonSports();
+// getSportOdds();
 
 module.exports = {
 	getSeasonSports,

@@ -4,7 +4,7 @@ const User = require("../models/User");
 const Bet = require("../models/Bet");
 const mongoose = require("mongoose");
 const faker = require("faker");
-const { getSportOdds } = require("../api_util/odds_api_util");
+// const { getSportOdds } = require("../api_util/odds_api_util");
 
 const NUM_USERS = 10;
 const NUM_MESSAGES_PER_USER = 5;
@@ -22,62 +22,73 @@ const DEFAULT_PARAMS = {
 
 
 //  { title, description, karma_points, due_date, wager_choices }
-const BASEBALL_API = getSportOdds("baseball");
+// const BASEBALL_API = getSportOdds("baseball_mlb");
 const WAGERS = [
   // {
   //   title: BASEBALL_API[0].teams.join("vs");
   // }
   {
-    title: "Rain in Botswana",
-    description: "There will be more than 100 inches of rain this month in Botswana.",
+    title: "2020 Presidentail Election",
+    description: "Joe Biden and Donald Trump will face off in the most highly contested election of our lifetimes  Choose your preferred canddiated.",
     due_date: "2020-12-31",
     wager_choices: [
-      { option:"Yay" , winner: true}, 
-      { option:"Nay" }
+      { option:"Joe Biden" , winner: true}, 
+      { option:"Donald Trump" }
     ]
   },
   
   {
-    title: "Sparrow Flight Velocity",
-    description: "What is the flight velocity of a sparrow?",
-    due_date: "2000-05-31",
+    title: "Daniel Cormier vs Stipe Miocic: UFC 252 Sat Aug 15th",
+    description: "Choose between two of the greatest heavyweight champions of all time as they square off for a third time, the triology will be settled this Saturday.",
+    due_date: "2020-08-15",
     wager_choices: [
-      { option:"Over 10 m/s", winner: true }, 
-      { option:"Under 10 m/s" }, 
-      { option:"African or European" }
+      { option:"Daniel Cormier" }, 
+      { option:"Stipe Miocic" }, 
     ]
   },
   
   {
-    title: "Sports: OH YEAH",
-    description: "Who will win at ball sport?",
-    due_date: "2001-11-31",
+    title: "NY Yankees vs Boston Red Sox",
+    description: "The Yankees and Red Sox will be playing in NY August 15th",
+    due_date: "2020-08-15",
     wager_choices: [
-      { option: "That team I like" }, 
-      { option: "That team I don't like", winner: true }, 
-      { option: "What is ball?" }
+      { option: "NY Yankees" }, 
+      { option: "Boston Red Sox" }, 
     ]
   },
 
   {
-    title: "Politics: EKH",
-    description: "Who will win at election?",
-    due_date: "2030-06-31",
+    title: "Atlanta Braves vs New York Yankees",
+    description: "Atlanta heads to NY to face off against the bronx bombers",
+    due_date: "2020-08-11",
     wager_choices: [
-      { option:"The elephant person" }, 
-      { option: "The ass", winner: true }
+      { option:"Atlanta Braves" }, 
+      { option: "New York Yankees", winner: true }
     ] 
   },
   
   {
-    title: "Peter Sucks Eggs",
-    description: "How many eggs can Peter suck?",
-    due_date: "1990-12-01",
+    title: "Sean O'Malley vs Marlon Vera",
+    description: "Undefeated Sean O'Malley (12-0-0) faces off against battle tested Marlon Vera (15-6-1)",
+    due_date: "2020-08-11",
     wager_choices: [
-      { option: "So many" },
-      { option: "Too many to count", winner: true },
+      { option: "Sean O'Malley" },
+      { option: "Marlon Vera" },
      ]
   },
+
+  {
+    title: "OKC Thunder vs LA Clippers",
+    description: "The OKC Thunder will be heading to LA to face the Clippers this Friday",
+    due_date: "2020-08-14",
+    wager_choices: [{
+        option: "OKC Thunder"
+      },
+      {
+        option: "LA Clippers"
+      },
+    ]
+  }
 ];
 
 const reset = async () => {
@@ -93,7 +104,7 @@ const seed = async (params = DEFAULT_PARAMS) => {
   let wagers = await Wager.insertMany(WAGERS);
   let messages = [];
   let bets = [];
-  let users = await User.find();
+  let users = await User.find({});
 
 
   for (let i = 0; i < users.length; i++) {

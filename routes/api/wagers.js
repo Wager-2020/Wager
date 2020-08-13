@@ -18,29 +18,6 @@ const merge = require("lodash").merge;
  * PATCH a wager --> /api/wagers/:id
  */
 
- /**
-  * on GET wager/s
-  * check if wager's dueDate < today
-  * check if wager's hasExpired === true
-  *   if hasExpired
-  *     deliver rewards
-  *   else
-  *   
-  */
-
-  /**
-   * on GET wager/s
-   * if wager.due_date <= Date()
-   *  if wager.expired
-   *    do not add to response json (do nothing)
-   *  else
-   *    wager.expired = true
-   *    deliver rewards
-   *    add to responsse json
-   * else
-   *  add to response json
-   */
-
 const distributeAmountWon = async (bet, wager) => {
   let winningChoice = undefined;
   wager.wager_choices.forEach(choice => {
@@ -60,7 +37,6 @@ if (winningChoice.option === bet.option) {
 const distributeEarnings = (wager) => {
   // distribute rewards for winning/losing the wager
   Bet.find({ wager: wager._id }).then((bets) => {
-    // debugger;
     bets.forEach(async (bet) => {
       await distributeAmountWon(bet, wager);
     });
@@ -71,11 +47,9 @@ const updateWagerExpirations = (wagers) => {
     const now = new Date();
     wagers = wagers.map(async (wager) => {
       if (wager.due_date.getTime() <= now.getTime()) {
-        // if (!wager.expired) {
           wager.expired = true;
           distributeEarnings(wager);
           await wager.save();
-        // }
       }
       return wager;
     });
@@ -85,19 +59,21 @@ const updateWagerExpirations = (wagers) => {
 
 //without groups
 
+const { getMlbResults } = require("../../api_util/game_results_api_util");
 // GET all wagers --> /api/wagers
 router.get("/", (request, response) => {
 
-  getSportOdds();
+  // getMlbResults(new Date());
+
+  // getSportOdds();
 
   Wager.find()
     .sort({ due_date: -1 })
     .then(wagers => {
-      const computed = updateWagerExpirations(wagers);
-      // debugger;
+      updateWagerExpirations(wagers);
       return response.json(wagers);
     })
-    .catch(errors => response.status(404).json({ nowagersfound: "Dear God, there are no wagers! PANIC!" }))
+    .catch(errors => response.status(404).json(errors))
 });
 
 // GET one wager --> /api/wagers/:id
@@ -107,7 +83,7 @@ router.get("/:id", (request, response) => {
       updateWagerExpirations([wager]);
       return response.json(wager)
     })
-    .catch(errors => response.status(404).json({ nowagersfound: "That wager don't exist." }))
+    .catch(errors => response.status(404).json(errors))
 });
 
 
@@ -118,7 +94,7 @@ router.get("/groups/:group_id/", (request, response) => {
   Wager.find({ group_id: request.params.group_id })
     .sort({ due_date: -1 })
     .then(wagers => response.json(wagers))
-    .catch(errors => response.status(404).json({ nowagersfound: "Woe, there are no wagers for that group. :-(" }))
+    .catch(errors => response.status(404).json(errors))
 });
 
 // POST a wager to a group --> /api/wagers/groups/:group_id

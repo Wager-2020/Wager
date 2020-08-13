@@ -41,7 +41,7 @@ export default class WinLossPieChart extends PureComponent {
     // ];
 
     const { data } = this.props
-    debugger;
+    // debugger;
     return (
       <PieChart width={400} height={400}>
         <Pie
