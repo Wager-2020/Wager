@@ -49,38 +49,45 @@ class WagerShow extends React.Component {
     displayWager() {
        const currentWager = this.props.wager;
         return currentWager ? (
-          <div className="wagershow-container">
-            <div className="wagershow-container-top">
-              <h1>{currentWager.title}</h1>
-              
+          <>
+            <div className="wagershow-container">
+              <div className="wagershow-container-top">
+                <h1>{currentWager.title}</h1>
+                
+              </div>
+              <div className="wagershow-description">
+                {currentWager.description}
+              </div>
+              {/* {this.props.user.wallet.Public.currentBalance <= 0 &&
+                <div className="no-money">
+                  Ya busted ya lil' peanut! (Ya don't got no karma in the bank) ¯\_(ツ)_/¯
+                </div>
+              } */}
+              <div className="wagershow-container-bottom">
+                <button 
+                  className="bottom-card-left" 
+                  onClick={this.handleClickA}
+                  disabled={this.props.user.wallet.Public.currentBalance <= 0}>
+                  <p>
+                    {currentWager.wager_choices[0].option}
+                    <br />
+                    Liklihood to win:{" "}
+                    {this.toPercent(currentWager.wager_choices[0].probability)}
+                  </p>
+                </button>
+                <button 
+                  className="bottom-card-right" onClick={this.handleClickB}
+                  disabled={this.props.user.wallet.Public.currentBalance <= 0}>
+                  <p>
+                    {currentWager.wager_choices[1].option}
+                    <br />
+                    Liklihood to win:{" "}
+                    {this.toPercent(currentWager.wager_choices[1].probability)}
+                  </p>
+                </button>
+              </div>
             </div>
-            <div className="wagershow-description">
-              {currentWager.description}
-            </div>
-            <div className="wagershow-container-bottom">
-              <button 
-                className="bottom-card-left" 
-                onClick={this.handleClickA}
-                disabled={this.props.user.wallet.Public.currentBalance <= 0}>
-                <p>
-                  {currentWager.wager_choices[0].option}
-                  <br />
-                  Liklihood to win:{" "}
-                  {this.toPercent(currentWager.wager_choices[0].probability)}
-                </p>
-              </button>
-              <button 
-                className="bottom-card-right" onClick={this.handleClickB}
-                disabled={this.props.user.wallet.Public.currentBalance <= 0}>
-                <p>
-                  {currentWager.wager_choices[1].option}
-                  <br />
-                  Liklihood to win:{" "}
-                  {this.toPercent(currentWager.wager_choices[1].probability)}
-                </p>
-              </button>
-            </div>
-          </div>
+          </>
         ) : null;
     }
 

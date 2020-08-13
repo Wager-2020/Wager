@@ -68,6 +68,7 @@ class Profile extends React.Component {
     
     render() {
         const user = this.props.user[this.props.match.params.userId]
+        if (!user) return null;
         let data = false;
         if (user) {
             data = [
@@ -76,7 +77,7 @@ class Profile extends React.Component {
                 { name: 'Losses', value: user.numLosses },
             ];
         }
-
+        debugger;
         let header = null;
         
         if (user && this.props.currentUserId === user._id) {
@@ -84,11 +85,11 @@ class Profile extends React.Component {
         } else if (user) {
             header = <h1> {`${user.handle.toUpperCase()}\'S BETTING HISTORY`} </h1>
         }
-
         return (
           <div className="content-container profile-container">
               <div className="header-container">
                 {header}
+                    <p>Current Karma Balance: {user.wallet.Public.currentBalance}</p>
               </div>
             <div className="profile-basic-info">
               {/* <img
