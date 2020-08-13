@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchUsers} from '../../actions/user_actions';
+import './leaderboard.scss'
 
 class Leaderboard extends React.Component{
     componentDidMount () {
@@ -8,20 +9,24 @@ class Leaderboard extends React.Component{
     }
 
     displayLeaders(){
-        const leaders = this.props.users.map(leader => {
+        const sorted = this.props.users.sort((a,b)=> b.totalEarnings - a.totalEarnings)
+        const leaders = sorted.map(leader => {
             return (
-                <div key = {leader._id}>
+                <div key = {leader._id} className = 'leader-item'>
                     <div> {leader.handle} </div>
-                    <div> {leader.totalEarnings}</div>
+                    <div> {leader.totalEarnings.toFixed(0)}</div>
                 </div>
             )
         })
         return leaders
     }
 
+
+
     render() {
         return(
-            <div>
+            <div className = 'leader-board-container'>
+                <span> Karma Kings and Queens </span>
                 {this.displayLeaders()}
             </div>
         )
@@ -36,7 +41,7 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        fetchUsers: () => dispatch(fetchUsers({ leaderboard: true }))
+        fetchUsers: () => dispatch(fetchUsers({leaderboard: true, }))
     }
 }
 
