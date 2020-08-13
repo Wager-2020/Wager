@@ -32,7 +32,7 @@ router.post("/wagers/:wager_id", async (request, response) => {
   if (!isValid) { return response.status(400).json(errors); }
   const { user_id, amount_bet, option } = request.body;
 
-  //might need to update bet amoun_won immediately, if so, make a request to Wagers, find wager that corresponsds with this bet, check for expiration value, if true, put amount_won as a value in newBet
+  // might need to update bet amoun_won immediately, if so, make a request to Wagers, find wager that corresponsds with this bet, check for expiration value, if true, put amount_won as a value in newBet
 
   // user: access current user instead of passing in user_id
 

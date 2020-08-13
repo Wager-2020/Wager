@@ -78,9 +78,9 @@ router.get("/", (request, response) => {
   //   console.log(results);
   // })
 
-  getSportOdds().then(results => {
-    console.log(results);
-  });
+  // getSportOdds().then(results => {
+  //   console.log(results);
+  // });
 
   Wager.find()
     .sort({
