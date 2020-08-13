@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchWager } from '../../actions/wager_actions';
-import { placeWager } from '../../actions/user_actions';
+import { placeWager, fetchUser } from '../../actions/user_actions';
 import './02-show.scss';
 
 class WagerShow extends React.Component {
@@ -17,6 +17,7 @@ class WagerShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchWager(this.props.match.params.wagerId);
+        this.props.fetchUser(this.props.currentUserId)
     }
 
     handleClickA(e) {
@@ -57,29 +58,33 @@ class WagerShow extends React.Component {
               {currentWager.description}
             </div>
             <div className="wagershow-container-bottom">
-              <div className="bottom-card-left" onClick={this.handleClickA}>
+              <button 
+                className="bottom-card-left" 
+                onClick={this.handleClickA}
+                disabled={this.props.user.wallet.Public.currentBalance <= 0}>
                 <p>
                   {currentWager.wager_choices[0].option}
                   <br />
                   Liklihood to win:{" "}
                   {this.toPercent(currentWager.wager_choices[0].probability)}
                 </p>
-              </div>
-              <div className="bottom-card-right" onClick={this.handleClickB}>
+              </button>
+              <button 
+                className="bottom-card-right" onClick={this.handleClickB}
+                disabled={this.props.user.wallet.Public.currentBalance <= 0}>
                 <p>
                   {currentWager.wager_choices[1].option}
                   <br />
                   Liklihood to win:{" "}
                   {this.toPercent(currentWager.wager_choices[1].probability)}
                 </p>
-              </div>
+              </button>
             </div>
           </div>
         ) : null;
     }
 
     render() {
-
         return (
             <div className="show-content-container">
                 {this.displayWager()}
@@ -95,6 +100,7 @@ const msp = (state, Ownprops) => {
     const currentUserId = currentUser ? currentUser.id : undefined;
     return {
         errors: state.errors,
+        user: state.entities.users[currentUserId],
         wager,
         wagerId,
         currentUser,
@@ -106,6 +112,7 @@ const mdp = dispatch => {
     return {
         fetchWager: (wagerId) => dispatch(fetchWager(wagerId)),
         placeWager: wager => dispatch(placeWager(wager)),
+        fetchUser: userId => dispatch(fetchUser(userId))
     }
 }
 
