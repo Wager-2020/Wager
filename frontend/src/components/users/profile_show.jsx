@@ -72,8 +72,8 @@ class Profile extends React.Component {
         if (user) {
             data = [
                 { name: 'Wins', value: user.numWins },
+                { name: 'Pending Bets', value: user.numPending },
                 { name: 'Losses', value: user.numLosses },
-                { name: 'Pending', value: user.numPending }
             ];
         }
         return (

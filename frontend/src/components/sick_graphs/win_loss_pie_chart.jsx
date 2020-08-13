@@ -34,11 +34,6 @@ const renderCustomizedLabel = ({
 export default class WinLossPieChart extends PureComponent {
   
   render() {
-    // const data = [
-    //   { name: "Wins", value: 1 },
-    //   { name: "Pending Bets", value: 5 },
-    //   { name: "Losses", value: 0 },
-    // ];
 
     const { data } = this.props
     return (
