@@ -38,7 +38,7 @@ const App = () => (
     </Switch>
 
   </div>
-  <footer>Copyright &copy; 2020 Wager</footer>
+  {/* <footer>Copyright &copy; 2020 Wager</footer> */}
   </>
 );
 
