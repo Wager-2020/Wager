@@ -99,6 +99,15 @@ class Profile extends React.Component {
         } else if (user) {
             header = <h1> {`${user.handle.toUpperCase()}'S BETTING HISTORY`} </h1>
         }
+
+        const dataArray = Object.values(this.props.wagers)
+        const notZero = num => num !== 0
+        let noChartData = false
+        if (!dataArray.length || dataArray.some(notZero)) {
+            noChartData = true;
+        }
+
+        debugger;
         return (
           <div className="content-container profile-container">
               <div className="header-container">
@@ -107,7 +116,7 @@ class Profile extends React.Component {
               </div>
             <div className="profile-basic-info">
               {<div className="win-loss-chart">
-                {Object.values(this.props.wagers) && <WinLossPieChart data={data} />}
+                {!noChartData && <WinLossPieChart data={data} />}
               </div>}
             </div>
 
