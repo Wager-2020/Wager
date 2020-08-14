@@ -25,6 +25,7 @@ class Profile extends React.Component {
     displayUserBets() {
         const userInfo = this.props.user[this.props.match.params.userId];
         const wagers = this.props.wagers;
+        
         let betTitle = null;
         let amountBet = null;
         let betOption = null;
@@ -38,7 +39,9 @@ class Profile extends React.Component {
                 betOption = bet.option;
             }
             return wagers[bet.wager] ? (
-                <div key={idx} className="bets-container">
+                <div key={idx} 
+                    className="bets-container" 
+                    id={this.identifyBetStatus(bet, wagers[bet.wager])}>
                     <div className="bets-container-top">
                         <h2>{betTitle}</h2>
                     </div>
@@ -53,6 +56,28 @@ class Profile extends React.Component {
         })
         return userBetsLi;
     }
+
+    identifyBetStatus(bet, wager) {
+        const winId = "bet-status-win"
+        const loseId = "bet-status-loss"
+        const pendingId = "bet-status-pending"
+
+        let betIsAWinner = false;
+
+        wager.wager_choices.forEach((choice) => {
+            if (choice.option === bet.option && choice.winner) {
+                betIsAWinner = true;
+            }
+        });
+
+        if (!wager.expired) {
+            return pendingId;
+        } else if (betIsAWinner) {
+            return winId;
+        } else {
+            return loseId;
+        }
+    } 
     
     render() {
         const user = this.props.user[this.props.match.params.userId]

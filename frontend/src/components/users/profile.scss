@@ -64,6 +64,23 @@
 //   }
 // }
 
+#bet-status-win {
+  background-image: linear-gradient(#3d5a80, #3d5a80, #5074a3);
+  border: 1px solid #325077;
+}
+
+#bet-status-loss {
+  background-image: linear-gradient(#f75d33, #FE6238, #ec5d35);
+  border: 1px solid #c74b12;
+  color: black;
+}
+
+#bet-status-pending {
+  background-image: linear-gradient(#98C1D9, #98C1D9, #8bb9d4);
+  border: 1px solid #5991b1;
+  color: black;
+}
+
 .bets-container-top {
     height: 30%;
     width: 100%;
