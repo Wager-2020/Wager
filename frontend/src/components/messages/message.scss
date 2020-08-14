@@ -14,6 +14,9 @@ $black: #293241;
 .messageform-container {
     margin-bottom: 50px;
     margin-top: 20px;
+    input[type=textarea]::placeholder {
+        color: gray;
+    }
 }
 
 .messageform-container input {

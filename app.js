@@ -29,6 +29,8 @@ app.use("/api/wagers", wagers);
 app.use("/api/bets", bets);
 app.use("/api/messages", messages);
 
+app.use(express.static("public"));
+
 
 const path = require('path');
 

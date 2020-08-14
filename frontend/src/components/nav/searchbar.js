@@ -53,20 +53,22 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="search">
-        <input type="search" 
-        value={this.state.searchHandle}
-        onChange={this.handleChange}
-        onBlur={this.handleBlur}
-        placeholder="What'cha lookin' for?"
+        <input
+          type="search"
+          value={this.state.searchHandle}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          placeholder="What'cha lookin' for?"
         />
-        <div className="found-users" 
-        style={this.state.currentStyle}>
-          { this.props.searchUsers.map(user => {
+        <div className="found-users" style={this.state.currentStyle}>
+          {this.props.searchUsers.map((user) => {
             return (
-              <div key={user._id}
-              onClick={() => {
-                this.props.history.push(`/users/${user._id}`)
-              }}>
+              <div
+                key={user._id}
+                onClick={() => {
+                  this.props.history.push(`/users/${user._id}`);
+                }}
+              >
                 {user.handle}
               </div>
             );

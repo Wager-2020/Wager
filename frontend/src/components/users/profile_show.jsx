@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchUser } from '../../actions/user_actions';
 import {fetchWagers, fetchWagersUserBetOn} from '../../actions/wager_actions';
 import './profile.scss';
@@ -99,6 +100,12 @@ class Profile extends React.Component {
         } else if (user) {
             header = <h1> {`${user.handle.toUpperCase()}'S BETTING HISTORY`} </h1>
         }
+
+        let noChartData = false
+        if (user.numWins === 0 && user.numLosses === 0 && user.numPending === 0) {
+            noChartData = true;
+        }
+
         return (
           <div className="content-container profile-container">
               <div className="header-container">
@@ -106,9 +113,16 @@ class Profile extends React.Component {
                     <p>Current Karma Balance: {user.wallet.Public.currentBalance}</p>
               </div>
             <div className="profile-basic-info">
-              {<div className="win-loss-chart">
-                {Object.values(this.props.wagers) && <WinLossPieChart data={data} />}
-              </div>}
+              <div className="win-loss-chart">
+                {!noChartData && <WinLossPieChart data={data} />}
+              </div>
+              {noChartData && 
+                <div className="no-bets">
+                    <div className="message">Oh no! You don't have any active bets!</div>
+                    <Link to="/wagers"><span>IT'S BETTIN' TIME!!!</span></Link>
+                    <div className="shrug">¯\_(ツ)_/¯</div>
+                </div>
+              }
             </div>
 
             <div className="grid">{this.displayUserBets()}</div>
