@@ -100,15 +100,11 @@ class Profile extends React.Component {
             header = <h1> {`${user.handle.toUpperCase()}'S BETTING HISTORY`} </h1>
         }
 
-
-        debugger;
         let noChartData = false
         if (user.numWins === 0 && user.numLosses === 0 && user.numPending === 0) {
-            debugger;
             noChartData = true;
         }
-
-        debugger;
+        
         return (
           <div className="content-container profile-container">
               <div className="header-container">
