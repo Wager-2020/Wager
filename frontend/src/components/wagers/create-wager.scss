@@ -1,0 +1,54 @@
+$darkblue: #3d5a80;
+$blue: #98C1D9;
+$lightblue: #E0FBFC;
+$orange: #EE6C4D;
+$black: #293241;
+
+.wager-form-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.wagerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .content-container {
+    width: 100vw;
+    margin: auto;
+  }
+}
+.create-wager-button {
+    border-radius: 5px;
+    transform: translateZ(0);
+    background-color: var(--eds-primary-brand, $orange);
+    border-style: none;
+    width: 322px;
+    height: 47px;
+    opacity: 1;
+    color: whitesmoke;
+    letter-spacing: .2px;
+    transition: all .4s cubic-bezier(.4,0,.3,1);
+    margin-bottom: 10px;
+
+    &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+    }
+}
+
+
+.create-wager-input {
+    width: 322px;
+    height: 47px;
+    transition: padding .16s cubic-bezier(.4,0,.3,1),color .4s cubic-bezier(.4,0,.3,1);
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.form-label {
+    margin-bottom: 10px;
+}
