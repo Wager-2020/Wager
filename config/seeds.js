@@ -67,7 +67,7 @@ const WAGERS = [
     title: "Sean O'Malley vs Marlon Vera",
     description:
       "Undefeated Sean O'Malley (12-0-0) faces off against battle tested Marlon Vera (15-6-1)",
-    due_date: "2020-08-11",
+    due_date: "2020-08-15",
     wager_choices: [{ option: "Sean O'Malley" }, { option: "Marlon Vera" }],
   },
 
