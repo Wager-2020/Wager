@@ -74,7 +74,7 @@ const WAGERS = [
   {
     title: "OKC Thunder vs LA Clippers",
     description:
-      "The OKC Thunder will be heading to LA to face the Clippers this Friday",
+      "The OKC Thunder will be heading to LA to face the Clippers",
     due_date: "2020-08-14",
     wager_choices: [
       {
