@@ -19,6 +19,8 @@ $black: #293241;
     flex-direction: column;
     justify-content: space-between;
     min-height: 300px;
+    padding: 0;
+    margin: 25px 5px 25px 5px;
 }
 
 @media only screen and (min-width: 800px) {
@@ -75,3 +77,14 @@ $black: #293241;
     border-bottom-left-radius: 10px;
 }
 
+.no-money {
+  background-color: #202020;
+  padding: 10px 0 10px 0;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 400px;
+}

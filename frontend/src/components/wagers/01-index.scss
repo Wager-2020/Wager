@@ -67,6 +67,8 @@ $black: #293241;
 .wagers-container-bottom {
   height: 30%;
   width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
   display: flex;
   flex-direction: row;
   text-align: center;
