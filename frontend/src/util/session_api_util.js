@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // We've been using this method in previos steps
-export const setAuthToken = token => {
+export const setAuthToken = async token => {
   if (token) {
     axios.defaults.headers.common['Authorization'] = token;
   } else {

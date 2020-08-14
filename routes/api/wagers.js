@@ -163,7 +163,6 @@ router.post("/", (request, response) => {
     errors,
     isValid
   } = validateWager(request.body);
-
   if (!isValid) {
     return response.status(400).json(errors);
   }

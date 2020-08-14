@@ -11,7 +11,13 @@ const mapStateToProps = state => {
   }
 };
 
+const mdp = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  }
+}
+
 export default withRouter(connect(
   mapStateToProps,
-  { logout }
+  mdp
 )(NavBar));
