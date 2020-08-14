@@ -16,6 +16,7 @@ class WagerShow extends React.Component {
     }
 
     componentDidMount() {
+      console.log('mounted')
       this.props.fetchUser(this.props.currentUserId).then(() => {
         this.props.fetchWager(this.props.match.params.wagerId);
       });

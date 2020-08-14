@@ -158,11 +158,12 @@ router.post("/groups/:group_id", (request, response) => {
 
 // POST a wager to a group --> /api/wagers/groups/:group_id
 router.post("/", (request, response) => {
+  debugger;
   const {
     errors,
     isValid
   } = validateWager(request.body);
-
+  debugger;
   if (!isValid) {
     return response.status(400).json(errors);
   }

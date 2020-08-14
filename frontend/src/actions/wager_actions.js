@@ -27,3 +27,8 @@ export const fetchWager = (wagerId) => dispatch => {
         .then(wager => dispatch(receiveWager(wager.data)))
         .catch(err => console.log(err))
 };
+
+export const createWager = wager => dispatch => {
+    return wagerUTIL.createWager(wager)
+        .then(wager => dispatch(receiveWager(wager.data)))
+}
