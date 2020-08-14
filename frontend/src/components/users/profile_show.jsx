@@ -107,7 +107,6 @@ class Profile extends React.Component {
             noChartData = true;
         }
 
-        debugger;
         return (
           <div className="content-container profile-container">
               <div className="header-container">
