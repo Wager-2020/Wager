@@ -53,12 +53,17 @@ class NavBar extends React.Component {
     const selectedOption = null;
     return (
       <div className="nav-bar-header">
-        <SearchBarContainer />
-        <Select
-          value={selectedOption}
-          onChange={this.handleChange}
-          options={options}
-        />
+        <div className="search-container">
+          <SearchBarContainer />
+        </div>
+
+        <div className="select-container">
+          <Select
+            value={selectedOption}
+            onChange={this.handleChange}
+            options={options}
+          />
+        </div>
       </div>
     );
   }
