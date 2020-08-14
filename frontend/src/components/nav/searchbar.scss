@@ -4,6 +4,8 @@ $lightblue: #E0FBFC;
 $orange: #EE6C4D;
 $black: #293241;
 
+$input-border-color: #3F86F7;
+
 
 @import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
@@ -11,7 +13,12 @@ $black: #293241;
 .search {
   position: relative;
   input[type=search] {
+    outline-color: $input-border-color;
+    border-radius: 4px;
+  }
 
+  input[type=search]::placeholder {
+    color: gray;
   }
 
   .found-users {

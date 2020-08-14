@@ -60,6 +60,9 @@ class NavBar extends React.Component {
 
         <div className="select-container">
           <Select
+            style={{
+              borderRadius: 100
+            }}
             value={selectedOption}
             onChange={this.handleChange}
             options={options}

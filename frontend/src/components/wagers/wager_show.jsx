@@ -16,7 +16,6 @@ class WagerShow extends React.Component {
     }
 
     componentDidMount() {
-      console.log('mounted')
       this.props.fetchUser(this.props.currentUserId).then(() => {
         this.props.fetchWager(this.props.match.params.wagerId);
       });
@@ -29,6 +28,9 @@ class WagerShow extends React.Component {
         });
         this.props.placeWager(betData).then(() => {
           this.props.history.push(`/users/${this.props.currentUserId}`)
+        }).catch(() => {
+          this.props.history.push("/wagers");
+          alert("Could not place bet!")
         })
     }
 
@@ -38,8 +40,11 @@ class WagerShow extends React.Component {
             "option": this.props.wager.wager_choices[1].option,
         });
         this.props.placeWager(betData).then(() => {
-        this.props.history.push(`/users/${this.props.currentUserId}`)
-      })
+          this.props.history.push(`/users/${this.props.currentUserId}`)
+        }).catch(() => {
+          this.props.history.push("/wagers");
+          alert("Could not place bet!")
+        });
     }
 
     toPercent(num) {
@@ -52,8 +57,9 @@ class WagerShow extends React.Component {
        const currentWager = this.props.wager;
        let fatWallet = false;
         if (
-          this.props.user &&
-          this.props.user.wallet.Public.currentBalance <= 0
+          (this.props.user &&
+          this.props.user.wallet.Public.currentBalance <= 0) ||
+          (currentWager && currentWager.expired)
         ) { fatWallet = true }
           return currentWager ? (
             <>
@@ -84,6 +90,7 @@ class WagerShow extends React.Component {
                       )}
                     </p>
                   </button>
+
                   <button
                     className="bottom-card-right"
                     onClick={this.handleClickB}
@@ -98,6 +105,7 @@ class WagerShow extends React.Component {
                       )}
                     </p>
                   </button>
+
                 </div>
               </div>
             </>
