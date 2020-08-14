@@ -47,15 +47,29 @@ const distributeEarnings = async (wager) => {
   })
 }
 
+const moment = require("moment");
+
 const updateWagerExpirations = async (wagers) => {
   const now = new Date();
   let resultingWagers = [];
   wagers = wagers.map(async (wager) => {
-    debugger;
-    if (wager.due_date.getTime() <= now.getTime()) {
+    const wagerTime = new Date(moment(wager.due_date).utc().format("MMM DD, YYYY hh:mm:ss")).getTime()
+
+    const nowTime = new Date(moment(now).format("MMM DD, YYYY hh:mm:ss")).getTime()
+    // const momentDueDate = moment(wager.due_date);
+    // const momentNow = moment(now);
+    // debugger;
+    // if (wager.due_date.getTime() <= now.getTime()) {
+    if(wagerTime <= nowTime){
       wager.expired = true;
       await distributeEarnings(wager);
       await wager.save();
+    } else {
+      if (wager.expired) {
+        wager.expired = false;
+        await distributeEarnings(wager);
+        await wager.save();
+      }
     }
     resultingWagers.push(wager);
 
