@@ -39,7 +39,7 @@ const getBetsAndStatsOfUser = async (user, callback) => {
         const wager = wagers[bet.wager];
         if (bet.amount_won > 0) {
           numWins++;
-        } else if (wager.expired && bet.wager === 0) {
+        } else if (wager.expired && bet.amount_won === 0) {
           numLosses++;
         } else {
           numPending++;

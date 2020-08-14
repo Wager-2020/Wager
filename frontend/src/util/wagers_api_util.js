@@ -4,6 +4,10 @@ export const getWagers = () => {
     return axios.get("/api/wagers");
 };
 
+export const getWagersUserBetOn = (userId) => {
+  return axios.get(`/api/wagers/users/${userId}`);
+}
+
 export const getWager = (wagerId) => {
   return axios.get(`/api/wagers/${wagerId}`);
 };
