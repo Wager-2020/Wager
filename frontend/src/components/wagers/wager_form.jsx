@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {createWager} from '../../actions/wager_actions'
+import {createWager} from '../../actions/wager_actions';
+import "./create-wager.scss";
 
 class WagerForm extends React.Component {
     constructor(props){
@@ -38,47 +39,67 @@ class WagerForm extends React.Component {
 
 
     render(){
-        return(
-            <div className = 'wagerForm_Container'>
-                <form className = 'wagerForm'>
-                    <input
-                        type='text'
-                        value = {this.state.title}
-                        placeholder='Please enter a title'
-                        className = 'wagerform-title'
-                        onChange = {this.update('title')}
-                    />
-                    <input
-                        type='text'
-                        value = {this.state.description}
-                        placeholder='Please enter a description'
-                        className = 'wagerform-description'
-                        onChange = {this.update('description')}
-                    />
-                    <input  
-                        type = 'date'
-                        value = {this.state.due_date}
-                        className = 'wagerform-duedate'
-                        onChange = {this.update('due_date')}
-                    />
-                    <input
-                        type='text'
-                        value = {this.state.wager_choices[0]}
-                        placeholder='Please enter the first choice'
-                        className = 'wagerform-choiceA'
-                        onChange = {this.update('wager_choiceA')}
-                    />
-                    <input
-                        type='text'
-                        value = {this.state.wager_choices[1]}
-                        placeholder='Please enter the second choice'
-                        className = 'wagerform-choiceB'
-                        onChange = {this.update('wager_choiceB')}
-                    />
-                    <button onClick = {this.handleSubmit}>Create a Wager </button>
-                </form> 
-            </div>
-        )
+        return (
+          <div className="wager-form-container">
+            <form className="wagerForm">
+              <h1 className="form-label">Wager Title:</h1>
+              <input
+                type="text"
+                value={this.state.title}
+                placeholder="Please enter a title"
+                className="create-wager-input"
+                onChange={this.update("title")}
+              />
+              <br />
+              <br />
+              <h1 className="form-label">Wager Description:</h1>
+              <input
+                type="text"
+                value={this.state.description}
+                placeholder="Please enter a description"
+                className="create-wager-input"
+                onChange={this.update("description")}
+              />
+              <br />
+              <br />
+              <h1 className="form-label">Due Date:</h1>
+              <input
+                type="date"
+                value={this.state.due_date}
+                className="create-wager-input"
+                onChange={this.update("due_date")}
+              />
+              <br />
+              <br />
+              <h1 className="form-label">Enter Option One:</h1>
+              <input
+                type="text"
+                value={this.state.wager_choices[0]}
+                placeholder="Please enter the first choice"
+                className="create-wager-input"
+                onChange={this.update("wager_choiceA")}
+              />
+              <br />
+              <br />
+              <h1 className="form-label">Enter Option Two:</h1>
+              <input
+                type="text"
+                value={this.state.wager_choices[1]}
+                placeholder="Please enter the second choice"
+                className="create-wager-input"
+                onChange={this.update("wager_choiceB")}
+              />
+              <br />
+              <br />
+              <button
+                onClick={this.handleSubmit}
+                className="create-wager-button"
+              >
+                Create a Wager
+              </button>
+            </form>
+          </div>
+        );
     }
 }
 

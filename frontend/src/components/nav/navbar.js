@@ -38,6 +38,7 @@ class NavBar extends React.Component {
         { value: "messages", label: "messages" },
         { value: "leaderboard", label: "leaderboard" },
         { value: "profile", label: "profile" },
+        { value: "wagers/new", label: "create wager"},
         { value: "logout", label: "logout" },
       ];
     } else {

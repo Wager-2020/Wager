@@ -14,12 +14,7 @@ class WagersIndex extends React.Component {
       const wagersLis = this.props.wagers.map((wager, idx) => {
             return wager.wager_choices ? (
               <div key={idx} className="wagers-container">
-                <div
-                  className="image-wrap"
-                  style={{
-                    backgroundImage: `url(https://images.unsplash.com/photo-1542027953342-020384de63a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80})`,
-                  }}
-                ></div>
+                <div className="image-wrap"></div>
                 <div className="wagers-container-bottom">
                   <p>
                     <Link to={`/wagers/${wager._id}`}>{wager.title}</Link>
