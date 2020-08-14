@@ -22,6 +22,14 @@ export const fetchWagers = () => dispatch => {
         .catch(err => console.log(err))
 };
 
+export const fetchWagersUserBetOn = userId => dispatch => {
+    return wagerUTIL.getWagersUserBetOn(userId)
+        .then(wagers => {
+            return dispatch(receiveWagers(wagers.data));
+        })
+        .catch(err => console.log(err));
+}
+
 export const fetchWager = (wagerId) => dispatch => {
     return wagerUTIL.getWager(wagerId)
         .then(wager => dispatch(receiveWager(wager.data)))

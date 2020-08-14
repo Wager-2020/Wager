@@ -78,6 +78,26 @@ const updateWagerExpirations = async (wagers) => {
   return resultingWagers;
 }
 
+const { ObjectId } = mongoose.Types;
+
+// 
+router.get("/users/:bettorId", (req, res) => {
+  let { bettorId } = req.params;
+  Bet.find({ user: bettorId }).then(bets => {
+    let wagersBetOn = [];
+    bets.forEach(async bet => {
+      await Wager.findById(bet.wager).then(async wager => {
+        wagersBetOn.push(wager);
+      });
+      if (wagersBetOn.length === bets.length) {
+        await updateWagerExpirations(wagersBetOn);
+        return res.json(wagersBetOn);
+      }
+    });
+  })
+  .catch(err => res.status(404).json(err));
+});
+
 //without groups
 
 // GET all wagers --> /api/wagers

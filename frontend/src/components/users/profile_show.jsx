@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../actions/user_actions';
-import {fetchWagers} from '../../actions/wager_actions';
+import {fetchWagers, fetchWagersUserBetOn} from '../../actions/wager_actions';
 import './profile.scss';
 import WinLossPieChart from '../sick_graphs/win_loss_pie_chart'
 
@@ -10,14 +10,16 @@ class Profile extends React.Component {
     componentDidMount(){
         this.props.fetchUser(this.props.match.params.userId)
             .then(() => {
-                this.props.fetchWagers();
+                // this.props.fetchWagers();
+                this.props.fetchWagersUserBetOn(this.props.match.params.userId)
             })
     }
 
     UNSAFE_componentWillReceiveProps(newProps) {
         if (newProps.match.params.userId !== this.props.match.params.userId) {
             newProps.fetchUser(newProps.match.params.userId).then(() => {
-                newProps.fetchWagers();
+                // newProps.fetchWagers();
+                newProps.fetchWagersUserBetOn(newProps.match.params.userId)
             })
         }
     }
@@ -77,7 +79,7 @@ class Profile extends React.Component {
         } else {
             return loseId;
         }
-    } 
+    }
     
     render() {
         const user = this.props.user[this.props.match.params.userId]
@@ -127,7 +129,8 @@ const msp = (state,ownProps) => {
 const mdp = dispatch => {
     return {
         fetchUser: (userId) => dispatch(fetchUser(userId)),
-        fetchWagers: () => dispatch(fetchWagers())
+        fetchWagers: () => dispatch(fetchWagers()),
+        fetchWagersUserBetOn: userId => dispatch(fetchWagersUserBetOn(userId))
     }
 }
 
