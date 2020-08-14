@@ -72,6 +72,7 @@ class NavBar extends React.Component {
             options={options}
           />
         </div>
+        {this.props.children}
       </div>
     );
   }

@@ -21,14 +21,15 @@ const App = () => (
   <>
   <div className="main-container">
     <header>
-      <NavBarContainer />
+      <NavBarContainer>
+      <Route exact path="/leaderboard" component={LeaderBoard} />
+      </NavBarContainer>
     </header>
 
     <Switch>
       <Route exact path = '/' component = {Landing} />
       <ProtectedRoute exact path="/messages/form" component={MessageForm} />
       <ProtectedRoute exact path="/messages" component={MessagesIndex} />
-      <Route exact path="/leaderboard" component={LeaderBoard} />
       <Route exact path="/wagers" component={WagersIndex} />
       <Route exact path="/wagers/new" component={WagerForm} />
       <ProtectedRoute exact path="/wagers/:wagerId" component={WagerShow} />
