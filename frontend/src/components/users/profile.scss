@@ -138,3 +138,51 @@
   display: flex;
   justify-content: center;
 }
+
+.no-bets {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 100px;
+  height: 300px;
+  padding: 0 20px 0 20px;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #325077;
+  color: white;
+
+  a {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px 0 10px;
+    width: 170px;
+    height: 40px;
+    background-color: #98C1D9;
+    border: 1px solid #3c7494;
+    border-radius: 8px;
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #EE6C4D;
+      border: 1px solid #ac472e;
+      color: white;
+    }
+  }
+
+  .message {
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .shrug {
+    font-size: 60px;
+  }
+}
