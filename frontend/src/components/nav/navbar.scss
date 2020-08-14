@@ -9,6 +9,10 @@
     align-items: center;
     padding: 10px;
     box-sizing: border-box;
+
+    img:hover {
+        cursor: pointer;
+    }
 }
 
 .nav-bar-header img {

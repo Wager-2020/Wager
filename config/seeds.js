@@ -166,7 +166,7 @@ const WAGERS = [
     due_date: "2020-08-14",
     wager_choices: [
       {
-        option: "Over 20",
+        option: "Over 20", winner: true
       },
       {
         option: "Under 20",
