@@ -20,10 +20,12 @@ class WagerForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        this.state.wager_choices = [
-          { option: this.state.wager_choiceA },
-          { option: this.state.wager_choiceB },
-        ];
+        this.setState({
+            wager_choices: [
+                { option: this.state.wager_choiceA },
+                { option: this.state.wager_choiceB },
+            ]
+        });
         this.props.createWager(this.state)
             .then(()=> this.props.history.push('/wagers'))
     }
