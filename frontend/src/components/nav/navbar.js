@@ -15,11 +15,9 @@ class NavBar extends React.Component {
     }  else if (selectedOption.value === "profile") {
       this.props.history.push(`/users/${this.props.user.id}`);
     } else if (selectedOption.value === "logout") {
-      this.props.logout()
-        // .then(() => {
-          this.props.history.push('/');
-        // });
-        
+      this.props.logout().then(() => {
+        this.props.history.push('/login');
+      });
     } else {
       this.props.history.push(`/${selectedOption.value}`);
     }

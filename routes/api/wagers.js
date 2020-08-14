@@ -51,6 +51,7 @@ const updateWagerExpirations = async (wagers) => {
   const now = new Date();
   let resultingWagers = [];
   wagers = wagers.map(async (wager) => {
+    debugger;
     if (wager.due_date.getTime() <= now.getTime()) {
       wager.expired = true;
       await distributeEarnings(wager);
@@ -162,7 +163,6 @@ router.post("/", (request, response) => {
     errors,
     isValid
   } = validateWager(request.body);
-
   if (!isValid) {
     return response.status(400).json(errors);
   }

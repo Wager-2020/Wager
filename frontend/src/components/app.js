@@ -13,7 +13,7 @@ import MessagesIndex from './messages/messages_index';
 import MessageForm from './messages/message_form';
 import LeaderBoard from './leaderboard/leaderboard';
 import Landing from './landing/landing';
-
+import WagerForm from './wagers/wager_form';
 import './00-reset.scss'
 
 
@@ -30,6 +30,7 @@ const App = () => (
       <ProtectedRoute exact path="/messages" component={MessagesIndex} />
       <Route exact path="/leaderboard" component={LeaderBoard} />
       <Route exact path="/wagers" component={WagersIndex} />
+      <Route exact path="/wagers/new" component={WagerForm} />
       <ProtectedRoute exact path="/wagers/:wagerId" component={WagerShow} />
       <ProtectedRoute path="/users/:userId" component={Profile} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />

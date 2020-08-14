@@ -203,10 +203,8 @@ router.post("/register", (req, res) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
-          debugger;
           newUser.save()
             .then(user => {
-              debugger;
               const payload = {
                 id: user.id,
                 handle: user.handle
@@ -215,7 +213,6 @@ router.post("/register", (req, res) => {
               jwt.sign(payload, keys.secretOrKey, {
                 expiresIn: 3600
               }, (err, token) => {
-                debugger;
                 res.json({
                   success: true,
                   token: "Bearer " + token
