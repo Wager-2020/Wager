@@ -128,7 +128,7 @@ $black: #293241;
   color: $darkblue;
   font-size: 12px;
   text-transform: uppercase;
-  color: white;
+  color: $darkblue;
 }
 
 .wager-description {
@@ -156,11 +156,16 @@ $black: #293241;
   display: flex;
   flex-direction: row;
   text-align: center;
-  background-color: $darkblue;
+  background-color: white;
   color: white;
-  box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .03);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  // box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, .03);
+  
   &:hover {
-    background-color: #EE6C4D;
+    // background-color: $darkblue;
+    color: white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
   color: black;
       &:hover {
