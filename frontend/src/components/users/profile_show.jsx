@@ -110,7 +110,7 @@ class Profile extends React.Component {
           <div className="content-container profile-container">
               <div className="header-container">
                 {header}
-                    <p>Current Karma Balance: {user.wallet.Public.currentBalance}</p>
+                    <p>Current Karma Balance: {user.wallet.Public.currentBalance.toFixed(0)}</p>
               </div>
             <div className="profile-basic-info">
               <div className="win-loss-chart">

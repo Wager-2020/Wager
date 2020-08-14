@@ -53,9 +53,12 @@ const updateWagerExpirations = async (wagers) => {
   const now = new Date();
   let resultingWagers = [];
   wagers = wagers.map(async (wager) => {
-    const wagerTime = new Date(moment(wager.due_date).utc().format("MMM DD, YYYY hh:mm:ss")).getTime()
+    const wagerTime = new Date(moment(wager.due_date).format("MMM DD, YYYY hh:mm:ss")).getTime()
 
     const nowTime = new Date(moment(now).format("MMM DD, YYYY hh:mm:ss")).getTime()
+
+    // debugger;
+
     // const momentDueDate = moment(wager.due_date);
     // const momentNow = moment(now);
     // debugger;
