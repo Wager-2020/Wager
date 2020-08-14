@@ -53,7 +53,11 @@ export const login = user => dispatch => (
 // We wrote this one earlier
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken')
-    return APIUtil.setAuthToken(false).then(() => dispatch(logoutUser()));
+    return APIUtil.setAuthToken(false)
+    .then(() => {
+        return dispatch(logoutUser())
+    })
+    .catch(err => dispatch(receiveErrors(err.response.data)));
 };
 
 // Upon signup, dispatch the approporiate action depending on which type of response we receieve from the backend

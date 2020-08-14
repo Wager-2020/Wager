@@ -18,6 +18,7 @@ import './00-reset.scss'
 
 
 const App = () => (
+  <>
   <div className="main-container">
     <header>
       <NavBarContainer />
@@ -36,8 +37,9 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
     </Switch>
 
-    <footer>Copyright &copy; 2020 Wager</footer>
   </div>
+  <footer>Copyright &copy; 2020 Wager</footer>
+  </>
 );
 
 export default App;
