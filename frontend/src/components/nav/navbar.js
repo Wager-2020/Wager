@@ -54,6 +54,8 @@ class NavBar extends React.Component {
     const selectedOption = null;
     return (
       <div className="nav-bar-header">
+        <img src="https://i.imgur.com/sCK0kqg.jpg"></img>
+
         <div className="search-container">
           <SearchBarContainer />
         </div>
@@ -61,7 +63,7 @@ class NavBar extends React.Component {
         <div className="select-container">
           <Select
             style={{
-              borderRadius: 100
+              borderRadius: 100,
             }}
             value={selectedOption}
             onChange={this.handleChange}
