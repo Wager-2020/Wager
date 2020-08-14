@@ -7,6 +7,8 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .search-container {
@@ -16,7 +18,6 @@
         width: 100%;
         height: 36px;
         padding: 0 10px 0 10px;
-        // border-radius: 50px;
         border: 1px solid lightgrey;
     }
 }
@@ -27,4 +28,18 @@
 
 header {
     width: 100%;
+}
+
+@media (max-width: 500px) {
+    .nav-bar-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+    .select-container {
+        width: 100%;
+    }
 }
