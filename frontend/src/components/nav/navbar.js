@@ -23,6 +23,12 @@ class NavBar extends React.Component {
     }
   };
 
+  logout() {
+    if (this.props.logout) {
+      this.props.logout();
+    }
+  }
+
   render() {
     let options = null;
     if (this.props.loggedIn) {
