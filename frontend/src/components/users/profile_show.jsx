@@ -10,14 +10,22 @@ class Profile extends React.Component {
     componentDidMount(){
         this.props.fetchUser(this.props.match.params.userId)
             .then(() => {
-                this.props.fetchWagers()
+                this.props.fetchWagers();
             })
+    }
+
+    UNSAFE_componentWillReceiveProps(newProps) {
+        if (newProps.match.params.userId !== this.props.match.params.userId) {
+            newProps.fetchUser(newProps.match.params.userId).then(() => {
+                newProps.fetchWagers();
+            })
+        }
     }
 
     displayUserBets() {
         const userInfo = this.props.user[this.props.match.params.userId];
         const wagers = this.props.wagers;
-        debugger;
+        
         let betTitle = null;
         let amountBet = null;
         let betOption = null;

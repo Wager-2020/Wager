@@ -89,11 +89,41 @@ const mergeWallets = (wallet, deductionWallet, winningWallet) => {
   return resultWallet;
 }
 
+const formatUser = (user, stats) => {
+  let { _id, handle, wallet } = user;
+
+  let {
+    numWins,
+    numLosses,
+    numPending,
+    totalEarnings,
+    karmaSpentPerGroup,
+    karmaEarnedPerGroup,
+    bets,
+    winRatio
+  } = stats;
+
+
+  return {
+    _id,
+    handle,
+    wallet: mergeWallets(wallet, karmaSpentPerGroup, karmaEarnedPerGroup),
+    
+    numWins,
+    numLosses,
+    numPending,
+    totalEarnings,
+    winRatio,
+    bets: bets.slice(0, MAX_BETS_ALLOWED)
+  }
+}
+
 router.get("/", (req, res) => {
   const {
     leaderboard,
     sortingMethod,
-    numUsers
+    numUsers,
+    searchParams
   } = req.query;
 
   if (leaderboard) {
@@ -101,36 +131,9 @@ router.get("/", (req, res) => {
       .then((users) => {
       let resultingUsers = [];
       users.forEach(async (user) => {
-
         getBetsAndStatsOfUser(user, (stats) => {
-          const { _id, handle, wallet } = user;
-
-          let {
-            numWins,
-            numLosses,
-            numPending,
-            totalEarnings,
-            karmaSpentPerGroup,
-            karmaEarnedPerGroup,
-            bets,
-            winRatio
-          } = stats;
-
-          const newUser = {
-            _id,
-            handle,
-            wallet: mergeWallets(wallet, karmaSpentPerGroup, karmaEarnedPerGroup),
-            
-            numWins,
-            numLosses,
-            numPending,
-            totalEarnings,
-            winRatio,
-            bets: bets.slice(0, MAX_BETS_ALLOWED)
-          }
-
-          resultingUsers.push(newUser)
-
+          let formattedUser = formatUser(user, stats);
+          resultingUsers.push(formattedUser)
           if (resultingUsers.length === users.length) {
             const sorted = sortUsers(resultingUsers, sortingMethod);
             const limit = numUsers ? numUsers : NUM_LEADERBOARD_USERS_SHOWN;
@@ -141,6 +144,22 @@ router.get("/", (req, res) => {
       });
     })
     .catch(err => res.status(404).json(err))
+
+  } else if (searchParams) {
+    let { searchHandle } = JSON.parse(searchParams);
+
+    User.find({ handle: { "$regex": searchHandle, "$options": "i" } }).then(async users => {
+      let resultingUsers = [];
+      users.forEach(async (user) => {
+        getBetsAndStatsOfUser(user, (stats) => {
+          let formattedUser = formatUser(user, stats);
+          resultingUsers.push(formattedUser)
+          if (resultingUsers.length === users.length) {
+            return res.json(resultingUsers);
+          }
+        });
+      });
+    });
   }
 });
 
@@ -148,34 +167,11 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
     .then(async user => {
-      const {
-        _id,
-        handle,
-        wallet
-      } = user;
+      let stats = await getBetsAndStatsOfUser(user);
 
-      let {
-        numWins,
-        numLosses,
-        numPending,
-        totalEarnings,
-        karmaSpentPerGroup,
-        karmaEarnedPerGroup,
-        bets,
-        winRatio
-      } = await getBetsAndStatsOfUser(user);
+      let formattedUser = formatUser(user, stats)
 
-      return res.json({
-        _id,
-        handle,
-        wallet: mergeWallets(wallet, karmaSpentPerGroup, karmaEarnedPerGroup),
-        numWins,
-        numLosses,
-        numPending,
-        totalEarnings,
-        winRatio,
-        bets: bets.slice(0, MAX_BETS_ALLOWED)
-      });
+      return res.json(formattedUser)
     })
     .catch(err => res.status(404).json(err));
 });
