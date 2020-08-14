@@ -9,6 +9,7 @@
     align-items: center;
     padding: 10px;
     box-sizing: border-box;
+    column-gap: 10px;
 
     img:hover {
         cursor: pointer;
@@ -44,6 +45,7 @@ header {
 @media (max-width: 500px) {
     .nav-bar-header {
         flex-direction: column;
+        column-gap: unset;
         gap: 10px;
     }
 
