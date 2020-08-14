@@ -1,9 +1,7 @@
 import React from 'react';
-// import { Link } from 'react-router-dom'
-import './navbar.scss'
-
-// import { Component } from "react";
 import Select from "react-select";
+import './navbar.scss'
+import SearchBarContainer from './searchbar_container';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -49,6 +47,7 @@ class NavBar extends React.Component {
     const selectedOption = null;
     return (
       <div className="nav-bar-header">
+        <SearchBarContainer />
         <Select
           value={selectedOption}
           onChange={this.handleChange}

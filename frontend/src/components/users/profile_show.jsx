@@ -10,13 +10,22 @@ class Profile extends React.Component {
     componentDidMount(){
         this.props.fetchUser(this.props.match.params.userId)
             .then(() => {
-                this.props.fetchWagers()
+                this.props.fetchWagers();
             })
+    }
+
+    UNSAFE_componentWillReceiveProps(newProps) {
+        if (newProps.match.params.userId !== this.props.match.params.userId) {
+            newProps.fetchUser(newProps.match.params.userId).then(() => {
+                newProps.fetchWagers();
+            })
+        }
     }
 
     displayUserBets() {
         const userInfo = this.props.user[this.props.match.params.userId];
         const wagers = this.props.wagers;
+        
         let betTitle = null;
         let amountBet = null;
         let betOption = null;
@@ -30,7 +39,9 @@ class Profile extends React.Component {
                 betOption = bet.option;
             }
             return wagers[bet.wager] ? (
-                <div key={idx} className="bets-container">
+                <div key={idx} 
+                    className="bets-container" 
+                    id={this.identifyBetStatus(bet, wagers[bet.wager])}>
                     <div className="bets-container-top">
                         <h2>{betTitle}</h2>
                     </div>
@@ -45,9 +56,32 @@ class Profile extends React.Component {
         })
         return userBetsLi;
     }
+
+    identifyBetStatus(bet, wager) {
+        const winId = "bet-status-win"
+        const loseId = "bet-status-loss"
+        const pendingId = "bet-status-pending"
+
+        let betIsAWinner = false;
+
+        wager.wager_choices.forEach((choice) => {
+            if (choice.option === bet.option && choice.winner) {
+                betIsAWinner = true;
+            }
+        });
+
+        if (!wager.expired) {
+            return pendingId;
+        } else if (betIsAWinner) {
+            return winId;
+        } else {
+            return loseId;
+        }
+    } 
     
     render() {
         const user = this.props.user[this.props.match.params.userId]
+        if (!user) return null;
         let data = false;
         if (user) {
             data = [
@@ -56,7 +90,6 @@ class Profile extends React.Component {
                 { name: 'Losses', value: user.numLosses },
             ];
         }
-
         let header = null;
         
         if (user && this.props.currentUserId === user._id) {
@@ -64,15 +97,15 @@ class Profile extends React.Component {
         } else if (user) {
             header = <h1> {`${user.handle.toUpperCase()}'S BETTING HISTORY`} </h1>
         }
-
         return (
           <div className="content-container profile-container">
               <div className="header-container">
                 {header}
+                    <p>Current Karma Balance: {user.wallet.Public.currentBalance}</p>
               </div>
             <div className="profile-basic-info">
               {<div className="win-loss-chart">
-                {data && <WinLossPieChart data={data} />}
+                {Object.values(this.props.wagers) && <WinLossPieChart data={data} />}
               </div>}
             </div>
 

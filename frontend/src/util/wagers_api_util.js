@@ -9,7 +9,7 @@ export const getWager = (wagerId) => {
 };
 
 export const createWager = (wager) => {
-  // debugger
+  
   return axios.post(`/api/wagers/`, wager);
 };
 

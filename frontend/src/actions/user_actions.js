@@ -3,6 +3,8 @@ import { fetchWagers, receiveWager } from './wager_actions';
 
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const CLEAR_SEARCH_USERS = 'CLEAR_SEARCH_USERS';
+export const RECEIVE_SEARCH_USERS = "RECEIVE_SEARCH_USERS";
 
 
 export const receiveUser = user => ({
@@ -13,7 +15,16 @@ export const receiveUser = user => ({
 export const receiveUsers = users => ({
     type: RECEIVE_USERS,
     users
-})
+});
+
+export const clearSearchUsers = () => ({
+    type: CLEAR_SEARCH_USERS
+});
+
+export const receiveSearchUsers = users => ({
+    type: RECEIVE_SEARCH_USERS,
+    users
+});
 
 export const fetchUser = (userId) => dispatch => {
     return APIUserUTIL.fetchUser(userId)
@@ -28,6 +39,14 @@ export const fetchUsers = (filter) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const fetchSearchUsers = (searchParams) => dispatch => {
+    return APIUserUTIL.fetchUsers({ searchParams })
+    .then((users) => {
+        dispatch(receiveSearchUsers(users))
+    })
+    .catch((err) => console.log(err));
+}
 
 export const getUserWagers = (userId) => (dispatch) => {
     return APIUserUTIL.getUserWagers(userId)
