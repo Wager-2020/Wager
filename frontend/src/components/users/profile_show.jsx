@@ -29,6 +29,7 @@ class Profile extends React.Component {
         
         let betTitle = null;
         let amountBet = null;
+        let amountWon = null;
         let betOption = null;
         if (!userInfo) {
             return null;
@@ -37,6 +38,7 @@ class Profile extends React.Component {
             if (wagers[bet.wager]) {
                 betTitle = wagers[bet.wager].title;
                 amountBet = bet.amount_bet;
+                amountWon = bet.amount_won;
                 betOption = bet.option;
             }
             return wagers[bet.wager] ? (
@@ -47,7 +49,7 @@ class Profile extends React.Component {
                         <h2>{betTitle}</h2>
                     </div>
                     <div className="bets-container-middle">
-                        <p>You wagered {amountBet.toFixed(0)} karma on</p>
+                        <p>You wagered {amountBet.toFixed(0)} and won {amountWon.toFixed(0)} karma on</p>
                     </div>
                     <div className="bets-container-bottom">
                         <p>{betOption}</p>
