@@ -3,7 +3,6 @@ import './landing.scss';
 import { connect } from 'react-redux';
 
 class Landing extends React.Component {
-
     handleClick(){
         this.props.history.push(`/wagers`)
     }
@@ -36,17 +35,12 @@ class Landing extends React.Component {
 
 const msp = state => {
     return {
-
     }
 }
 
 const mdp = dispatch => {
     return {
-
     }
 }
 
-
 export default connect(msp, mdp)(Landing);
-
-

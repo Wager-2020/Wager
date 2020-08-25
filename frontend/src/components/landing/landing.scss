@@ -4,7 +4,6 @@ $lightblue: #E0FBFC;
 $orange: #EE6C4D;
 $black: #293241;
 
-
 .slider-container{
   height: 80%;
   width: 100%;
@@ -13,7 +12,7 @@ $black: #293241;
   text-align: center;
   display: flex;
   justify-content: center;
-  z-index: -4;
+  z-index: 10;
 }
 
 .menu {

@@ -103,7 +103,7 @@ class SignupForm extends React.Component {
             }}> &nbsp; Login?</span>
           </div>
 
-            {this.renderErrors()}
+            <div className = 'error-messages'>{this.renderErrors()}</div>
           </div>
           <DemoLoginButton signup={this.props.signup}/>
         </form>

@@ -56,7 +56,7 @@ class NavBar extends React.Component {
       <div className="nav-bar-header">
         <img onClick={() => {
           this.props.history.push("/");
-        }} src="https://i.imgur.com/sCK0kqg.jpg"></img>
+        }} src="https://i.imgur.com/sCK0kqg.jpg" alt=""></img>
 
         <div className="search-container">
           <SearchBarContainer />

@@ -26,9 +26,9 @@ class WagerForm extends React.Component {
                 { option: this.state.wager_choiceA },
                 { option: this.state.wager_choiceB },
             ]
-        });
-        this.props.createWager(this.state)
-            .then(()=> this.props.history.push('/wagers'))
+          }, () => {
+            this.props.createWager(this.state).then(()=> this.props.history.push('/wagers'));
+          });
     }
 
     update(field){
@@ -74,7 +74,7 @@ class WagerForm extends React.Component {
               <h1 className="form-label">Enter Option One:</h1>
               <input
                 type="text"
-                value={this.state.wager_choices[0]}
+                value={this.state.wager_choiceA}
                 placeholder="Please enter the first choice"
                 className="create-wager-input"
                 onChange={this.update("wager_choiceA")}
@@ -84,7 +84,7 @@ class WagerForm extends React.Component {
               <h1 className="form-label">Enter Option Two:</h1>
               <input
                 type="text"
-                value={this.state.wager_choices[1]}
+                value={this.state.wager_choiceB}
                 placeholder="Please enter the second choice"
                 className="create-wager-input"
                 onChange={this.update("wager_choiceB")}
