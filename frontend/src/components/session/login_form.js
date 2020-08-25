@@ -92,7 +92,7 @@ class LoginForm extends React.Component {
             }}> &nbsp; Sign Up?</span>
           </div>
 
-          {this.renderErrors()}
+          <div className = 'error-messages'> {this.renderErrors()} </div>
         </form>
       </div>
     );

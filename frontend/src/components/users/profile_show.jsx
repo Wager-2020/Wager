@@ -47,7 +47,7 @@ class Profile extends React.Component {
                         <h2>{betTitle}</h2>
                     </div>
                     <div className="bets-container-middle">
-                        <p>You wagered {amountBet} karma on</p>
+                        <p>You wagered {amountBet.toFixed(0)} karma on</p>
                     </div>
                     <div className="bets-container-bottom">
                         <p>{betOption}</p>

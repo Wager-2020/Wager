@@ -2,6 +2,7 @@ import React from "react";
 import "./searchbar.scss";
 
 const WAIT_TIME = 200;
+const DISAPPEAR_WAIT_TIME = 500;
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class SearchBar extends React.Component {
       });
     }
 
-    this.blurTimer = setTimeout(_timeout, WAIT_TIME / 5);
+    this.blurTimer = setTimeout(_timeout, DISAPPEAR_WAIT_TIME);
   }
 
   render() {

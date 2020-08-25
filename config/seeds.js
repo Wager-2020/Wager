@@ -233,8 +233,8 @@ const seed = async (params = DEFAULT_PARAMS) => {
     
   }
 
-  // await Message.insertMany(messages);
-  // await Bet.insertMany(bets);
+  await Message.insertMany(messages);
+  await Bet.insertMany(bets);
 }
 
 module.exports = {
