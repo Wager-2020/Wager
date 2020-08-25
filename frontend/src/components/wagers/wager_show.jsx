@@ -79,7 +79,7 @@ class WagerShow extends React.Component {
                   <button
                     className="bottom-card-left"
                     onClick={this.handleClickA}
-                    disabled={fatWallet}
+                    disabled={fatWallet || currentWager.expired}
                   >
                     <p>
                       {currentWager.wager_choices[0].option}
@@ -94,7 +94,7 @@ class WagerShow extends React.Component {
                   <button
                     className="bottom-card-right"
                     onClick={this.handleClickB}
-                    disabled={fatWallet}
+                    disabled={fatWallet || currentWager.expired}
                   >
                     <p>
                       {currentWager.wager_choices[1].option}
@@ -123,6 +123,7 @@ class WagerShow extends React.Component {
 
 const msp = (state, Ownprops) => {
     const wager = state.entities.wagers[Ownprops.match.params.wagerId];
+    debugger;
     const wagerId = wager ? wager.id : undefined;
     const currentUser = state.session.user;
     const currentUserId = currentUser ? currentUser.id : undefined;

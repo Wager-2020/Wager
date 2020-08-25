@@ -2,6 +2,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './login-signup.scss';
 
+import DemoLoginButton from './demo_login_button'
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -92,7 +94,8 @@ class LoginForm extends React.Component {
             }}> &nbsp; Sign Up?</span>
           </div>
 
-          <div className = 'error-messages'> {this.renderErrors()} </div>
+          {this.renderErrors()}
+          <DemoLoginButton signup={this.props.signup} />
         </form>
       </div>
     );
