@@ -5,7 +5,6 @@ import { fetchUser } from '../../actions/user_actions';
 import {fetchWagers, fetchWagersUserBetOn} from '../../actions/wager_actions';
 import './profile.scss';
 import WinLossPieChart from '../sick_graphs/win_loss_pie_chart'
-import { debug } from 'request';
 
 class Profile extends React.Component {
 
