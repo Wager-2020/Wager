@@ -236,6 +236,7 @@ router.delete("/:id", (request, response) => {
 
 // PATCH a wager --> /api/wagers/:id
 router.patch("/:id", (request, response) => {
+  debugger;
   Wager.findById(request.params.id, (error, wager) => {
     for (let key in request.body) {
       wager[key] = request.body[key];
