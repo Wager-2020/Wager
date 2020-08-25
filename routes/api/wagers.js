@@ -194,7 +194,7 @@ router.post("/groups/:group_id", (request, response) => {
 
 
 
-// POST a wager to a group --> /api/wagers/groups/:group_id
+// POST a wager to a group --> /api/wagers/
 router.post("/", (request, response) => {
   const {
     errors,
@@ -203,6 +203,7 @@ router.post("/", (request, response) => {
   if (!isValid) {
     return response.status(400).json(errors);
   }
+
 
   // const user = // current user;
 
@@ -217,6 +218,7 @@ router.post("/", (request, response) => {
     wager_choices
   } = request.body;
 
+
   // need to pass in user who created the new wager
   // need to pass in a group
   const newWager = new Wager({
@@ -225,6 +227,7 @@ router.post("/", (request, response) => {
     due_date,
     wager_choices
   });
+
 
   newWager.save().then(wager => response.json(wager));
 });

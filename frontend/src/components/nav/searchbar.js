@@ -1,7 +1,7 @@
 import React from "react";
 import "./searchbar.scss";
 
-const WAIT_TIME = 1000;
+const WAIT_TIME = 200;
 
 class SearchBar extends React.Component {
   constructor(props) {

@@ -11,7 +11,6 @@ class Profile extends React.Component {
     componentDidMount(){
         this.props.fetchUser(this.props.match.params.userId)
             .then(() => {
-                // this.props.fetchWagers();
                 this.props.fetchWagersUserBetOn(this.props.match.params.userId)
             })
     }
@@ -19,9 +18,8 @@ class Profile extends React.Component {
     UNSAFE_componentWillReceiveProps(newProps) {
         if (newProps.match.params.userId !== this.props.match.params.userId) {
             newProps.fetchUser(newProps.match.params.userId).then(() => {
-                // newProps.fetchWagers();
                 newProps.fetchWagersUserBetOn(newProps.match.params.userId)
-            })
+            });
         }
     }
 
