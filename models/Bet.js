@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set('useCreateIndex', true)
 const Schema = mongoose.Schema;
 
 // each user should only be able to bet once for a wager.

@@ -21,52 +21,56 @@ const getBetsAndStatsOfUser = async (user, callback) => {
     .sort({
       createdAt: -1
     })
-    .then(async (bets) => {
-      const wagersArr = await Wager.find({});
-      let wagers = {};
-      wagersArr.forEach(wager => {
-        wagers[wager._id] = wager;
-      });
-
-      let numWins = 0;
-      let numLosses = 0;
-      let numPending = 0;
-      let totalEarnings = 0;
-      let karmaSpentPerGroup = {}; // {{ group: balance }, ...}
-      let karmaEarnedPerGroup = {};
-      bets.forEach(bet => {
-        totalEarnings += bet.amount_won;
-        const wager = wagers[bet.wager];
-        if (bet.amount_won > 0) {
-          numWins++;
-        } else if (wager.expired && bet.amount_won === 0) {
-          numLosses++;
-        } else {
-          numPending++;
+    .then((bets) => {
+      Wager.find({}).then(wagersArr => {
+        let wagers = {};
+        wagersArr.forEach(wager => {
+          wagers[wager._id] = wager;
+        });
+  
+        let numWins = 0;
+        let numLosses = 0;
+        let numPending = 0;
+        let totalEarnings = 0;
+        let karmaSpentPerGroup = {}; // {{ group: balance }, ...}
+        let karmaEarnedPerGroup = {};
+        bets.forEach(bet => {
+          totalEarnings += bet.amount_won;
+          const wager = wagers[bet.wager];
+          if (bet.amount_won > 0) {
+            numWins++;
+          } else if (wager && wager.expired && bet.amount_won === 0) {
+            numLosses++;
+          } else {
+            numPending++;
+          }
+          if (wager && !karmaSpentPerGroup[wager.group]) {
+            karmaSpentPerGroup[wager.group] = 0;
+            karmaEarnedPerGroup[wager.group] = 0;
+          }
+          if (wager) {
+            karmaSpentPerGroup[wager.group] += bet.amount_bet;
+            karmaEarnedPerGroup[wager.group] += bet.amount_won;
+          }
+        });
+  
+        const stats = {
+          numWins,
+          numLosses,
+          numPending,
+          totalEarnings,
+          karmaSpentPerGroup,
+          karmaEarnedPerGroup,
+          bets,
+          winRatio: (numWins * 1.0) / (1.0 * (numWins + numLosses)),
         }
-        if (!karmaSpentPerGroup[wager.group]) {
-          karmaSpentPerGroup[wager.group] = 0;
-          karmaEarnedPerGroup[wager.group] = 0;
+  
+        if (callback) { 
+          callback(stats);
         }
-        karmaSpentPerGroup[wager.group] += bet.amount_bet;
-        karmaEarnedPerGroup[wager.group] += bet.amount_won;
+
+        return stats;
       });
-
-      const stats = {
-        numWins,
-        numLosses,
-        numPending,
-        totalEarnings,
-        karmaSpentPerGroup,
-        karmaEarnedPerGroup,
-        bets,
-        winRatio: (numWins * 1.0) / (1.0 * (numWins + numLosses)),
-      }
-
-      if (callback) { 
-        callback(stats);
-      }
-      return stats;
     }).catch(err => { return err; });
 
     return bet;
@@ -130,10 +134,11 @@ router.get("/", (req, res) => {
     User.find({})
       .then((users) => {
       let resultingUsers = [];
-      users.forEach(async (user) => {
+      let curr = 0;
+      users.forEach((user) => {
         getBetsAndStatsOfUser(user, (stats) => {
           let formattedUser = formatUser(user, stats);
-          resultingUsers.push(formattedUser)
+          resultingUsers.push(formattedUser);
           if (resultingUsers.length === users.length) {
             const sorted = sortUsers(resultingUsers, sortingMethod);
             const limit = numUsers ? numUsers : NUM_LEADERBOARD_USERS_SHOWN;
@@ -166,12 +171,12 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
-    .then(async user => {
-      let stats = await getBetsAndStatsOfUser(user);
+    .then(user => {
+      getBetsAndStatsOfUser(user, stats => {
+        let formattedUser = formatUser(user, stats)
+        return res.json(formattedUser)
+      });
 
-      let formattedUser = formatUser(user, stats)
-
-      return res.json(formattedUser)
     })
     .catch(err => res.status(404).json(err));
 });
