@@ -11,7 +11,7 @@ class DemoLoginButton extends React.Component {
     e.preventDefault();
     let _demoUser = {
       handle: faker.internet.userName(),
-      email: faker.internet.email(),
+      email: `${(Math.random() * 10000000000000000)}${faker.internet.email()}`,
       password: 'password',
       password2: 'password'
     };
