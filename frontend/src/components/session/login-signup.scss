@@ -150,3 +150,17 @@ $black: #293241;
    color: rgba(255,255,255,0.6);
 }
 
+.demo-login {
+	width: 260px;
+	height: 35px;
+	background: $darkblue;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: white;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
