@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import "./login-signup.scss";
+import DemoLoginButton from './demo_login_button'
+
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -103,6 +105,7 @@ class SignupForm extends React.Component {
 
             {this.renderErrors()}
           </div>
+          <DemoLoginButton signup={this.props.signup}/>
         </form>
       </div>
     );
