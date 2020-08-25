@@ -5,6 +5,7 @@ import { fetchUser } from '../../actions/user_actions';
 import {fetchWagers, fetchWagersUserBetOn} from '../../actions/wager_actions';
 import './profile.scss';
 import WinLossPieChart from '../sick_graphs/win_loss_pie_chart'
+import { debug } from 'request';
 
 class Profile extends React.Component {
 
@@ -29,6 +30,7 @@ class Profile extends React.Component {
         
         let betTitle = null;
         let amountBet = null;
+        let amountWon = null;
         let betOption = null;
         if (!userInfo) {
             return null;
@@ -37,6 +39,7 @@ class Profile extends React.Component {
             if (wagers[bet.wager]) {
                 betTitle = wagers[bet.wager].title;
                 amountBet = bet.amount_bet;
+                amountWon = bet.amount_won;
                 betOption = bet.option;
             }
             return wagers[bet.wager] ? (
@@ -47,7 +50,7 @@ class Profile extends React.Component {
                         <h2>{betTitle}</h2>
                     </div>
                     <div className="bets-container-middle">
-                        <p>You wagered {amountBet} karma on</p>
+                        <p>You wagered {amountBet} and won {amountWon} karma on</p>
                     </div>
                     <div className="bets-container-bottom">
                         <p>{betOption}</p>
