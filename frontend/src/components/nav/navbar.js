@@ -54,7 +54,9 @@ class NavBar extends React.Component {
     const selectedOption = null;
     return (
       <div className="nav-bar-header">
-        <img src="https://i.imgur.com/sCK0kqg.jpg"></img>
+        <img onClick={() => {
+          this.props.history.push("/");
+        }} src="https://i.imgur.com/sCK0kqg.jpg"></img>
 
         <div className="search-container">
           <SearchBarContainer />
@@ -70,6 +72,7 @@ class NavBar extends React.Component {
             options={options}
           />
         </div>
+        {this.props.children}
       </div>
     );
   }

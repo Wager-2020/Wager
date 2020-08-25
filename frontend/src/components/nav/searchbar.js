@@ -58,7 +58,7 @@ class SearchBar extends React.Component {
           value={this.state.searchHandle}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
-          placeholder="What'cha lookin' for?"
+          placeholder="Search for players"
         />
         <div className="found-users" style={this.state.currentStyle}>
           {this.props.searchUsers.map((user) => {

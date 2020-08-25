@@ -58,8 +58,8 @@ class WagerShow extends React.Component {
        let fatWallet = false;
         if (
           (this.props.user &&
-          this.props.user.wallet.Public.currentBalance <= 0) ||
-          (currentWager && currentWager.expired)
+          this.props.user.wallet.Public.currentBalance <= 0) 
+          // || (currentWager && currentWager.expired)
         ) { fatWallet = true }
           return currentWager ? (
             <>
