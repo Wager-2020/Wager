@@ -71,6 +71,13 @@ class Landing extends React.Component {
                 <div className='text'>Bet on COVID</div>
               </div>
           );
+        default:
+          return (
+              <div className="slides fade" onClick={() => this.handleClick}>
+                <img src='https://images.unsplash.com/flagged/photo-1571358607210-1691cb0ea07c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'></img>
+                <div className='text'>Bet on Sports</div>
+              </div>
+          );
       }
     }
 

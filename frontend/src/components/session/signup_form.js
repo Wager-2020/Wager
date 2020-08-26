@@ -45,26 +45,17 @@ class SignupForm extends React.Component {
     this.props.signup(user, this.props.history); 
   }
 
-  renderErrors() {
-    return(
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
-  }
 
   render() {
     return (
       <div className="signup-form-container">
         <div className="companyName"></div>
         <div className="header">
-          <div onClick={() => {
-            this.props.history.push("/");
-          }}>
+          <div
+            onClick={() => {
+              this.props.history.push("/");
+            }}
+          >
             Leet<span>Wagers</span>
           </div>
         </div>
@@ -76,36 +67,44 @@ class SignupForm extends React.Component {
               onChange={this.update("email")}
               placeholder="Email"
             />
+            <div className="error-messages">{this.state.errors.email}</div>
             <input
               type="text"
               value={this.state.handle}
               onChange={this.update("handle")}
               placeholder="Handle"
             />
+            <div className="error-messages">{this.state.errors.handle}</div>
             <input
               type="password"
               value={this.state.password}
               onChange={this.update("password")}
               placeholder="Password"
             />
+            <div className="error-messages">{this.state.errors.password}</div>
             <input
               type="password"
               value={this.state.password2}
               onChange={this.update("password2")}
               placeholder="Confirm Password"
             />
+            <div className="error-messages">{this.state.errors.password}</div>
             <br />
             <input type="submit" value="Submit" />
 
             <div className="login-signup-switch">
-            or <span onClick={() => {
-              this.props.history.push("/login");
-            }}> &nbsp; Login?</span>
+              or{" "}
+              <span
+                onClick={() => {
+                  this.props.history.push("/login");
+                }}
+              >
+                {" "}
+                &nbsp; Login?
+              </span>
+            </div>
           </div>
-
-            <div className = 'error-messages'>{this.renderErrors()}</div>
-          </div>
-          <DemoLoginButton signup={this.props.signup}/>
+          <DemoLoginButton signup={this.props.signup} />
         </form>
       </div>
     );

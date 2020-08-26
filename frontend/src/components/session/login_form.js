@@ -15,7 +15,6 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
   }
 
   // Once the user has been authenticated, redirect to the Tweets page
@@ -48,27 +47,16 @@ class LoginForm extends React.Component {
   }
 
 
-  // Render the session errors if there are any
-  renderErrors() {
-    return(
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
   render() {
     return (
       <div className="login-container">
         <div className="companyName"></div>
         <div className="header">
-          <div onClick={() => {
-            this.props.history.push("/");
-          }}>
+          <div
+            onClick={() => {
+              this.props.history.push("/");
+            }}
+          >
             Leet<span>Wagers</span>
           </div>
         </div>
@@ -80,21 +68,28 @@ class LoginForm extends React.Component {
             onChange={this.update("email")}
             placeholder="Email"
           />
+          <div className = 'error-messages'>{this.state.errors.email}</div>
           <input
             type="password"
             value={this.state.password}
             onChange={this.update("password")}
             placeholder="Password"
           />
+          <div className = 'error-messages'>{this.state.errors.password}</div>
+
           <input type="submit" value="Submit" />
 
           <div className="login-signup-switch">
-            or <span onClick={() => {
-              this.props.history.push("/signup");
-            }}> &nbsp; Sign Up?</span>
+            or{" "}
+            <span
+              onClick={() => {
+                this.props.history.push("/signup");
+              }}
+            >
+              {" "}
+              &nbsp; Sign Up?
+            </span>
           </div>
-
-          {this.renderErrors()}
           <DemoLoginButton signup={this.props.signup} />
         </form>
       </div>
