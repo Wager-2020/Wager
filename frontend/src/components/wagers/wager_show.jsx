@@ -113,6 +113,7 @@ class WagerShow extends React.Component {
     }
 
     render() {
+      debugger;
         return (
             <div className="show-content-container">
                 {this.displayWager()}

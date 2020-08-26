@@ -5,6 +5,7 @@ import { fetchUser } from '../../actions/user_actions';
 import {fetchWagers, fetchWagersUserBetOn} from '../../actions/wager_actions';
 import './profile.scss';
 import WinLossPieChart from '../sick_graphs/win_loss_pie_chart'
+import { debug } from 'request';
 
 class Profile extends React.Component {
 
@@ -45,10 +46,11 @@ class Profile extends React.Component {
             }
             // console.log(wagerId)
             return wagers[bet.wager] ? (
-              <div
+              <Link
                 key={idx}
                 className="bets-container"
-                onClick={()=>this.props.history.push(`/wagers/${wagerId}`)}
+                to = {`/wagers/${wagerId}`}
+                // onClick={()=>this.props.history.push(`/wagers/${wagerId}`)}
                 id={this.identifyBetStatus(bet, wagers[bet.wager])}
               >
                 <div className="bets-container-top">
@@ -63,7 +65,7 @@ class Profile extends React.Component {
                 <div className="bets-container-bottom">
                   <p>{betOption}</p>
                 </div>
-              </div>
+              </Link>
             ) : null;
         })
         return userBetsLi;
