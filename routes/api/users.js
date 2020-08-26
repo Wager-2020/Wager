@@ -13,6 +13,8 @@ const Bet = require("../../models/Bet");
 const { sortUsers } = require('./sorting_util');
 const { merge } = require("lodash");
 
+const MAX_NUM_DEMO_BETS = 10;
+const AMOUNT_BET_RANGE = 100;
 
 const getBetsAndStatsOfUser = async (user, callback) => {
   const bet = await Bet.find({
@@ -214,6 +216,39 @@ router.post("/register", (req, res) => {
                 id: user.id,
                 handle: user.handle
               };
+
+              if (req.body.demoUser) {
+                
+                Wager.find({}).then(wagers => {
+
+                  let bets = [];
+                  const randomNumBets = Math.random() * MAX_NUM_DEMO_BETS;
+
+                  for (let betIter = 0; betIter < randomNumBets; betIter++) {
+                    const wagerIdx = Math.ceil(Math.random() * wagers.length * 2.0) % wagers.length;
+              
+                    const randomWager = wagers[wagerIdx];
+                    const randomWagerId = randomWager._id
+                    const randomAmountBet = Math.random() * AMOUNT_BET_RANGE;
+                    
+                    const choices = randomWager.wager_choices;
+              
+                    const numChoices = choices.length;
+                    const choiceIdx = Math.ceil(Math.random() * numChoices * 2.0) % numChoices;
+                    const randomChoice = choices[choiceIdx];
+                    
+                    const bet = new Bet({
+                      user: user._id,
+                      wager: randomWagerId,
+                      amount_bet: randomAmountBet,
+                      option: randomChoice.option
+                    });
+
+                    bets.push(bet);
+                  }
+                  Bet.insertMany(bets);
+                });
+              }
 
               jwt.sign(payload, keys.secretOrKey, {
                 expiresIn: 3600
