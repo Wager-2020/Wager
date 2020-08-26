@@ -70,6 +70,7 @@ class NavBar extends React.Component {
             value={selectedOption}
             onChange={this.handleChange}
             options={options}
+            placeholder = 'Nav Menu'
           />
         </div>
         {this.props.children}
