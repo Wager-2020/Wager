@@ -123,7 +123,6 @@ class WagerShow extends React.Component {
 
 const msp = (state, Ownprops) => {
     const wager = state.entities.wagers[Ownprops.match.params.wagerId];
-    debugger;
     const wagerId = wager ? wager.id : undefined;
     const currentUser = state.session.user;
     const currentUserId = currentUser ? currentUser.id : undefined;

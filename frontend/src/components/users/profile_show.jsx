@@ -31,6 +31,7 @@ class Profile extends React.Component {
         let amountBet = null;
         let amountWon = null;
         let betOption = null;
+        let wagerId = null;
         if (!userInfo) {
             return null;
         }
@@ -40,21 +41,29 @@ class Profile extends React.Component {
                 amountBet = bet.amount_bet;
                 amountWon = bet.amount_won;
                 betOption = bet.option;
+                wagerId = wagers[bet.wager]._id;
             }
+            // console.log(wagerId)
             return wagers[bet.wager] ? (
-                <div key={idx} 
-                    className="bets-container" 
-                    id={this.identifyBetStatus(bet, wagers[bet.wager])}>
-                    <div className="bets-container-top">
-                        <h2>{betTitle}</h2>
-                    </div>
-                    <div className="bets-container-middle">
-                        <p>You wagered {amountBet.toFixed(0)} and won {amountWon.toFixed(0)} karma on</p>
-                    </div>
-                    <div className="bets-container-bottom">
-                        <p>{betOption}</p>
-                    </div>
+              <div
+                key={idx}
+                className="bets-container"
+                onClick={()=>this.props.history.push(`/wagers/${wagerId}`)}
+                id={this.identifyBetStatus(bet, wagers[bet.wager])}
+              >
+                <div className="bets-container-top">
+                  <h2>{betTitle}</h2>
                 </div>
+                <div className="bets-container-middle">
+                  <p>
+                    You wagered {amountBet.toFixed(0)} and won{" "}
+                    {amountWon.toFixed(0)} karma on
+                  </p>
+                </div>
+                <div className="bets-container-bottom">
+                  <p>{betOption}</p>
+                </div>
+              </div>
             ) : null;
         })
         return userBetsLi;
